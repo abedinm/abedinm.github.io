@@ -1,0 +1,373 @@
+/* Case-study-specific styles, built on top of ../style.css */
+
+body { cursor: auto; background: var(--cream); }
+.cs-nav { background: color-mix(in srgb, var(--cream) 92%, transparent); }
+.cs-back {
+  font-family: var(--mono); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--ink); font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 99px;
+  border: 1px solid var(--cream-line-strong);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.cs-back:hover { background: var(--ink); color: var(--cream); }
+
+.cs {
+  max-width: 1100px;
+  margin: max(100px, calc(80px + env(safe-area-inset-top, 0px))) auto 0;
+  padding: 0 var(--pad-x);
+}
+
+.cs-hero { margin-bottom: clamp(40px, 6vw, 80px); }
+.cs-tag { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: clamp(24px, 3vw, 40px); }
+.cs h1 {
+  font-family: var(--display);
+  font-size: clamp(56px, 10vw, 160px);
+  font-weight: 700; line-height: 0.92;
+  letter-spacing: -0.04em;
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+.cs h1 em { color: var(--orange); }
+.cs-deck {
+  font-family: var(--display);
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.35; letter-spacing: -0.01em;
+  color: var(--ink-soft);
+  max-width: 800px;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+.cs-meta {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 2vw, 32px);
+  padding: 28px 0;
+  border-top: 1px solid var(--cream-line-strong);
+  border-bottom: 1px solid var(--cream-line-strong);
+}
+.cs-meta > div { display: flex; flex-direction: column; gap: 6px; }
+.cs-meta .label {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--ink-muted);
+}
+.cs-meta .value { font-size: 14px; line-height: 1.4; }
+@media (max-width: 800px) {
+  .cs-meta { grid-template-columns: 1fr 1fr; gap: 20px; }
+}
+
+.cs-cover {
+  margin: clamp(40px, 5vw, 80px) calc(var(--pad-x) * -1) clamp(60px, 7vw, 100px);
+  background: var(--bg-dark-section); border-radius: 0;
+  overflow: hidden;
+  border-top: 1px solid var(--cream-line);
+  border-bottom: 1px solid var(--cream-line);
+}
+.cs-cover img { width: 100%; height: auto; display: block; }
+
+.cs-block {
+  max-width: 760px;
+  margin: 0 auto clamp(60px, 7vw, 100px);
+}
+.cs-block h2 {
+  font-family: var(--display);
+  font-size: clamp(28px, 3.5vw, 48px); font-weight: 700;
+  letter-spacing: -0.025em; line-height: 1.05;
+  margin-bottom: 20px;
+}
+.cs-block p {
+  font-size: clamp(16px, 1.3vw, 18px); line-height: 1.6;
+  color: var(--ink-soft);
+}
+.cs-list, .cs-steps {
+  list-style: none;
+  margin-top: 20px;
+}
+.cs-list li, .cs-steps li {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--cream-line-strong);
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  display: flex; gap: 16px; align-items: baseline;
+}
+.cs-list li::before {
+  content: '→';
+  color: var(--orange);
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.9em;
+  flex-shrink: 0;
+}
+.cs-steps { counter-reset: step; }
+.cs-steps li { counter-increment: step; }
+.cs-steps li::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--mono); font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  padding-top: 4px;
+  flex-shrink: 0;
+  width: 28px;
+}
+.cs-list strong, .cs-steps strong { color: var(--ink); font-weight: 600; }
+code {
+  font-family: var(--mono); font-size: 0.9em;
+  background: var(--cream-soft);
+  padding: 2px 6px; border-radius: 4px;
+}
+
+/* ===== Code block with syntax-ish highlight =============== */
+.cs-code {
+  margin: 28px 0;
+  background: #0a0a0a;
+  color: #e8e6df;
+  border-radius: 14px;
+  overflow: hidden;
+  font-family: var(--mono); font-size: 13px;
+  line-height: 1.6;
+}
+.cs-code-bar {
+  display: flex; align-items: center; gap: 7px;
+  padding: 10px 14px;
+  background: linear-gradient(180deg, #1a1a1a, #141414);
+  border-bottom: 1px solid rgba(243, 238, 217, 0.06);
+}
+.cs-code-bar .dot {
+  width: 11px; height: 11px; border-radius: 50%;
+}
+.cs-code-bar .dot:nth-child(1) { background: #ff5f56; }
+.cs-code-bar .dot:nth-child(2) { background: #ffbd2e; }
+.cs-code-bar .dot:nth-child(3) { background: #27c93f; }
+.cs-code-bar .ttl {
+  font-size: 11px; color: rgba(243, 238, 217, 0.45);
+  margin-left: 8px;
+}
+.cs-code pre {
+  padding: 16px 20px;
+  background: transparent; border: 0; margin: 0;
+  font-family: var(--mono); font-size: 13px;
+  overflow-x: auto;
+}
+.cs-code pre .kw { color: #ff6b35; }
+.cs-code pre .str { color: #65d57a; }
+.cs-code pre .com { color: #5a554b; font-style: italic; }
+.cs-code pre .num { color: #4a7bff; }
+.cs-code pre .fn { color: #d2c98a; }
+
+/* ===== Image gallery ======================================= */
+.cs-gallery {
+  display: grid; grid-template-columns: 2fr 1fr;
+  gap: 12px;
+  margin: 36px 0;
+}
+.cs-gallery img, .cs-gallery .ph {
+  width: 100%; height: 100%; min-height: 200px;
+  border-radius: 12px; object-fit: cover;
+  border: 1px solid var(--cream-line-strong);
+}
+.cs-gallery .ph {
+  background: var(--bg-dark-section); color: var(--on-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  text-align: center;
+  padding: 16px;
+}
+.cs-gallery .stack { display: grid; grid-template-rows: 1fr 1fr; gap: 12px; }
+@media (max-width: 800px) {
+  .cs-gallery { grid-template-columns: 1fr; }
+  .cs-gallery .stack { grid-template-rows: auto auto; }
+}
+
+/* ===== Inline metric callouts ============================== */
+.cs-callout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 28px 0;
+}
+.cs-callout-box {
+  padding: 20px 24px;
+  border-radius: 14px;
+  background: var(--cream-warm);
+  border: 1px solid var(--cream-line);
+}
+.cs-callout-box .n {
+  font-family: var(--display); font-weight: 700;
+  font-size: 36px; line-height: 1;
+  color: var(--orange);
+  letter-spacing: -0.02em;
+}
+.cs-callout-box .l {
+  font-size: 14px; color: var(--ink-muted);
+  margin-top: 6px; line-height: 1.4;
+}
+@media (max-width: 600px) { .cs-callout { grid-template-columns: 1fr; } }
+
+.cs-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 2vw, 32px);
+  margin-top: 24px;
+}
+.cs-stat .n {
+  font-family: var(--display);
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 700; line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.cs-stat .n em { color: var(--orange); font-size: 0.5em; font-weight: 500; }
+.cs-stat .l {
+  font-family: var(--mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  margin-top: 10px;
+}
+@media (max-width: 700px) { .cs-stats { grid-template-columns: 1fr 1fr; } }
+
+.cs-block--quote {
+  padding: clamp(40px, 5vw, 60px) clamp(20px, 3vw, 40px);
+  background: var(--bg-dark-section); color: var(--on-dark);
+  border-radius: 24px;
+  text-align: center;
+}
+.cs-block--quote blockquote {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(24px, 3.5vw, 44px); font-weight: 500;
+  line-height: 1.2; letter-spacing: -0.01em;
+}
+.cs-quote-attr {
+  font-family: var(--mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--on-dark-muted);
+  margin-top: 24px;
+}
+
+.cs-pager {
+  max-width: 760px;
+  margin: clamp(60px, 8vw, 120px) auto;
+  padding: 32px 0;
+  border-top: 1px solid var(--cream-line-strong);
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 40px;
+}
+.cs-pager-prev,
+.cs-pager-next {
+  display: flex; flex-direction: column;
+  gap: 8px;
+}
+.cs-pager-prev {
+  text-align: left; align-items: flex-start;
+}
+.cs-pager-next {
+  text-align: right; align-items: flex-end;
+  margin-left: auto;
+}
+.cs-pager-prev .label,
+.cs-pager-next .label {
+  font-family: var(--mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--ink-muted);
+}
+.cs-pager-title {
+  font-family: var(--display);
+  font-size: clamp(22px, 3.5vw, 40px);
+  font-weight: 700; letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+.cs-pager-prev:hover .cs-pager-title,
+.cs-pager-next:hover .cs-pager-title { color: var(--orange); }
+
+.cs-footer { margin-top: 0; }
+.cs-footer .footer-bottom { justify-content: space-between; }
+.cs-footer .footer-bottom a:hover { color: var(--green); }
+
+/* =========================================================
+   Hire-me CTA at end of each case study (added 2026-05-23)
+   ========================================================= */
+.cs-cta {
+  margin: clamp(60px, 8vw, 100px) 0 clamp(40px, 5vw, 60px);
+  padding: clamp(36px, 5vw, 60px);
+  background: var(--ink); color: var(--cream);
+  border-radius: 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cs-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.25), transparent 60%);
+  pointer-events: none;
+}
+.cs-cta h3 {
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(28px, 3.2vw, 44px);
+  line-height: 1.15; letter-spacing: -0.02em;
+  color: var(--cream); margin-bottom: 14px;
+  position: relative;
+}
+.cs-cta h3 em {
+  font-family: var(--serif); font-style: italic; font-weight: 500;
+  color: var(--orange);
+}
+.cs-cta-sub {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.55;
+  color: var(--on-dark-muted);
+  max-width: 560px;
+  margin: 0 auto clamp(24px, 3vw, 36px);
+  position: relative;
+}
+.cs-cta-actions {
+  display: flex; gap: 14px;
+  justify-content: center; flex-wrap: wrap;
+  position: relative;
+}
+.cs-cta-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px;
+  background: var(--orange); color: var(--cream);
+  border-radius: 99px;
+  font-family: var(--sans); font-weight: 600; font-size: 15px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.cs-cta-primary:hover { background: var(--orange-deep); }
+.cs-cta-primary:active { transform: scale(0.97); }
+.cs-cta-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px;
+  background: transparent; color: var(--cream);
+  border: 1.5px solid rgba(243, 238, 217, 0.35);
+  border-radius: 99px;
+  font-family: var(--sans); font-weight: 500; font-size: 15px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.cs-cta-secondary:hover {
+  background: rgba(243, 238, 217, 0.08);
+  border-color: rgba(243, 238, 217, 0.7);
+}
+
+/* =========================================================
+   Kind chip on case-study hero (client / product)
+   ========================================================= */
+.cs-kind {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-left: 4px;
+  border-radius: 99px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.cs-kind--client {
+  background: var(--orange);
+  color: var(--cream);
+}
+.cs-kind--product {
+  background: rgba(13, 13, 13, 0.85);
+  color: var(--cream);
+}

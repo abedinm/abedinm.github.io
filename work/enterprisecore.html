@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>EnterpriseCore AI Suite — Case study · Abedin M.</title>
+<meta name="description" content="130-module offline business suite + AI coding assistant. Built solo. One payment. Your data stays on your machine." />
+<meta name="theme-color" content="#f3eed9" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14130f" />
+<link rel="canonical" href="https://abedin.dev/work/enterprisecore.html" />
+<meta property="og:title" content="EnterpriseCore AI Suite — Case study · Abedin M." />
+<meta property="og:description" content="130-module offline business suite + AI coding assistant. Built solo. One payment. Your data stays on your machine." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abedin.dev/work/enterprisecore.html" />
+<meta property="og:image" content="https://abedin.dev/assets/og.png" />
+<meta property="og:image:alt" content="Abedin M. — Solo builder of offline-first software" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="EnterpriseCore AI Suite — Case study · Abedin M." />
+<meta name="twitter:description" content="130-module offline business suite + AI coding assistant. Built solo. One payment. Your data stays on your machine." />
+<meta name="twitter:image" content="https://abedin.dev/assets/og.png" />
+
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="./case-study.css" />
+<script>
+  (function(){try{var t=localStorage.getItem('abedin-theme')||
+    (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+    document.documentElement.dataset.theme=t;}catch(e){}})();
+</script>
+<!-- analytics:cloudflare:start -->
+<!-- Cloudflare Web Analytics — set CF_BEACON_TOKEN in scripts/_inject_analytics.py and re-run to enable. -->
+<!-- analytics:cloudflare:end -->
+</head>
+<body>
+<a href="#cs-content" class="skip-link">Skip to content</a>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<header class="nav cs-nav">
+  <a href="../index.html" class="logo">
+    <span class="logo-mark"></span>
+    <span class="logo-text">Abedin&nbsp;M.</span>
+  </a>
+  <a href="../index.html#work" class="cs-back">← All work</a>
+</header>
+
+<article class="cs" id="cs-content">
+  <header class="cs-hero">
+    <p class="cs-tag"><span class="sticker sticker--orange">Desktop</span> <span class="sticker sticker--ghost">Live · 2026</span> <span class="cs-kind cs-kind--product" aria-label="Kind: Own product">Own product</span></p>
+    <h1>EnterpriseCore<br/><em>AI</em> Suite.</h1>
+    <p class="cs-deck">I built EnterpriseCore because I was tired of paying 15 SaaS subscriptions for things I could install once and own. 130 modules, one binary, offline-first, your data stays on your machine. Shipped over 14 months.</p>
+    <div class="cs-meta">
+      <div><span class="label">Role</span><span class="value">Sole engineer · founder</span></div>
+      <div><span class="label">Stack</span><span class="value">FastAPI · React · Electron · Anthropic + Ollama</span></div>
+      <div><span class="label">Status</span><span class="value">Beta · installer ready</span></div>
+      <div><span class="label">Launched</span><span class="value">v6 · May 2026</span></div>
+    </div>
+  </header>
+
+  <figure class="cs-cover">
+    <img src="../assets/enterprisecore.webp" alt="EnterpriseCore landing page" fetchpriority="high" loading="eager" />
+  </figure>
+
+  <section class="cs-block">
+    <h2>The problem.</h2>
+    <p>Small businesses bleed money on 15+ SaaS subscriptions — accounting, CRM, HR, project management, inventory — and none of them talk to each other. Your data lives across a dozen vendors who can change pricing, terms, or shutter overnight. Multi-tenant cloud apps are also the wrong shape for a 5-person consultancy that just wants something that works, offline, forever.</p>
+  </section>
+
+  <section class="cs-block">
+    <h2>What I built.</h2>
+    <ul class="cs-list">
+      <li><strong>One installer, 130 modules.</strong> Finance, HR, CRM, projects, inventory, marketing, AI coding assistant — all in a single Electron + FastAPI desktop app.</li>
+      <li><strong>Offline-first.</strong> SQLite + local file storage. No cloud dependency. Works on a plane, in a tunnel, at a client site with bad wifi.</li>
+      <li><strong>Bring-your-own AI keys.</strong> Anthropic, OpenAI, or Ollama (local). Your prompts never leave your machine unless you point them at a cloud API.</li>
+      <li><strong>Three SKUs.</strong> Core / +EDU (11 student modules absorbed in v6) / +Verticals.</li>
+      <li><strong>455 tests.</strong> Up from 289 before the v6 consolidation that absorbed LinguaBot, SiteForge, CornerTable, Deltadesh, Deltadutch, and 11 student apps as first-class modules.</li>
+    </ul>
+  </section>
+
+  <section class="cs-block">
+    <h2>How I shipped it.</h2>
+    <ol class="cs-steps">
+      <li><strong>Spec first.</strong> A one-page README per module. Wrote them all before any code.</li>
+      <li><strong>Backend before frontend.</strong> FastAPI routes + SQLAlchemy models + alembic migrations, all idempotent, all tested.</li>
+      <li><strong>Electron last.</strong> The Electron shell came in month 9, once the FastAPI app was already self-hosted and working in a browser.</li>
+      <li><strong>Code-signed installer.</strong> NSIS + Windows code signing without admin elevation. Took longer than it should have.</li>
+      <li><strong>v6 consolidation.</strong> Absorbed five older standalone products (LinguaBot, SiteForge, CornerTable, Deltadesh, Deltadutch) plus 11 student apps as modules — saving the maintenance burden and giving customers a single install path.</li>
+    </ol>
+
+    <div class="cs-code">
+      <div class="cs-code-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="ttl">backend/app/modules/core.py</span></div>
+      <pre><span class="com"># Each module is a self-contained FastAPI router with</span>
+<span class="com"># its own SQLAlchemy models, alembic versions, and tests.</span>
+
+<span class="kw">class</span> <span class="fn">Module</span>(BaseModel):
+    slug: str
+    name: str
+    version: str <span class="kw">=</span> <span class="str">"1.0.0"</span>
+    requires: list[str] <span class="kw">=</span> []
+    routes: list[Route]
+
+<span class="kw">def</span> <span class="fn">register_all</span>(app: FastAPI) -&gt; <span class="num">int</span>:
+    <span class="com"># Loads + boots all 130 modules in dependency order.</span>
+    n = <span class="num">0</span>
+    <span class="kw">for</span> mod <span class="kw">in</span> sorted(MODULES, key=topo_order):
+        mod.mount(app); n += <span class="num">1</span>
+    <span class="kw">return</span> n  <span class="com"># 130, every release.</span></pre>
+    </div>
+
+    <div class="cs-callout">
+      <div class="cs-callout-box">
+        <div class="n">130</div>
+        <div class="l">First-class modules, all loaded from one binary.</div>
+      </div>
+      <div class="cs-callout-box">
+        <div class="n">~3.4s</div>
+        <div class="l">Cold-start from double-click to login screen.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-block">
+    <h2>Outcomes.</h2>
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="n">130</div><div class="l">Modules</div></div>
+      <div class="cs-stat"><div class="n">455</div><div class="l">Passing tests</div></div>
+      <div class="cs-stat"><div class="n">14<em>mo</em></div><div class="l">Solo build</div></div>
+      <div class="cs-stat"><div class="n">3</div><div class="l">SKUs</div></div>
+    </div>
+  </section>
+
+  <div class="cs-gallery">
+    <div class="stack">
+      <img src="../assets/knowledge-hub.webp" alt="Knowledge Hub module" />
+      <div class="ph">+11 modules absorbed in v6</div>
+    </div>
+  </div>
+
+  <section class="cs-block cs-block--quote">
+    <blockquote>"Replace your entire SaaS stack with one offline install."</blockquote>
+    <p class="cs-quote-attr">— the pitch, and what it actually does</p>
+  </section>
+
+    <section class="cs-cta">
+    <h3>Like what you read? I can ship this for <em>you.</em></h3>
+    <p class="cs-cta-sub">Send a one-line scope and I'll quote within 24h. Three engagement shapes — fixed-price MVP, embeddable widget, or maintenance retainer.</p>
+    <div class="cs-cta-actions">
+      <a href="../index.html#pricing" class="cs-cta-primary">See engagements &amp; pricing →</a>
+      <a href="mailto:hello@abedin.dev?subject=Inquiry%20%E2%80%94%20%5Byour%20project%5D&amp;body=Hi%20Abedin%2C%0A%0AScope%3A%20%0ABudget%3A%20%0ATimeline%3A%20%0A%0A" class="cs-cta-secondary">Or email me directly</a>
+    </div>
+  </section>
+
+  <nav class="cs-pager">
+    <a href="./claude-skills.html" class="cs-pager-prev">
+      <span class="label">← Previous case study</span>
+      <span class="cs-pager-title">claude-skills</span>
+    </a>
+    <a href="./linguabot.html" class="cs-pager-next">
+      <span class="label">Next case study →</span>
+      <span class="cs-pager-title">LinguaBot</span>
+    </a>
+  </nav>
+</article>
+
+<footer class="footer cs-footer">
+  <div class="footer-top">
+    <span class="footer-logo">Abedin&nbsp;M.<span class="dot"></span></span>
+    <a href="../index.html" class="footer-tag">← Back to portfolio</a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Abedin M. All rights reserved.</span>
+    <a href="mailto:hello@abedin.dev">hello@abedin.dev</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress only
+  const pb = document.getElementById('scroll-progress');
+  addEventListener('scroll', () => {
+    const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    pb.style.width = `${(scrollY / max) * 100}%`;
+  }, { passive: true });
+</script>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Arcade — built for fun · Abedin M.</title>
+<meta name="description" content="A small browser arcade I built for fun. Snake, Pong, 2048. Inline, no signups, no scores stolen." />
+<meta name="theme-color" content="#0d0d0d" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://abedin.dev/arcade.html" />
+
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="./assets/fonts/fonts.css" />
+<style>
+  :root { --bg: #0a0a0a; --fg: #f3eed9; --accent: #ff6b35; --green: #65d57a; --blue: #4a7bff; --line: rgba(243,238,217,0.18); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--fg); font-family: 'Inter', sans-serif; line-height: 1.5; }
+  .arcade-wrap { max-width: 1100px; margin: 0 auto; padding: 48px 24px; }
+  .arcade-header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 24px; border-bottom: 1px solid var(--line); margin-bottom: 48px; flex-wrap: wrap; gap: 20px; }
+  .arcade-header h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(36px, 6vw, 64px); font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+  .arcade-header h1 em { font-family: 'Fraunces', serif; font-style: italic; color: var(--accent); font-weight: 500; }
+  .arcade-header .sub { color: rgba(243,238,217,0.6); font-size: 14px; margin-top: 8px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; }
+  .arcade-back { color: var(--fg); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; padding: 8px 16px; border: 1px solid var(--line); border-radius: 99px; transition: background 0.15s, color 0.15s; }
+  .arcade-back:hover { background: var(--fg); color: var(--bg); }
+
+  .arcade-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  @media (max-width: 800px) { .arcade-grid { grid-template-columns: 1fr; } }
+
+  .game-card {
+    background: #14130f; padding: 32px;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .game-card h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 600; }
+  .game-card .meta { display: flex; gap: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(243,238,217,0.55); text-transform: uppercase; letter-spacing: 0.1em; }
+  .game-card .meta a { color: var(--accent); cursor: pointer; }
+  .game-board { display: grid; place-items: center; padding: 20px; background: var(--bg); border-radius: 10px; min-height: 320px; position: relative; }
+  canvas { display: block; image-rendering: pixelated; }
+  .arcade-foot { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(243,238,217,0.55); text-transform: uppercase; letter-spacing: 0.12em; flex-wrap: wrap; gap: 12px; }
+  .arcade-foot a { color: var(--accent); text-decoration: none; }
+
+  /* 2048 tiles */
+  .g2048-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; background: #1f1d18; padding: 8px; border-radius: 8px; }
+  .g2048-tile { aspect-ratio: 1; display: grid; place-items: center; background: #2a2620; color: #f3eed9; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; border-radius: 5px; transition: all 0.15s ease; }
+  .g2048-tile[data-v="0"] { color: transparent; background: #2a2620; }
+  .g2048-tile[data-v="2"] { background: #3a3528; }
+  .g2048-tile[data-v="4"] { background: #4a4030; }
+  .g2048-tile[data-v="8"] { background: var(--blue); color: white; }
+  .g2048-tile[data-v="16"] { background: #4a7bff; color: white; }
+  .g2048-tile[data-v="32"] { background: var(--green); color: #0d0d0d; }
+  .g2048-tile[data-v="64"] { background: #2fa84a; color: white; }
+  .g2048-tile[data-v="128"] { background: var(--accent); color: white; font-size: 20px; }
+  .g2048-tile[data-v="256"] { background: #d94e1f; color: white; font-size: 20px; }
+  .g2048-tile[data-v="512"] { background: #ff3a8c; color: white; font-size: 19px; }
+  .g2048-tile[data-v="1024"] { background: #a06cd5; color: white; font-size: 17px; }
+  .g2048-tile[data-v="2048"] { background: linear-gradient(135deg, var(--accent), var(--green)); color: white; font-size: 17px; box-shadow: 0 0 24px rgba(255, 107, 53, 0.5); }
+
+  /* Memory match grid */
+  .mem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 8px; background: #1f1d18; border-radius: 8px; }
+  .mem-card { aspect-ratio: 1; border: none; cursor: pointer; position: relative; background: transparent; perspective: 600px; }
+  .mem-back, .mem-face {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    border-radius: 5px; font-family: 'Bricolage Grotesque', sans-serif;
+    backface-visibility: hidden;
+    transition: transform 0.5s cubic-bezier(.2,.7,.2,1);
+  }
+  .mem-back { background: #2a2620; color: #5a554b; font-size: 22px; }
+  .mem-face { background: var(--accent); color: white; font-size: 26px; transform: rotateY(180deg); }
+  .mem-card.flipped .mem-back { transform: rotateY(180deg); }
+  .mem-card.flipped .mem-face { transform: rotateY(0); }
+  .mem-card.matched .mem-face { background: var(--green); color: #0d0d0d; box-shadow: 0 0 12px rgba(101, 213, 122, 0.5); }
+</style>
+<!-- analytics:cloudflare:start -->
+<!-- Cloudflare Web Analytics — set CF_BEACON_TOKEN in scripts/_inject_analytics.py and re-run to enable. -->
+<!-- analytics:cloudflare:end -->
+</head>
+<body>
+<a href="#arcade-content" class="skip-link" style="position:absolute;top:-40px;left:0;background:#0d0d0d;color:#f3eed9;padding:8px 18px;border-radius:0 0 10px 10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;z-index:99999;text-decoration:none;transition:top 0.2s ease;" onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Skip to content</a>
+
+<div class="arcade-wrap">
+
+<header class="arcade-header" role="banner">
+  <div>
+    <h1>The <em>arcade.</em></h1>
+    <p class="sub">Built for fun · zero scores stolen · zero login</p>
+  </div>
+  <a href="./" class="arcade-back">← Back to portfolio</a>
+</header>
+
+<main class="arcade-grid" id="arcade-content" aria-label="Six browser games">
+
+  <!-- 2048 -->
+  <section class="game-card">
+    <h2>2048</h2>
+    <div class="meta">
+      <span>Arrow keys to move</span>
+      <span>Score: <strong id="g2048-score">0</strong></span>
+      <a id="g2048-reset">Reset →</a>
+    </div>
+    <div class="game-board" id="g2048-board"></div>
+  </section>
+
+  <!-- Snake -->
+  <section class="game-card">
+    <h2>Snake</h2>
+    <div class="meta">
+      <span>Arrow keys</span>
+      <span>Score: <strong id="snake-score">0</strong></span>
+      <a id="snake-reset">Reset →</a>
+    </div>
+    <div class="game-board" id="snake-board"></div>
+  </section>
+
+  <!-- Pong -->
+  <section class="game-card">
+    <h2>Pong</h2>
+    <div class="meta">
+      <span>W / S to move</span>
+      <span>Score: <strong id="pong-score">0 - 0</strong></span>
+      <a id="pong-reset">Reset →</a>
+    </div>
+    <div class="game-board" id="pong-board"></div>
+  </section>
+
+  <!-- Reaction test -->
+  <section class="game-card">
+    <h2>Reaction test</h2>
+    <div class="meta">
+      <span>Click when the box turns green</span>
+      <span>Best: <strong id="rxn-best">— ms</strong></span>
+      <a id="rxn-go">Start →</a>
+    </div>
+    <div class="game-board" id="rxn-board" style="cursor: pointer;">
+      <div id="rxn-state" style="text-align:center; font-family:'Bricolage Grotesque',sans-serif; font-size:24px;">
+        Click <em style="color:var(--accent);font-family:'Fraunces',serif">start</em> to begin.
+      </div>
+    </div>
+  </section>
+
+  <!-- Tetris -->
+  <section class="game-card">
+    <h2>Tetris</h2>
+    <div class="meta">
+      <span>← → ↓ to move · ↑ to rotate</span>
+      <span>Lines: <strong id="tet-lines">0</strong> · Score: <strong id="tet-score">0</strong></span>
+      <a id="tet-reset">Reset →</a>
+    </div>
+    <div class="game-board" id="tet-board"></div>
+  </section>
+
+  <!-- Memory match -->
+  <section class="game-card">
+    <h2>Memory match</h2>
+    <div class="meta">
+      <span>Find pairs</span>
+      <span>Moves: <strong id="mem-moves">0</strong> · Pairs: <strong id="mem-pairs">0 / 8</strong></span>
+      <a id="mem-reset">New game →</a>
+    </div>
+    <div class="game-board" id="mem-board"></div>
+  </section>
+
+</main>
+
+<footer class="arcade-foot" role="contentinfo">
+  <span>Built solo · cookieless analytics only · no ads · all games run on your machine.</span>
+  <span><a href="./">← Back to portfolio</a> · <a href="./working-together.html">Hire me to build games →</a></span>
+</footer>
+
+</div>
+
+<script>
+// ===== 2048 =====
+(function() {
+  let grid = [];
+  let score = 0;
+  const board = document.getElementById('g2048-board');
+  const scoreEl = document.getElementById('g2048-score');
+  function init() {
+    grid = Array(16).fill(0);
+    score = 0;
+    addTile(); addTile();
+    render();
+  }
+  function addTile() {
+    const empty = grid.map((v, i) => v === 0 ? i : -1).filter(i => i >= 0);
+    if (!empty.length) return false;
+    grid[empty[Math.floor(Math.random() * empty.length)]] = Math.random() < 0.9 ? 2 : 4;
+    return true;
+  }
+  function render() {
+    board.innerHTML = '<div class="g2048-grid">' + grid.map(v => `<div class="g2048-tile" data-v="${v}">${v || ''}</div>`).join('') + '</div>';
+    scoreEl.textContent = score;
+  }
+  function slide(row) {
+    const filtered = row.filter(v => v);
+    for (let i = 0; i < filtered.length - 1; i++) {
+      if (filtered[i] === filtered[i + 1]) {
+        filtered[i] *= 2; score += filtered[i];
+        filtered.splice(i + 1, 1);
+      }
+    }
+    while (filtered.length < 4) filtered.push(0);
+    return filtered;
+  }
+  function move(dir) {
+    const before = JSON.stringify(grid);
+    if (dir === 'l') for (let r = 0; r < 4; r++) { const row = slide(grid.slice(r*4, r*4+4)); for (let c = 0; c < 4; c++) grid[r*4+c] = row[c]; }
+    if (dir === 'r') for (let r = 0; r < 4; r++) { const row = slide(grid.slice(r*4, r*4+4).reverse()).reverse(); for (let c = 0; c < 4; c++) grid[r*4+c] = row[c]; }
+    if (dir === 'u') for (let c = 0; c < 4; c++) { const col = slide([grid[c], grid[c+4], grid[c+8], grid[c+12]]); for (let r = 0; r < 4; r++) grid[c+r*4] = col[r]; }
+    if (dir === 'd') for (let c = 0; c < 4; c++) { const col = slide([grid[c], grid[c+4], grid[c+8], grid[c+12]].reverse()).reverse(); for (let r = 0; r < 4; r++) grid[c+r*4] = col[r]; }
+    if (JSON.stringify(grid) !== before) { addTile(); render(); }
+  }
+  addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); move('l'); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); move('r'); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); move('u'); }
+    if (e.key === 'ArrowDown') { e.preventDefault(); move('d'); }
+  });
+  document.getElementById('g2048-reset').addEventListener('click', init);
+  init();
+})();
+
+// ===== Snake =====
+(function() {
+  const board = document.getElementById('snake-board');
+  const c = document.createElement('canvas');
+  c.width = 280; c.height = 280;
+  c.style.cssText = 'border-radius:8px;background:#0a0a0a';
+  c.setAttribute('role', 'img');
+  c.setAttribute('aria-label', 'Snake game. Use arrow keys to move.');
+  c.tabIndex = 0;
+  board.appendChild(c);
+  const ctx = c.getContext('2d');
+  const CELL = 20, COLS = 14, ROWS = 14;
+  let snake, dir, nextDir, food, score, dead, timer;
+  const scoreEl = document.getElementById('snake-score');
+  function init() {
+    snake = [{x:6,y:7}, {x:5,y:7}, {x:4,y:7}];
+    dir = {x:1,y:0}; nextDir = dir;
+    food = newFood(); score = 0; dead = false;
+    if (timer) clearInterval(timer);
+    timer = setInterval(step, 110);
+    draw();
+    scoreEl.textContent = '0';
+  }
+  function newFood() {
+    while (true) {
+      const f = {x: Math.floor(Math.random()*COLS), y: Math.floor(Math.random()*ROWS)};
+      if (!snake.some(s => s.x===f.x && s.y===f.y)) return f;
+    }
+  }
+  function step() {
+    if (dead) return;
+    dir = nextDir;
+    const h = {x: snake[0].x + dir.x, y: snake[0].y + dir.y};
+    if (h.x < 0 || h.x >= COLS || h.y < 0 || h.y >= ROWS || snake.some(s => s.x===h.x && s.y===h.y)) { dead = true; draw(); return; }
+    snake.unshift(h);
+    if (h.x===food.x && h.y===food.y) { score++; scoreEl.textContent = score; food = newFood(); } else snake.pop();
+    draw();
+  }
+  function draw() {
+    ctx.fillStyle = '#0a0a0a'; ctx.fillRect(0,0,c.width,c.height);
+    ctx.fillStyle = '#ff6b35'; ctx.fillRect(food.x*CELL+3, food.y*CELL+3, CELL-6, CELL-6);
+    snake.forEach((s, i) => { ctx.fillStyle = i===0 ? '#65d57a' : '#2fa84a'; ctx.fillRect(s.x*CELL+2, s.y*CELL+2, CELL-4, CELL-4); });
+    if (dead) {
+      ctx.fillStyle = 'rgba(0,0,0,0.7)'; ctx.fillRect(0,0,c.width,c.height);
+      ctx.fillStyle = '#ff6b35'; ctx.font = 'bold 20px monospace'; ctx.textAlign = 'center';
+      ctx.fillText('GAME OVER · ' + score, c.width/2, c.height/2);
+    }
+  }
+  addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowUp' && dir.y !== 1) { e.preventDefault(); nextDir = {x:0,y:-1}; }
+    if (e.key === 'ArrowDown' && dir.y !== -1) { e.preventDefault(); nextDir = {x:0,y:1}; }
+    if (e.key === 'ArrowLeft' && dir.x !== 1) { e.preventDefault(); nextDir = {x:-1,y:0}; }
+    if (e.key === 'ArrowRight' && dir.x !== -1) { e.preventDefault(); nextDir = {x:1,y:0}; }
+  });
+  document.getElementById('snake-reset').addEventListener('click', init);
+  init();
+})();
+
+// ===== Pong =====
+(function() {
+  const board = document.getElementById('pong-board');
+  const c = document.createElement('canvas');
+  c.width = 360; c.height = 220;
+  c.style.cssText = 'border-radius:8px;background:#0a0a0a';
+  c.setAttribute('role', 'img');
+  c.setAttribute('aria-label', 'Pong game. Use W and S keys to move your paddle.');
+  c.tabIndex = 0;
+  board.appendChild(c);
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height, pH = 50, pW = 5;
+  let p1y, p2y, bx, by, vx, vy, s1, s2, up, down, raf;
+  const scoreEl = document.getElementById('pong-score');
+  function init() {
+    p1y = p2y = H/2 - pH/2;
+    s1 = s2 = 0;
+    reset();
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(loop);
+  }
+  function reset() { bx = W/2; by = H/2; vx = (Math.random()>.5?1:-1)*3; vy = (Math.random()-.5)*4; }
+  function loop() {
+    if (up) p1y -= 4; if (down) p1y += 4;
+    p1y = Math.max(0, Math.min(H-pH, p1y));
+    const tgt = by - pH/2 + (Math.random()-.5)*40;
+    if (Math.abs(tgt - p2y) > 3) p2y += tgt > p2y ? 2.5 : -2.5;
+    p2y = Math.max(0, Math.min(H-pH, p2y));
+    bx += vx; by += vy;
+    if (by <= 0 || by >= H) vy *= -1;
+    if (bx <= pW+8 && by >= p1y && by <= p1y+pH) vx = Math.abs(vx)*1.05;
+    if (bx >= W-pW-8 && by >= p2y && by <= p2y+pH) vx = -Math.abs(vx)*1.05;
+    if (bx < 0) { s2++; reset(); }
+    if (bx > W) { s1++; reset(); }
+    scoreEl.textContent = `${s1} - ${s2}`;
+    ctx.fillStyle = '#0a0a0a'; ctx.fillRect(0,0,W,H);
+    ctx.fillStyle = '#65d57a'; ctx.fillRect(5, p1y, pW, pH);
+    ctx.fillStyle = '#ff6b35'; ctx.fillRect(W-pW-5, p2y, pW, pH);
+    ctx.fillStyle = '#f3eed9'; ctx.fillRect(bx-3, by-3, 6, 6);
+    ctx.fillStyle = 'rgba(243,238,217,0.15)';
+    for (let y = 0; y < H; y += 10) ctx.fillRect(W/2-1, y, 2, 5);
+    raf = requestAnimationFrame(loop);
+  }
+  addEventListener('keydown', (e) => {
+    if (e.key === 'w' || e.key === 'ArrowUp') { e.preventDefault(); up = true; }
+    if (e.key === 's' || e.key === 'ArrowDown') { e.preventDefault(); down = true; }
+  });
+  addEventListener('keyup', (e) => {
+    if (e.key === 'w' || e.key === 'ArrowUp') up = false;
+    if (e.key === 's' || e.key === 'ArrowDown') down = false;
+  });
+  document.getElementById('pong-reset').addEventListener('click', init);
+  init();
+})();
+
+// ===== Tetris =====
+(function() {
+  const board = document.getElementById('tet-board');
+  const c = document.createElement('canvas');
+  const COLS = 10, ROWS = 18, CELL = 18;
+  c.width = COLS * CELL; c.height = ROWS * CELL;
+  c.style.cssText = 'border-radius:8px;background:#0a0a0a;display:block';
+  c.setAttribute('role', 'img');
+  c.setAttribute('aria-label', 'Tetris game. Arrow keys to move, up arrow to rotate, down arrow to soft-drop.');
+  c.tabIndex = 0;
+  board.appendChild(c);
+  const ctx = c.getContext('2d');
+  const COLORS = ['#0a0a0a','#ff6b35','#65d57a','#4a7bff','#a06cd5','#ffd166','#ff5cc8','#f3eed9'];
+  const SHAPES = {
+    I:[[1,1,1,1]],
+    O:[[1,1],[1,1]],
+    T:[[0,1,0],[1,1,1]],
+    L:[[1,0],[1,0],[1,1]],
+    J:[[0,1],[0,1],[1,1]],
+    S:[[0,1,1],[1,1,0]],
+    Z:[[1,1,0],[0,1,1]]
+  };
+  const KEYS = Object.keys(SHAPES);
+  let grid, piece, score, lines, dead, dropMs, lastDrop, raf;
+  const scoreEl = document.getElementById('tet-score');
+  const linesEl = document.getElementById('tet-lines');
+  function init() {
+    grid = Array.from({length:ROWS}, () => Array(COLS).fill(0));
+    score = 0; lines = 0; dead = false; dropMs = 600;
+    spawn();
+    if (raf) cancelAnimationFrame(raf);
+    lastDrop = performance.now();
+    raf = requestAnimationFrame(loop);
+  }
+  function spawn() {
+    const k = KEYS[Math.floor(Math.random() * KEYS.length)];
+    piece = { x: 3, y: 0, shape: SHAPES[k].map(r => r.slice()), color: KEYS.indexOf(k) + 1 };
+    if (collide(piece, 0, 0)) { dead = true; draw(); }
+  }
+  function collide(p, dx, dy, sh) {
+    sh = sh || p.shape;
+    for (let r = 0; r < sh.length; r++) for (let c = 0; c < sh[r].length; c++) {
+      if (!sh[r][c]) continue;
+      const nx = p.x + c + dx, ny = p.y + r + dy;
+      if (nx < 0 || nx >= COLS || ny >= ROWS) return true;
+      if (ny >= 0 && grid[ny][nx]) return true;
+    }
+    return false;
+  }
+  function merge() {
+    piece.shape.forEach((row, r) => row.forEach((v, c) => {
+      if (v && piece.y + r >= 0) grid[piece.y + r][piece.x + c] = piece.color;
+    }));
+  }
+  function clearLines() {
+    let cleared = 0;
+    for (let r = ROWS - 1; r >= 0; r--) {
+      if (grid[r].every(v => v)) { grid.splice(r, 1); grid.unshift(Array(COLS).fill(0)); cleared++; r++; }
+    }
+    if (cleared) {
+      lines += cleared;
+      score += [0, 100, 300, 500, 800][cleared];
+      dropMs = Math.max(120, 600 - Math.floor(lines / 5) * 50);
+      scoreEl.textContent = score; linesEl.textContent = lines;
+    }
+  }
+  function rotate(sh) {
+    return sh[0].map((_, c) => sh.map(r => r[c]).reverse());
+  }
+  function loop(t) {
+    if (dead) return;
+    if (t - lastDrop > dropMs) {
+      if (!collide(piece, 0, 1)) piece.y++;
+      else { merge(); clearLines(); spawn(); }
+      lastDrop = t;
+    }
+    draw();
+    raf = requestAnimationFrame(loop);
+  }
+  function draw() {
+    ctx.fillStyle = '#0a0a0a'; ctx.fillRect(0, 0, c.width, c.height);
+    grid.forEach((row, r) => row.forEach((v, cl) => {
+      if (v) { ctx.fillStyle = COLORS[v]; ctx.fillRect(cl * CELL + 1, r * CELL + 1, CELL - 2, CELL - 2); }
+    }));
+    if (piece && !dead) {
+      piece.shape.forEach((row, r) => row.forEach((v, cl) => {
+        if (v) { ctx.fillStyle = COLORS[piece.color]; ctx.fillRect((piece.x + cl) * CELL + 1, (piece.y + r) * CELL + 1, CELL - 2, CELL - 2); }
+      }));
+    }
+    if (dead) {
+      ctx.fillStyle = 'rgba(0,0,0,0.7)'; ctx.fillRect(0, 0, c.width, c.height);
+      ctx.fillStyle = '#ff6b35'; ctx.font = 'bold 18px monospace'; ctx.textAlign = 'center';
+      ctx.fillText('GAME OVER', c.width / 2, c.height / 2);
+    }
+  }
+  addEventListener('keydown', (e) => {
+    if (!piece || dead) return;
+    if (e.key === 'ArrowLeft' && !collide(piece, -1, 0)) { piece.x--; draw(); e.preventDefault(); }
+    if (e.key === 'ArrowRight' && !collide(piece, 1, 0)) { piece.x++; draw(); e.preventDefault(); }
+    if (e.key === 'ArrowDown' && !collide(piece, 0, 1)) { piece.y++; lastDrop = performance.now(); draw(); e.preventDefault(); }
+    if (e.key === 'ArrowUp') {
+      const rotated = rotate(piece.shape);
+      if (!collide(piece, 0, 0, rotated)) { piece.shape = rotated; draw(); }
+      e.preventDefault();
+    }
+  });
+  document.getElementById('tet-reset').addEventListener('click', init);
+  init();
+})();
+
+// ===== Memory match =====
+(function() {
+  const board = document.getElementById('mem-board');
+  const movesEl = document.getElementById('mem-moves');
+  const pairsEl = document.getElementById('mem-pairs');
+  const SYMBOLS = ['★','◆','▲','●','◐','◇','◈','✦'];
+  let cards, flipped, moves, pairs;
+  function init() {
+    moves = 0; pairs = 0;
+    movesEl.textContent = '0'; pairsEl.textContent = '0 / 8';
+    cards = [...SYMBOLS, ...SYMBOLS].sort(() => Math.random() - 0.5);
+    flipped = [];
+    board.innerHTML = '<div class="mem-grid">' + cards.map((s, i) =>
+      `<button class="mem-card" data-i="${i}" data-s="${s}"><span class="mem-back">?</span><span class="mem-face">${s}</span></button>`
+    ).join('') + '</div>';
+    board.querySelectorAll('.mem-card').forEach(b => b.addEventListener('click', () => flip(b)));
+  }
+  function flip(b) {
+    if (b.classList.contains('flipped') || b.classList.contains('matched') || flipped.length >= 2) return;
+    b.classList.add('flipped');
+    flipped.push(b);
+    if (flipped.length === 2) {
+      moves++; movesEl.textContent = moves;
+      const [a, c] = flipped;
+      if (a.dataset.s === c.dataset.s) {
+        setTimeout(() => { a.classList.add('matched'); c.classList.add('matched'); flipped = []; pairs++; pairsEl.textContent = `${pairs} / 8`;
+          if (pairs === 8) setTimeout(() => alert('Solved in ' + moves + ' moves!'), 200);
+        }, 400);
+      } else {
+        setTimeout(() => { a.classList.remove('flipped'); c.classList.remove('flipped'); flipped = []; }, 700);
+      }
+    }
+  }
+  document.getElementById('mem-reset').addEventListener('click', init);
+  init();
+})();
+
+// ===== Reaction test =====
+(function() {
+  const board = document.getElementById('rxn-board');
+  const state = document.getElementById('rxn-state');
+  const bestEl = document.getElementById('rxn-best');
+  const go = document.getElementById('rxn-go');
+  let phase = 'idle', t0 = 0, timer, best = parseInt(localStorage.getItem('arcade-rxn') || '0');
+  if (best) bestEl.textContent = best + ' ms';
+  function start() {
+    phase = 'wait';
+    state.innerHTML = '<span style="color:#ff6b35">Wait for green...</span>';
+    board.style.background = '#7a1f00';
+    const delay = 1200 + Math.random() * 2800;
+    timer = setTimeout(() => {
+      phase = 'go';
+      board.style.background = '#1a4a26';
+      state.innerHTML = '<strong style="font-size:32px;">CLICK!</strong>';
+      t0 = performance.now();
+    }, delay);
+  }
+  board.addEventListener('click', (e) => {
+    if (e.target.id === 'rxn-go') return;
+    if (phase === 'wait') {
+      clearTimeout(timer);
+      phase = 'idle';
+      board.style.background = '#0a0a0a';
+      state.innerHTML = 'Too soon! Wait for green. <a id="rxn-go" style="color:#ff6b35;cursor:pointer;">Try again →</a>';
+      return;
+    }
+    if (phase === 'go') {
+      const ms = Math.round(performance.now() - t0);
+      phase = 'done';
+      board.style.background = '#0a0a0a';
+      const isNewBest = !best || ms < best;
+      if (isNewBest) { best = ms; localStorage.setItem('arcade-rxn', ms); bestEl.textContent = ms + ' ms'; }
+      state.innerHTML = `<strong style="font-size:28px;color:#65d57a">${ms} ms</strong>${isNewBest ? '<br/><span style="color:#ff6b35;font-size:13px;">NEW BEST</span>' : ''}<br/><a style="color:#ff6b35;cursor:pointer;" id="rxn-go">Try again →</a>`;
+    }
+  });
+  document.addEventListener('click', (e) => { if (e.target.id === 'rxn-go') start(); });
+})();
+</script>
+</body>
+</html>

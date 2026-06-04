@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en" class="static">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Abedin M. — Solo builder, shipping with love</title>
+<meta name="description" content="Abedin M. — solo builder of offline-first software, embeddable tools, and client sites. Dhaka × Netherlands." />
+<meta name="theme-color" content="#f3eed9" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14130f" />
+<link rel="canonical" href="https://abedin.dev/" />
+
+<meta property="og:title" content="Abedin M. — Solo builder" />
+<meta property="og:description" content="Solo builder of offline-first software. Dhaka × Netherlands." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://abedin.dev/" />
+<meta property="og:image" content="https://abedin.dev/assets/og.png" />
+<meta property="og:image:alt" content="Abedin M. — Solo builder of offline-first software" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Abedin M. — Solo builder" />
+<meta name="twitter:description" content="Solo builder of offline-first software, embeddable tools, and client sites. Dhaka × Netherlands." />
+<meta name="twitter:image" content="https://abedin.dev/assets/og.png" />
+<script>
+  (function(){try{var t=localStorage.getItem('abedin-theme')||
+    (window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+    document.documentElement.dataset.theme=t;}catch(e){}})();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+<link rel="alternate icon" type="image/png" href="./assets/favicon-32.png" />
+<!-- Resource hints — speed up first paint and case-study transitions -->
+<link rel="dns-prefetch" href="https://api.github.com" />
+<link rel="preload" as="image" href="./assets/avatar-dhaka.webp" fetchpriority="high" />
+<link rel="preload" as="image" href="./assets/deltadesh.webp" />
+<link rel="preload" as="image" href="./assets/deltadutch.webp" />
+<link rel="preload" as="image" href="./assets/cornertable.webp" />
+<link rel="preload" as="style" href="./style.css" />
+<link rel="alternate" type="application/rss+xml" title="Abedin M. — Notes" href="./feed.xml" />
+<link rel="stylesheet" href="./assets/fonts/fonts.css" />
+<link rel="manifest" href="./manifest.webmanifest" />
+<link rel="apple-touch-icon" href="./assets/icon-180.png" />
+<link rel="stylesheet" href="./style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Abedin M.",
+  "alternateName": "Abedin M. — Solo Builder",
+  "description": "Solo software engineer building production apps, embeddable widgets, and maintenance retainers for founders and B2B SaaS teams.",
+  "url": "https://abedin.dev/",
+  "image": "https://abedin.dev/assets/avatar-dhaka.webp",
+  "founder": { "@type": "Person", "name": "Abedin M." },
+  "areaServed": [
+    "Bangladesh", "Netherlands", "United States", "United Kingdom", "Germany", "Canada", "Singapore"
+  ],
+  "knowsAbout": [
+    "Software engineering", "Web development", "FastAPI", "React",
+    "Electron", "TypeScript", "PostgreSQL", "AI integration", "Offline-first software"
+  ],
+  "priceRange": "$$$",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Engagements",
+    "itemListElement": [
+      { "@type": "Offer", "name": "MVP in 4 weeks", "price": 18000, "priceCurrency": "USD",
+        "description": "Production app on your domain, code in your repo, 2 rounds of revisions, month 1 maintenance included." },
+      { "@type": "Offer", "name": "Embeddable widget", "price": 12000, "priceCurrency": "USD",
+        "description": "Hosted widget or extension, embed docs, basic config dashboard, 1 round of revisions." },
+      { "@type": "Offer", "name": "Maintenance retainer", "price": 3000, "priceCurrency": "USD",
+        "description": "Up to 20 hours/month engineering, 24h response on Slack/email, monthly Loom + report." }
+    ]
+  },
+  "sameAs": [
+    "https://github.com/abedinm",
+    "https://linkedin.com/in/abedinm",
+    "https://x.com/abedinm_"
+  ]
+}
+</script>
+<!-- analytics:cloudflare:start -->
+<!-- Cloudflare Web Analytics — set CF_BEACON_TOKEN in scripts/_inject_analytics.py and re-run to enable. -->
+<!-- analytics:cloudflare:end -->
+</head>
+<body>
+
+<noscript>
+  <style>
+    /* Non-JS safety net: reveal everything, kill JS-driven loaders + cursor */
+    .reveal { opacity: 1 !important; transform: none !important; }
+    #loader, #cursor, .hero-disc, .hero-blob { display: none !important; }
+    body { cursor: auto !important; }
+    .hero-title .line { opacity: 1 !important; transform: none !important; animation: none !important; }
+  </style>
+</noscript>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<!-- Live region for screen-reader announcements (theme toggle, form submit, etc.) -->
+<div id="sr-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<div id="loader" aria-hidden="true">
+  <span class="loader-hello">01 / Hello.</span>
+  <div class="loader-wrap">
+    <div class="loader-stack" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="loader-boot" id="loader-boot"></div>
+  </div>
+  <span class="loader-count" id="loader-count">000</span>
+  <span class="loader-name">Abedin&nbsp;M.</span>
+</div>
+
+<canvas id="noise-canvas" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="cursor" id="cursor" data-label="Look" aria-hidden="true"></div>
+
+<span class="vlabel vlabel--left vlabel--top">scroll ↓ — solo · since 2020</span>
+<span class="vlabel vlabel--right vlabel--bot">v6 · 10 shipped · 6yr</span>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo">
+    <span class="logo-mark"></span>
+    <span class="logo-text">Abedin&nbsp;M.</span>
+  </a>
+  <nav class="nav-links" aria-label="Main navigation">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <button class="cmdk-trigger" id="cmdk-trigger" type="button" aria-label="Open command palette">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><line x1="20" y1="20" x2="16" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Search</span>
+      <kbd>⌘ K</kbd>
+    </button>
+    <button class="nav-theme" id="nav-theme" type="button" aria-label="Toggle theme" title="Toggle theme">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.9" y1="4.9" x2="6.9" y2="6.9"/><line x1="17.1" y1="17.1" x2="19.1" y2="19.1"/><line x1="4.9" y1="19.1" x2="6.9" y2="17.1"/><line x1="17.1" y1="6.9" x2="19.1" y2="4.9"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <a href="#contact" class="nav-cta magnetic">
+      <em></em>
+      <span>Available</span>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+  <span id="main-content" tabindex="-1" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;"></span>
+
+  
+
+<section class="hero" id="hero">
+    <p class="section-num"><span>01</span> Intro</p>
+    <div class="hero-blobs" aria-hidden="true">
+      <div class="hero-blob hero-blob--green" id="blob-1"></div>
+      <div class="hero-blob hero-blob--orange" id="blob-2"></div>
+      <div class="hero-blob hero-blob--blue" id="blob-3"></div>
+    </div>
+    <div class="hero-disc" aria-hidden="true"></div>
+    <p class="hero-greeting">
+      <span class="hero-pulse" aria-hidden="true"></span>
+      <span id="hero-greeting-text">For founders who got burned by an agency.</span>
+    </p>
+    <h1 class="hero-title" data-reveal>
+      <span class="line">I ship the <em>software</em></span>
+      <span class="line">your last team</span>
+      <span class="line"><span class="accent-orange">couldn't.</span></span>
+    </h1>
+    <p class="hero-sub">
+      One engineer. Six years. 3 paid client builds &amp; 7 owned products, all still live and maintained. Backend, frontend, installer, docs — one accountable person. I haven't ghosted a project yet.
+    </p>
+    <div class="hero-actions">
+      <a href="#work" class="hero-cta-primary" data-cursor="See">
+        See selected work
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#book" class="hero-cta-secondary" data-cursor="Book">Or book a 15-min intro →</a>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-col">
+        <span class="label">Availability</span>
+        <span class="value"><em id="avail-cd">From June 2026</em></span>
+      </div>
+      <div class="hero-meta-col">
+        <span class="label">Industries</span>
+        <span class="value">SaaS · Fintech · Consultancies · AI tooling</span>
+      </div>
+      <div class="hero-meta-col">
+        <span class="label">Engagements</span>
+        <span class="value">$12k MVP → $60k+ custom · $3k/mo retainer</span>
+      </div>
+    </div>
+    <div class="hero-term" id="term" role="region" aria-label="Interactive terminal — type help for commands">
+      <div class="hero-term-bar">
+        <span></span><span></span><span></span>
+        <span class="hero-term-bar-title">~ abedin@core — bash</span>
+      </div>
+      <div class="hero-term-body" id="term-body">
+        <span class="ln ln-out">Last login: just now on tty1</span>
+        <span class="ln ln-out"><span class="ln-h2">Welcome.</span> Type <span class="ln-hl">help</span> for commands, or just <span class="ln-hl">explore</span>.</span>
+        <span class="ln">&nbsp;</span>
+        <span class="ln"><span class="ln-prompt">~ </span><span class="ln-prompt-path">abedin@core</span><span class="ln-prompt"> $</span> <span class="ln-cmd">make ship</span></span>
+        <span class="ln ln-out">→ build  ok  455/455 passing</span>
+        <span class="ln ln-out">→ sign   ok  installer.exe</span>
+        <span class="ln ln-out">→ deploy ok  enterprisecore</span>
+        <span class="ln ln-ok">✓ shipped in 1m 41s</span>
+        <span class="ln">&nbsp;</span>
+      </div>
+      <div class="hero-term-input-row">
+        <span class="ln-prompt">~ </span><span class="ln-prompt-path">abedin@core</span><span class="ln-prompt"> $</span>
+        <input type="text" id="term-input" class="hero-term-input" placeholder="try: help" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input" />
+      </div>
+      <div class="hero-term-hint" aria-hidden="true">
+        Press <kbd>/</kbd> to focus
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Scroll for proof</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </section>
+
+  <aside class="anchor-quote" aria-label="Client testimonial">
+    <blockquote class="anchor-quote-text">
+      <span class="anchor-mark" aria-hidden="true">"</span>
+      Abedin shipped what our last agency had been promising for <em>nine months</em> — in three weeks. Then he stayed to maintain it.
+    </blockquote>
+    <div class="anchor-quote-byline">
+      <span class="anchor-quote-author">K. Rahman</span>
+      <span class="anchor-quote-role">Founder, Deltadesh</span>
+      <a class="anchor-quote-verify" href="https://deltadesh-website.onrender.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Deltadesh — verify this client (opens in new tab)">Verify ↗</a>
+    </div>
+  </aside>
+
+  <section class="work" id="work">
+    <header class="work-header">
+      <p class="section-num"><span>02</span> Selected work</p>
+      <h2>3 paid client builds. <em>7</em> owned products. <span class="h-green">All live.</span></h2>
+      <p class="work-sub">Client work first — Deltadesh, Deltadutch, Corner Table. Then the products I own. Every line written, deployed, and supported by me. Click any tile to read the case study.</p>
+    </header>
+    <div class="work-filter" id="work-filter" role="group" aria-label="Filter projects by category">
+      <button class="work-filter-btn active" data-filter="all" type="button" aria-pressed="true">All</button>
+      <button class="work-filter-btn" data-filter="desktop" type="button" aria-pressed="false">Desktop</button>
+      <button class="work-filter-btn" data-filter="saas" type="button" aria-pressed="false">SaaS</button>
+      <button class="work-filter-btn" data-filter="client" type="button" aria-pressed="false">Client</button>
+      <button class="work-filter-btn" data-filter="tools" type="button" aria-pressed="false">Tools</button>
+    </div>
+    <div class="work-grid" id="work-grid"><a class="project span-3 reveal" data-category="client" data-kind="client" href="./work/deltadesh.html">
+  <img class="project-visual project-visual--photo" src="./assets/deltadesh.webp" alt="Deltadesh" />
+  <div class="project-overlay"></div>
+  <span class="project-kind project-kind--client" aria-label="Client work">Client work</span>
+  <span class="project-link" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+  <span class="project-year">2025</span>
+  <div class="project-body">
+    <div class="project-meta">
+      <span class="project-cat">Client</span>
+      <span>Live</span>
+    </div>
+    <h3 class="project-name">Deltadesh</h3>
+    <p class="project-tagline">Replaced 9 months of stalled agency work in 3 weeks. Dhaka consultancy site with JSON-driven content + admin panel.</p>
+    <p class="project-metric">9-month rebuild shipped in 3 weeks</p>
+    <div class="project-stack"><span>Vanilla JS</span><span>Supabase</span><span>Render</span></div>
+  </div>
+</a>
+<a class="project span-3 reveal" data-category="client" data-kind="client" href="./work/deltadutch.html">
+  <img class="project-visual project-visual--photo" src="./assets/deltadutch.webp" alt="Deltadutch" />
+  <div class="project-overlay"></div>
+  <span class="project-kind project-kind--client" aria-label="Client work">Client work</span>
+  <span class="project-link" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+  <span class="project-year">2025</span>
+  <div class="project-body">
+    <div class="project-meta">
+      <span class="project-cat">Client</span>
+      <span>Live</span>
+    </div>
+    <h3 class="project-name">Deltadutch</h3>
+    <p class="project-tagline">Dutch engineering consultancy positioning for Bangladesh&#x27;s fresh produce sector. 6-stage service ladder live in 4 weeks.</p>
+    <p class="project-metric">Spec → live in 4 weeks</p>
+    <div class="project-stack"><span>Vanilla JS</span><span>Python</span><span>Render</span></div>
+  </div>
+</a>
+<a class="project span-2 reveal" data-category="client" data-kind="client" href="./work/cornertable.html">
+  <img class="project-visual project-visual--photo" src="./assets/cornertable.webp" alt="Corner Table" />
+  <div class="project-overlay"></div>
+  <span class="project-kind project-kind--client" aria-label="Client work">Client work</span>
+  <span class="project-link" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+  <span class="project-year">2024</span>
+  <div class="project-body">
+    <div class="project-meta">
+      <span class="project-cat">Client</span>
+      <span>Live</span>
+    </div>
+    <h3 class="project-name">Corner Table</h3>
+    <p class="project-tagline">Restaurant owners replaced 3 paid tools (menu, ordering, reservations) with one installable PWA. Still on-call 2 years later.</p>
+    <p class="project-metric">3 tools collapsed into 1</p>
+    <div class="project-stack"><span>Vanilla JS</span><span>PWA</span><span>Netlify</span></div>
+  </div>
+</a>
+<a class="project span-2 reveal" data-category="desktop" data-kind="product" href="./work/enterprisecore.html">
+  <img class="project-visual project-visual--photo" src="./assets/enterprisecore.webp" alt="EnterpriseCore AI Suite" />
+  <div class="project-overlay"></div>
+  <span class="project-kind project-kind--product" aria-label="Own product">Own product</span>
+  <span class="project-link" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+  <span class="project-year">2026</span>
+  <div class="project-body">
+    <div class="project-meta">
+      <span class="project-cat">Desktop</span>
+      <span>Live</span>
+    </div>
+    <h3 class="project-name">EnterpriseCore AI Suite</h3>
+    <p class="project-tagline">130-module offline business suite + AI coding assistant. One payment, your data stays on your machine.</p>
+    <p class="project-metric">130 modules · one binary</p>
+    <div class="project-stack"><span>FastAPI</span><span>React</span><span>Electron</span><span>Anthropic+Ollama</span></div>
+  </div>
+</a>
+<a class="project span-2 reveal" data-category="saas" data-kind="product" href="./work/linguabot.html">
+  <img class="project-visual project-visual--photo" src="./assets/linguabot.webp" alt="LinguaBot" />
+  <div class="project-overlay"></div>
+  <span class="project-kind project-kind--product" aria-label="Own product">Own product</span>
+  <span class="project-link" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+  <span class="project-year">2025</span>
+  <div class="project-body">
+    <div class="project-meta">
+      <span class="project-cat">SaaS</span>
+      <span>Live</span>
+    </div>
+    <h3 class="project-name">LinguaBot</h3>
+    <p class="project-tagline">Embeddable multilingual chat widget. EN · BN · HI · UR. Drop-in script tag, free tier forever.</p>
+    <p class="project-metric">4 languages · &lt;12kb</p>
+    <div class="project-stack"><span>FastAPI</span><span>React</span><span>Stripe</span><span>Fly.io</span></div>
+  </div>
+</a>
+<a class="project span-2 reveal" data-category="desktop" data-kind="product" href="./work/knowledge-hub.html">
+  <img class="project-visual project-visual--photo" src="./assets/knowledge-hub.webp" alt="AI Knowledge Hub" />
+  <div class="project-overlay"></div>
+  <span class="project-kind project-kind--product" aria-label="Own product">Own product</span>
+  <span class="project-link" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+  <span class="project-year">2026</span>
+  <div class="project-body">
+    <div class="project-meta">
+      <span class="project-cat">Desktop</span>
+      <span>Live</span>
+    </div>
+    <h3 class="project-name">AI Knowledge Hub</h3>
+    <p class="project-tagline">RAG over local documents, streaming chat, Ollama model manager. Lives inside EnterpriseCore.</p>
+    <p class="project-metric">100% local · 0 cloud</p>
+    <div class="project-stack"><span>FastAPI</span><span>React</span><span>Ollama</span><span>SQLite</span></div>
+  </div>
+</a>
+<a class="project span-2 reveal" data-category="tools" data-kind="product" href="./work/siteforge.html">
+  <img class="project-visual project-visual--photo" src="./assets/siteforge.webp" alt="SiteForge Studio" />
+  <div class="project-overlay"></div>
+  <span class="project-kind project-kind--product" aria-label="Own product">Own product</span>
+  <span class="project-link" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+  <span class="project-year">2024</span>
+  <div class="project-body">
+    <div class="project-meta">
+      <span class="project-cat">Tools</span>
+      <span>Live</span>
+    </div>
+    <h3 class="project-name">SiteForge Studio</h3>
+    <p class="project-tagline">Browser-only CMS + website builder. localStorage. No server. No login. Free.</p>
+    <p class="project-metric">0 servers · 100% free</p>
+    <div class="project-stack"><span>Vanilla JS</span><span>localStorage</span><span>Cloudflare</span></div>
+  </div>
+</a>
+<a class="project span-2 reveal" data-category="desktop" data-kind="product" href="./work/holygrail.html">
+  <img class="project-visual project-visual--photo" src="./assets/holygrail.webp" alt="HolyGrail" />
+  <div class="project-overlay"></div>
+  <span class="project-kind project-kind--product" aria-label="Own product">Own product</span>
+  <span class="project-link" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+  <span class="project-year">2025</span>
+  <div class="project-body">
+    <div class="project-meta">
+      <span class="project-cat">Desktop</span>
+      <span>Live</span>
+    </div>
+    <h3 class="project-name">HolyGrail</h3>
+    <p class="project-tagline">Personal life-OS. 3-mode AI assistant with crisis detection + scheduler. iPhone + desktop.</p>
+    <p class="project-metric">iOS + desktop</p>
+    <div class="project-stack"><span>FastAPI</span><span>Electron</span><span>Expo</span><span>Neon</span></div>
+  </div>
+</a>
+<a class="project span-2 reveal" data-category="tools" data-kind="product" href="./work/codex-tools.html">
+  <img class="project-visual project-visual--photo" src="./assets/codex-tools.webp" alt="Codex Tools" />
+  <div class="project-overlay"></div>
+  <span class="project-kind project-kind--product" aria-label="Own product">Own product</span>
+  <span class="project-link" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+  <span class="project-year">2024</span>
+  <div class="project-body">
+    <div class="project-meta">
+      <span class="project-cat">Tools</span>
+      <span>Live</span>
+    </div>
+    <h3 class="project-name">Codex Tools</h3>
+    <p class="project-tagline">11 free tools for university students. CGPA planner, attendance tracker, deadline shield.</p>
+    <p class="project-metric">11 tools · 3 publishers</p>
+    <div class="project-stack"><span>Vanilla JS</span><span>PWA</span><span>Cloudflare</span></div>
+  </div>
+</a>
+<a class="project span-2 reveal" data-category="tools" data-kind="product" href="./work/claude-skills.html">
+  <img class="project-visual project-visual--photo" src="./assets/claude-skills.webp" alt="claude-skills" />
+  <div class="project-overlay"></div>
+  <span class="project-kind project-kind--product" aria-label="Own product">Own product</span>
+  <span class="project-link" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+  <span class="project-year">2026</span>
+  <div class="project-body">
+    <div class="project-meta">
+      <span class="project-cat">Tools</span>
+      <span>Live</span>
+    </div>
+    <h3 class="project-name">claude-skills</h3>
+    <p class="project-tagline">98 indexed Claude Code skills, curated kit + tips. For builders who want fewer keystrokes.</p>
+    <p class="project-metric">98 skills · 4 repos</p>
+    <div class="project-stack"><span>Markdown</span><span>JSON</span><span>Bash</span></div>
+  </div>
+</a></div>
+  </section>
+
+  <section class="about" id="about">
+    <p class="section-num"><span>03</span> About</p>
+    <div class="about-grid">
+      <figure class="about-photo">
+        <img src="./assets/avatar-dhaka.webp" alt="Abedin M. — solo builder, working from Dhaka" width="600" height="800" loading="lazy" decoding="async" />
+        <figcaption class="about-photo-cap">Dhaka studio · 2026</figcaption>
+      </figure>
+      <div class="about-content">
+        <h2 class="about-headline">
+          I build software you <span class="h-orange">own</span> — <em>not</em> software<br/>you <span class="h-green">rent.</span>
+        </h2>
+        <div class="about-body">
+          <p class="dropcap">Clients hire me when the project needs to land, not be managed. Founders who got burned by an agency. B2B SaaS teams who need a drop-in widget done right. Operators who want one engineer accountable for the whole thing — not a Trello board with five names on it.</p>
+          <p><strong>Industries shipped in:</strong> consultancies, restaurants, fintech, B2B SaaS, education, and AI integrations. <em>Not</em> regulated healthcare — I don't have HIPAA-compliance muscle yet, and I'd rather refer you than pretend.</p>
+          <p><strong>What I write:</strong> backend, frontend, installer, docs, migration scripts, and the README that lets the next engineer take over without asking me.</p>
+          <p><em>No agencies. No middlemen. One person who owns the outcome.</em></p>
+        </div>
+        <a href="#pricing" class="about-cta" data-cursor="Pricing">See engagements + pricing →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="locations" id="locations" aria-label="Where I work from">
+    <p class="about-subnum">— Async-first, anywhere</p>
+    <div class="locations-grid">
+      <article class="location location--remote" data-location>
+        <span class="location-tag">Default</span>
+        <h3>Async-first.</h3>
+        <p class="location-meta">Loom · Slack · email · weekly sync.</p>
+        <div class="location-detail">
+          <p>I've shipped for clients in Karachi, Berlin, San Francisco, Toronto, and Singapore. Async by default, calls within 24h, no time-zone tax.</p>
+        </div>
+      </article>
+      <article class="location" data-location data-tz="6">
+        <span class="location-tag">Primary</span>
+        <h3>Dhaka</h3>
+        <p class="location-meta">GMT +6 · APAC + EMEA overlap</p>
+        <div class="location-detail">
+          <p class="location-clock"><em data-clock="6">--:--</em>&nbsp;BST</p>
+          <p>Best call window: <strong>10:00–18:00 BST</strong> (= 06:00–14:00 CET = 00:00–08:00 EST). I keep US East and EU mornings live.</p>
+        </div>
+      </article>
+      <article class="location" data-location data-tz="1">
+        <span class="location-tag">Secondary</span>
+        <h3>Netherlands</h3>
+        <p class="location-meta">CET · For EU clients</p>
+        <div class="location-detail">
+          <p class="location-clock"><em data-clock="1">--:--</em>&nbsp;CET</p>
+          <p>Quarterly visits, EU paperwork, and on-site work with European clients. Reach me here Mar / Jun / Sep / Dec.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="services" id="pricing">
+    <header class="services-header">
+      <p class="section-num"><span>04</span> Pricing</p>
+      <h2 class="services-title">Three engagements — <em>priced</em> upfront.</h2>
+      <p class="services-sub">No discovery calls to "scope your needs." Pick a shape, see the price, send a one-pager. We're on a kick-off call within 48 hours.</p>
+    </header>
+    <div class="services-grid services-grid--packages">
+      <article class="package-card package-card--mvp" data-service="mvp" data-package="mvp">
+        <span class="package-accent" aria-hidden="true"></span>
+        <div class="package-card-head">
+          <div class="package-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 24L16 4l12 20z"/>
+              <path d="M10 24l6-10 6 10z" fill="currentColor" fill-opacity="0.18"/>
+              <circle cx="16" cy="14" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <span class="package-num">01</span>
+          <h3>MVP in 4 weeks</h3>
+          <p class="package-price">from <em>$18k</em></p>
+          <p class="package-ideal">For founders with a one-page spec who need a production-grade v1 fast.</p>
+        </div>
+        <div class="package-card-body">
+          <p class="package-label">What you get</p>
+          <ul class="package-list">
+            <li>Production app on your domain, code in your repo</li>
+            <li>2 rounds of revisions before launch</li>
+            <li>Month #1 of maintenance included</li>
+            <li>README + handover call</li>
+          </ul>
+          <p class="package-label package-label--dim">Not included</p>
+          <ul class="package-list package-list--dim">
+            <li>Discovery / scope-writing</li>
+            <li>Native mobile builds (web/PWA only)</li>
+            <li>Multi-tenant billing (separate scope)</li>
+          </ul>
+          <p class="package-meta">4 weeks · kick-off in 48h · fixed price</p>
+        </div>
+        <p class="package-guarantee">↩&nbsp; Free rebuild or refund if v0.1 isn't usable.</p>
+        <a href="mailto:hello@abedin.dev?subject=MVP%20in%204%20weeks%20—%20inquiry&amp;body=Hi%20Abedin%2C%0A%0AOne-line%20scope%3A%20%0ABudget%3A%20%0ATimeline%3A%20%0A%0A%0A" class="package-cta">Start an MVP →</a>
+      </article>
+      <article class="package-card package-card--feature package-card--widget" data-service="widget" data-package="widget">
+        <span class="package-accent" aria-hidden="true"></span>
+        <div class="package-card-head">
+          <div class="package-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="6" width="24" height="20" rx="3"/>
+              <line x1="4" y1="12" x2="28" y2="12"/>
+              <circle cx="8" cy="9" r="0.8" fill="currentColor"/>
+              <circle cx="11" cy="9" r="0.8" fill="currentColor"/>
+              <path d="M12 18l-3 3 3 3"/>
+              <path d="M20 18l3 3-3 3"/>
+              <line x1="17" y1="17" x2="15" y2="25"/>
+            </svg>
+          </div>
+          <span class="package-num">02</span>
+          <span class="package-tag">Most popular</span>
+          <h3>Embeddable widget</h3>
+          <p class="package-price">from <em>$12k</em></p>
+          <p class="package-ideal">For B2B SaaS teams who need a drop-in script tag, a Chrome extension, or a standalone tool.</p>
+        </div>
+        <div class="package-card-body">
+          <p class="package-label">What you get</p>
+          <ul class="package-list">
+            <li>Hosted widget + script tag (or extension package)</li>
+            <li>Embed docs + integration examples</li>
+            <li>Basic config dashboard (if needed)</li>
+            <li>1 round of revisions</li>
+          </ul>
+          <p class="package-label package-label--dim">Not included</p>
+          <ul class="package-list package-list--dim">
+            <li>Full SaaS dashboards (use MVP package)</li>
+            <li>Custom analytics platform</li>
+          </ul>
+          <p class="package-meta">2–3 weeks · kick-off in 48h · fixed price</p>
+        </div>
+        <p class="package-guarantee">↩&nbsp; Free rebuild or refund if v0.1 isn't usable.</p>
+        <a href="mailto:hello@abedin.dev?subject=Embeddable%20widget%20—%20inquiry&amp;body=Hi%20Abedin%2C%0A%0AOne-line%20scope%3A%20%0ABudget%3A%20%0ATimeline%3A%20%0A%0A%0A" class="package-cta">Start a widget →</a>
+      </article>
+      <article class="package-card package-card--retainer" data-service="retainer" data-package="retainer">
+        <span class="package-accent" aria-hidden="true"></span>
+        <div class="package-card-head">
+          <div class="package-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="16" cy="16" r="11"/>
+              <path d="M16 8v8l5 3"/>
+              <circle cx="16" cy="16" r="1.6" fill="currentColor"/>
+            </svg>
+          </div>
+          <span class="package-num">03</span>
+          <span class="package-tag package-tag--stay">Stay here</span>
+          <h3>Monthly retainer</h3>
+          <p class="package-price">from <em>$3k</em> / mo</p>
+          <p class="package-ideal">The "stay here after launch" tier. Most of my clients land here after the MVP. Reliable monthly hours for bug fixes, small features, infra.</p>
+        </div>
+        <div class="package-card-body">
+          <p class="package-label">What you get</p>
+          <ul class="package-list">
+            <li>Up to 20 hrs / month engineering time</li>
+            <li>24h response on Slack/email</li>
+            <li>Monthly Loom + written report</li>
+            <li>Pause or scale up any month</li>
+          </ul>
+          <p class="package-label package-label--dim">Not included</p>
+          <ul class="package-list package-list--dim">
+            <li>On-call / pager duty (separate scope)</li>
+            <li>Net-new product builds (use MVP package)</li>
+          </ul>
+          <p class="package-meta">Month-to-month · cancel anytime</p>
+        </div>
+        <p class="package-guarantee">↩&nbsp; Pause any month, cancel anytime, no contract.</p>
+        <a href="mailto:hello@abedin.dev?subject=Maintenance%20retainer%20—%20inquiry&amp;body=Hi%20Abedin%2C%0A%0AExisting%20product%3A%20%0AStack%3A%20%0AScope%20I%20need%20help%20with%3A%20%0A%0A%0A" class="package-cta">Start a retainer →</a>
+      </article>
+      <article class="package-card package-card--custom" data-service="custom" data-package="custom">
+        <span class="package-accent" aria-hidden="true"></span>
+        <div class="package-card-head">
+          <div class="package-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="6" width="22" height="20" rx="2"/>
+              <line x1="5" y1="12" x2="27" y2="12"/>
+              <line x1="11" y1="18" x2="21" y2="18"/>
+              <line x1="11" y1="22" x2="17" y2="22"/>
+              <circle cx="9" cy="9" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="9" r="0.8" fill="currentColor"/>
+            </svg>
+          </div>
+          <span class="package-num">04</span>
+          <h3>Custom build</h3>
+          <p class="package-price">from <em>$60k</em></p>
+          <p class="package-ideal">Multi-month engagements that don't fit MVP / widget. Desktop suites, complex SaaS, AI-integrated tools. Milestone billing.</p>
+        </div>
+        <div class="package-card-body">
+          <p class="package-label">What you get</p>
+          <ul class="package-list">
+            <li>Full scope + architecture written up before code</li>
+            <li>Milestone-based billing (typically 4–6 stages)</li>
+            <li>Weekly demo + decision log</li>
+            <li>Months 1–2 of maintenance included after launch</li>
+          </ul>
+          <p class="package-label package-label--dim">Not included</p>
+          <ul class="package-list package-list--dim">
+            <li>Replacing your in-house team</li>
+            <li>HIPAA / SOC 2 audits</li>
+            <li>Pure-equity engagements</li>
+          </ul>
+          <p class="package-meta">3–6 months · phased delivery · up to $150k+</p>
+        </div>
+        <p class="package-guarantee">↩&nbsp; First milestone refundable. Talk to a past client before signing.</p>
+        <a href="mailto:hello@abedin.dev?subject=Custom%20build%20—%20inquiry&amp;body=Hi%20Abedin%2C%0A%0AScope%20overview%3A%20%0ATarget%20launch%3A%20%0ABudget%20range%3A%20%0AStakeholders%3A%20%0A%0A" class="package-cta">Start a custom scope →</a>
+      </article>
+    </div>
+    <p class="services-foot">Not sure which fits? <a href="#book">Book a 15-min intro</a> — we'll find the right shape in one call.</p>
+
+    <aside class="onramp" aria-label="Starter audit option">
+      <div class="onramp-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="onramp-body">
+        <span class="onramp-tag">Not ready for a full build?</span>
+        <h3 class="onramp-title">Start with a <em>code &amp; architecture audit.</em></h3>
+        <p class="onramp-copy">
+          A <strong>$1,000 flat-fee audit</strong> (capped at $1,500 for larger codebases). I read your repo end-to-end and ship a written report inside 5 business days: shipping risks, architectural debt, security smells, and 3–5 concrete next moves. If we then roll into a retainer or build, the audit fee comes off your first invoice.
+        </p>
+        <ul class="onramp-list">
+          <li>Written PDF report · 8–15 pages · yours to keep</li>
+          <li>1× 60-min walkthrough call (recorded)</li>
+          <li>5 business days from kickoff</li>
+          <li>Fee credited if you continue with me</li>
+        </ul>
+        <a href="mailto:hello@abedin.dev?subject=Code%20%26%20architecture%20audit%20%E2%80%94%20inquiry&amp;body=Hi%20Abedin%2C%0A%0ARepo%20%2F%20product%3A%20%0AStack%3A%20%0AOne%20question%20you%27d%20most%20like%20answered%3A%20%0A%0A" class="onramp-cta">Book the audit →</a>
+      </div>
+    </aside>
+
+    <aside class="risk-reversal" aria-label="Risk-reversal commitments">
+      <div class="risk-reversal-grid">
+        <div class="risk-item">
+          <span class="risk-icon" aria-hidden="true">↩</span>
+          <h4>Milestone refundable</h4>
+          <p>If the first milestone isn't usable, you get a full refund of the unbilled work — no questions.</p>
+        </div>
+        <div class="risk-item">
+          <span class="risk-icon" aria-hidden="true">📞</span>
+          <h4>Talk to a client first</h4>
+          <p>Before you sign, I'll put you on a 10-min call with K. Rahman or M. van der Berg. Reference checks beat my own marketing.</p>
+        </div>
+        <div class="risk-item">
+          <span class="risk-icon" aria-hidden="true">⚖</span>
+          <h4>Your code, your repo, day 1</h4>
+          <p>You own everything on kickoff. Nothing licensed back to me. No "perpetual usage rights" clauses.</p>
+        </div>
+      </div>
+    </aside>
+
+    <details class="wont-do">
+      <summary>What I <em>won't</em> do — saves us both time. ↓</summary>
+      <ul class="wont-do-list">
+        <li><strong>Pure-equity engagements.</strong> Skin in the game, yes (alongside a base rate). Replacing pay with shares, no.</li>
+        <li><strong>Crypto / gambling / adult.</strong> Personal call, not a moral one. I'm slow at these and you deserve someone who isn't.</li>
+        <li><strong>HIPAA / regulated healthcare.</strong> I don't have the compliance muscle. I'll refer you to someone who does.</li>
+        <li><strong>Build without a one-page spec.</strong> If we can't fit the scope on one page, the project isn't ready and I'll help you write it before we start.</li>
+        <li><strong>Weekend / overnight work without notice.</strong> If your launch demands it, you'll know weeks in advance. Same billing rate — no surge pricing.</li>
+        <li><strong>Replace your existing team.</strong> I supplement teams. If you're replacing in-house engineers, that's an org problem I can't solve with code.</li>
+      </ul>
+    </details>
+  </section>
+
+  <section class="process" id="process">
+    <header class="process-header">
+      <p class="section-num"><span>05</span> Process</p>
+      <h2>How it <em>actually</em> <span class="h-orange">ships.</span></h2>
+    </header>
+    <div class="process-grid">
+      <div class="process-step" data-step>
+        <span class="step-n">Step 01</span>
+        <h3>One-pager</h3>
+        <p>You send a one-paragraph scope. I read it, write a one-page spec, send it back within 48 hours.</p>
+        <div class="process-step-detail">
+          <p>Plain English. Goals · constraints · what's <em>out</em> of scope. If your scope doesn't fit on one page, the project is too vague to start — we refine until it does. <a href="./work/deltadesh.html" class="proof-link">See a real shipped scope: Deltadesh →</a></p>
+        </div>
+        <span class="process-step-toggle" aria-hidden="true">+</span>
+      </div>
+      <div class="process-step" data-step>
+        <span class="step-n">Step 02</span>
+        <h3>Build, in daylight</h3>
+        <p>One repo, one branch, one engineer. Daily commits you can read. Weekly Loom walkthrough.</p>
+        <div class="process-step-detail">
+          <p>You get repo access from day one. Stuck? You hear within <em>24 hours</em> — usually the same day, often the same hour. No status calls to bill for.</p>
+        </div>
+        <span class="process-step-toggle" aria-hidden="true">+</span>
+      </div>
+      <div class="process-step" data-step>
+        <span class="step-n">Step 03</span>
+        <h3>Ship + maintain</h3>
+        <p>MVP deployed, signed, documented. Then I stay — retainer or at-cost on demand. I haven't ghosted an engagement yet.</p>
+        <div class="process-step-detail">
+          <p>Code-signed installer where it matters. README that's <em>actually readable</em>. Handover call so the next person on your team isn't lost. Two-year answered-the-phone rule — see Corner Table testimonial above.</p>
+        </div>
+        <span class="process-step-toggle" aria-hidden="true">+</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab" id="lab">
+    <header class="lab-header">
+      <p class="section-num"><span>06</span> Lab</p>
+      <h2>Don't take my word for it — <em>try the work.</em></h2>
+      <p class="lab-sub">Three live products you can click around in. No signups.</p>
+      <a href="#contact" class="lab-skip" data-cursor="Skip">Skip to contact →</a>
+    </header>
+    <div class="lab-grid">
+
+      <article class="lab-card">
+        <div class="lab-card-head">
+          <div class="lab-card-name"><span class="dot" style="background:#4a7bff;"></span>LinguaBot</div>
+          <span class="lab-card-tag">Embeddable chat widget</span>
+          <p class="lab-card-sub">Drop-in support widget. Try the demo questions — see how it routes intent.</p>
+        </div>
+        <div class="lab-card-body">
+          <div class="lab-lb-chat" id="lab-lb-chat">
+            <div class="lab-bubble lab-bubble--user" id="lab-lb-user">Do you ship to Dhaka?</div>
+            <div class="lab-bubble lab-bubble--bot" id="lab-lb-reply"><strong>Yes — </strong>we ship across Bangladesh. Standard delivery is 2-3 days in Dhaka, 4-6 days outside the metro.</div>
+          </div>
+          <span class="lab-detect" id="lab-lb-detect">Intent · Shipping</span>
+        </div>
+        <div class="lab-card-foot">
+          <div class="lab-lang-row" id="lab-lb-langs">
+            <button class="lab-lang-btn active" data-intent="shipping" type="button">Shipping</button>
+            <button class="lab-lang-btn" data-intent="returns" type="button">Returns</button>
+            <button class="lab-lang-btn" data-intent="pricing" type="button">Pricing</button>
+            <button class="lab-lang-btn" data-intent="human" type="button">Human</button>
+          </div>
+          <a href="./work/linguabot.html" class="lab-card-cta" data-cursor="Read">Full case study →</a>
+        </div>
+      </article>
+
+      <article class="lab-card">
+        <div class="lab-card-head">
+          <div class="lab-card-name"><span class="dot" style="background:#65d57a;"></span>SiteForge Studio</div>
+          <span class="lab-card-tag">Browser-only CMS</span>
+          <p class="lab-card-sub">Pick a color, switch a section — preview your site without a build step.</p>
+        </div>
+        <div class="lab-card-body">
+          <div class="lab-sf-preview" id="lab-sf-preview" style="background:#f3eed9; color:#0d0d0d;">
+            <h4 id="lab-sf-h4">Field &amp; Garden Co.</h4>
+            <p id="lab-sf-p">Slow-grown produce, delivered weekly to your door.</p>
+            <span class="lab-sf-btn" id="lab-sf-btn" style="background:#0d0d0d; color:#f3eed9;">Order now</span>
+          </div>
+        </div>
+        <div class="lab-card-foot">
+          <div class="lab-sf-tabs" id="lab-sf-tabs">
+            <button class="lab-sf-tab active" data-pane="hero">Hero</button>
+            <button class="lab-sf-tab" data-pane="about">About</button>
+            <button class="lab-sf-tab" data-pane="cta">CTA</button>
+          </div>
+          <div class="lab-sf-swatches" id="lab-sf-swatches" role="radiogroup" aria-label="Brand colors">
+            <button class="lab-sf-swatch active" data-c="#f3eed9,#0d0d0d" style="background:#f3eed9;" aria-label="Cream"></button>
+            <button class="lab-sf-swatch" data-c="#65d57a,#0d0d0d" style="background:#65d57a;" aria-label="Green"></button>
+            <button class="lab-sf-swatch" data-c="#ff6b35,#0d0d0d" style="background:#ff6b35;" aria-label="Orange"></button>
+            <button class="lab-sf-swatch" data-c="#4a7bff,#f3eed9" style="background:#4a7bff;" aria-label="Blue"></button>
+            <button class="lab-sf-swatch" data-c="#0d0d0d,#f3eed9" style="background:#0d0d0d;" aria-label="Ink"></button>
+          </div>
+          <a href="./work/siteforge.html" class="lab-card-cta" data-cursor="Read">Full case study →</a>
+        </div>
+      </article>
+
+      <article class="lab-card">
+        <div class="lab-card-head">
+          <div class="lab-card-name"><span class="dot" style="background:#ff6b35;"></span>AI Knowledge Hub</div>
+          <span class="lab-card-tag">Local RAG over your docs</span>
+          <p class="lab-card-sub">Ask a question — get an answer with citations. Runs 100% on your machine.</p>
+        </div>
+        <div class="lab-card-body">
+          <div class="lab-kh-q-row" id="lab-kh-qs">
+            <button class="lab-kh-chip active" data-q="0">What did K. Rahman flag in the Corner Table retro?</button>
+            <button class="lab-kh-chip" data-q="1">Summarise the EnterpriseCore v6 changes.</button>
+            <button class="lab-kh-chip" data-q="2">Which client sites are on Cloudflare Pages?</button>
+          </div>
+          <div class="lab-kh-response" id="lab-kh-response"></div>
+          <div class="lab-kh-stream" id="lab-kh-stream" hidden>streaming · 18 tok/s · local</div>
+          <div class="lab-kh-cites" id="lab-kh-cites"></div>
+        </div>
+        <div class="lab-card-foot">
+          <a href="./work/knowledge-hub.html" class="lab-card-cta" data-cursor="Read">Full case study →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="said" id="said">
+    <p class="section-num"><span>07</span> Said</p>
+    <h2 class="said-title">What clients have <em>actually</em> <span class="h-orange">said.</span></h2>
+    <p class="said-sub">Quotes are linked to live client sites where possible. Skeptics welcome — verify any of them.</p>
+    <div class="said-grid" id="said-grid"><article class="said-card reveal">
+  <span class="said-mark" aria-hidden="true">"</span>
+  <p class="said-quote">Abedin shipped what our last agency had been promising for nine months — in three weeks. Then he stayed to maintain it.</p>
+  <p class="said-outcome"><span class="said-outcome-l">Outcome</span> 9-month agency stall → 3-week ship (~85% faster). Admin panel removed dev dependency for copy updates.</p>
+  <div class="said-byline">
+    <svg class="said-avatar" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><linearGradient id="av-i0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#65d57a"/><stop offset="100%" stop-color="#1a4a26"/></linearGradient></defs><rect width="64" height="64" rx="32" fill="url(#av-i0)"/><text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-family="Bricolage Grotesque, Inter, sans-serif" font-size="26" font-weight="600" fill="rgba(255,255,255,0.95)">KR</text></svg>
+    <div class="said-byline-who">
+      <span class="said-author">K. Rahman</span>
+      <span class="said-role">Founder, Deltadesh</span>
+    </div>
+    <a class="said-verify" href="https://deltadesh-website.onrender.com/" target="_blank" rel="noopener noreferrer" aria-label="Verify this client — visit Founder, Deltadesh (opens in new tab)">Verify ↗</a>
+  </div>
+</article><article class="said-card reveal">
+  <span class="said-mark" aria-hidden="true">"</span>
+  <p class="said-quote">He writes a one-page spec, you nod, and four weeks later the thing exists. No status calls, no upsells, just commits.</p>
+  <p class="said-outcome"><span class="said-outcome-l">Outcome</span> Spec → live in 4 weeks. JSON-driven 6-stage service ladder. Zero status meetings.</p>
+  <div class="said-byline">
+    <svg class="said-avatar" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><linearGradient id="av-i1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff6b35"/><stop offset="100%" stop-color="#7a1f00"/></linearGradient></defs><rect width="64" height="64" rx="32" fill="url(#av-i1)"/><text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-family="Bricolage Grotesque, Inter, sans-serif" font-size="26" font-weight="600" fill="rgba(255,255,255,0.95)">MV</text></svg>
+    <div class="said-byline-who">
+      <span class="said-author">M. van der Berg</span>
+      <span class="said-role">Ops Lead, Deltadutch</span>
+    </div>
+    <a class="said-verify" href="https://deltadutch-website-ku0k.onrender.com/" target="_blank" rel="noopener noreferrer" aria-label="Verify this client — visit Ops Lead, Deltadutch (opens in new tab)">Verify ↗</a>
+  </div>
+</article></div>
+  </section>
+
+  <section class="faq" id="faq">
+    <p class="section-num"><span>08</span> FAQ</p>
+    <div class="faq-grid">
+      <h2 class="faq-title">Things you might be <em>wondering</em>.</h2>
+      <div class="faq-list" id="faq-list"><div class="faq-item open" data-faq><button class="faq-q" type="button" aria-expanded="true" aria-controls="faq-panel-0"><span>What&#x27;s your minimum engagement?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-0" role="region"><p>$12k for a tightly-scoped widget or static site. $18k for a full MVP. Below that, I&#x27;d rather refer you to a freelancer who&#x27;s a better fit.</p></div></div><div class="faq-item" data-faq><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-1"><span>Do you sign NDAs?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-1" role="region"><p>Yes, always. Send yours or use my mutual NDA template (./assets/nda-mutual.md) — both sides can mark it up. I sign before the first call if your project is sensitive.</p></div></div><div class="faq-item" data-faq><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-2"><span>Who owns the code?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-2" role="region"><p>You do. From day one. Repo transferred to your org on kickoff. No licensing tricks, no &quot;perpetual usage rights&quot; — it&#x27;s yours.</p></div></div><div class="faq-item" data-faq><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-3"><span>What if you can&#x27;t deliver?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-3" role="region"><p>I haven&#x27;t yet. If I do: free rebuild of the milestone, or full refund of the unbilled work. In writing, in the contract.</p></div></div><div class="faq-item" data-faq><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-4"><span>Fixed-price or hourly?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-4" role="region"><p>Both. Small/clear scope: fixed. Open-ended/exploratory: hourly. I&#x27;ll tell you which fits your project after a 30-minute call. No pressure.</p></div></div><div class="faq-item" data-faq><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-5"><span>Do you take equity?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-5" role="region"><p>Sometimes, in addition to a base rate. I want skin in the game when the project is interesting. Pure-equity engagements: no.</p></div></div><div class="faq-item" data-faq><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-6"><span>Do you work with my designer / PM / existing team?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-6" role="region"><p>Yes. I integrate into whatever you&#x27;ve got — Figma handoffs, Linear tickets, Slack, async standups. I&#x27;m not precious about process.</p></div></div><div class="faq-item" data-faq><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-7"><span>Industries you&#x27;ve worked in?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-7" role="region"><p>Consultancies, restaurants, fintech, B2B SaaS, education, AI tooling. Not healthcare/medical or anything HIPAA-bound — I don&#x27;t have the compliance muscle for that yet.</p></div></div><div class="faq-item" data-faq><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-8"><span>Time zone overlap with US / EU?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-8" role="region"><p>I keep 10:00–18:00 BST hours, which overlaps EU mornings and US East Coast late evenings. Weekly sync at a time that works for you.</p></div></div><div class="faq-item" data-faq><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-9"><span>Why offline-first?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-9" role="region"><p>Because servers go down, subscriptions get cancelled, and your data shouldn&#x27;t live on someone else&#x27;s roadmap. If it can run on your machine, it should. (Doesn&#x27;t mean I won&#x27;t ship cloud — I just default to local-first when it makes sense.)</p></div></div><div class="faq-item" data-faq><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-10"><span>Why solo?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-10" role="region"><p>No middlemen, no agency overhead, no telephone-game of requirements. You talk to the person writing the code. Faster, cheaper, honest.</p></div></div><div class="faq-item" data-faq><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-11"><span>How long do you maintain things?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-11" role="region"><p>Indefinitely on retainer ($3k/mo+), at-cost on demand otherwise. Most things I built in 2020 are still serving traffic — I haven&#x27;t ghosted a project yet.</p></div></div><div class="faq-item" data-faq><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-panel-12"><span>What&#x27;s your typical timeline?</span><span class="faq-toggle" aria-hidden="true">+</span></button><div class="faq-a" id="faq-panel-12" role="region"><p>Static site or widget: 1–2 weeks. SaaS MVP: 4–8 weeks. Desktop suite: 3–6 months. I quote tight and I ship on time.</p></div></div></div>
+    </div>
+  </section>
+
+  <section class="book" id="book">
+    <div class="book-card">
+      <h2 class="book-title">Want to <em>talk?</em></h2>
+      <p class="book-sub">A 15-minute call. No pitch. We figure out if I'm the right fit.<br/>If I'm booked out, I'll tell you fast.</p>
+      <div class="book-actions">
+        <a href="https://cal.com/abedin/15min" target="_blank" rel="noopener" data-cal-link class="book-btn book-btn--primary magnetic" data-cursor="Book">
+          Book a 15-min intro
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="book-btn book-btn--ghost" data-cursor="Down">Or fill the project form ↓</a>
+      </div>
+      <p class="book-fallback">Prefer email? <a href="mailto:hello@abedin.dev?subject=15-min%20intro%20call%20—%20%5Byour%20company%5D&amp;body=Hi%20Abedin%2C%0A%0AThree%20times%20that%20work%20for%20me%20(with%20timezone)%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AScope%3A%0A">Send three time slots →</a></p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="section-num"><span>09</span> Contact</p>
+    <h2 class="contact-headline">
+      Let's <em>create</em><br/>something <span class="c-orange">solid.</span>
+    </h2>
+    <a class="contact-mail" href="mailto:hello@abedin.dev">
+      hello@abedin.dev
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <div class="contact-grid">
+      <div>
+        <span class="label">Availability</span>
+        <p>Open for select consulting from <strong>June 2026</strong>.</p>
+      </div>
+      <div>
+        <span class="label">Response time</span>
+        <p>Usually within 24 hours, often faster.</p>
+      </div>
+      <div>
+        <span class="label">Elsewhere</span>
+        <p>
+          <a href="https://github.com/abedinm" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in new tab)">GitHub</a> ·
+          <a href="https://linkedin.com/in/abedinm" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)">LinkedIn</a> ·
+          <a href="https://x.com/abedinm_" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter (opens in new tab)">X</a>
+        </p>
+      </div>
+    </div>
+    <aside class="estimator" id="estimator" aria-label="Engagement estimator">
+      <header class="estimator-head">
+        <p class="estimator-kicker">Try it</p>
+        <h3>Estimate your project — <em>in 60 seconds.</em></h3>
+        <p class="estimator-sub">No email required. Slide three knobs, get a real-world price range. Same numbers I'd quote you on the first call.</p>
+      </header>
+      <div class="estimator-body">
+        <div class="estimator-row">
+          <label class="estimator-label" for="est-shape">
+            <span>What shape?</span>
+            <span class="estimator-val" id="est-shape-val">MVP</span>
+          </label>
+          <div class="estimator-pills" role="radiogroup" aria-label="Engagement shape">
+            <button type="button" class="est-pill" data-shape="audit" data-base="1000" aria-pressed="false">Audit</button>
+            <button type="button" class="est-pill active" data-shape="mvp" data-base="18000" aria-pressed="true">MVP</button>
+            <button type="button" class="est-pill" data-shape="widget" data-base="12000" aria-pressed="false">Widget</button>
+            <button type="button" class="est-pill" data-shape="desktop" data-base="35000" aria-pressed="false">Desktop app</button>
+            <button type="button" class="est-pill" data-shape="retainer" data-base="3000" aria-pressed="false">Retainer / mo</button>
+          </div>
+        </div>
+        <div class="estimator-row">
+          <label class="estimator-label" for="est-scope">
+            <span>How much scope?</span>
+            <span class="estimator-val" id="est-scope-val">Medium</span>
+          </label>
+          <input type="range" id="est-scope" class="estimator-range" min="0.7" max="1.8" step="0.1" value="1" />
+          <div class="estimator-ticks"><span>Tight</span><span>Medium</span><span>Sprawling</span></div>
+        </div>
+        <div class="estimator-row">
+          <label class="estimator-label" for="est-rush">
+            <span>How rushed?</span>
+            <span class="estimator-val" id="est-rush-val">Normal</span>
+          </label>
+          <input type="range" id="est-rush" class="estimator-range" min="1" max="1.4" step="0.05" value="1" />
+          <div class="estimator-ticks"><span>Normal</span><span>Hurry</span><span>YESTERDAY</span></div>
+        </div>
+        <div class="estimator-result">
+          <span class="estimator-result-label">Likely range</span>
+          <span class="estimator-result-price" id="est-price">$18k – $26k</span>
+          <span class="estimator-result-time" id="est-time">4 weeks · fixed-price</span>
+        </div>
+        <a href="mailto:hello@abedin.dev?subject=Project%20inquiry%20—%20estimated&amp;body=Hi%20Abedin%2C%0A%0AI%20played%20with%20the%20estimator%20and%20got%20a%20rough%20range.%20Real%20scope%20below.%0A%0AShape%3A%20%0AOne-line%20scope%3A%20%0ATimeline%3A%20%0A%0A" class="estimator-cta">
+          Email me with this range →
+        </a>
+      </div>
+      <p class="estimator-foot">These are real numbers from real engagements. The price you'd quote depends on the actual one-pager — but if my range here is &lt;50% off your budget, we're probably a fit.</p>
+    </aside>
+
+    <!--
+      Backend wiring: paste your Web3Forms access key into CONFIG.web3formsAccessKey
+      at the top of script.js. The form will POST as JSON; success/error renders
+      inline. If unconfigured, it falls back to mailto: with the inquiry pre-filled.
+    -->
+    <form class="contact-form" id="contact-form" novalidate aria-label="Project inquiry form">
+      <p class="cf-intro">Tell me about the project. <em>Budget and timeline keep us both honest — they help me reply usefully in 24h.</em> Need an NDA first? <a href="./assets/nda-mutual.md" target="_blank" rel="noopener" class="cf-nda-link">Grab my template ↗</a></p>
+      <p class="cf-required-note">Required fields are marked. Budget &amp; timeline are optional but make my reply better.</p>
+      <div class="cf-row cf-row--2col">
+        <div class="cf-field">
+          <label class="cf-label" for="cf-name">Name</label>
+          <input class="cf-input" id="cf-name" name="name" type="text" placeholder="Your name" required autocomplete="name" />
+        </div>
+        <div class="cf-field">
+          <label class="cf-label" for="cf-email">Email</label>
+          <input class="cf-input" id="cf-email" name="email" type="email" placeholder="you@company.com" required autocomplete="email" />
+        </div>
+      </div>
+      <div class="cf-row cf-row--2col">
+        <div class="cf-field">
+          <label class="cf-label" for="cf-company">Company / project</label>
+          <input class="cf-input" id="cf-company" name="company" type="text" placeholder="Acme Inc · or just a working title" autocomplete="organization" />
+        </div>
+        <div class="cf-field">
+          <label class="cf-label" for="cf-kind">Engagement type</label>
+          <select class="cf-input cf-select" id="cf-kind" name="kind">
+            <option value="">Pick one…</option>
+            <option value="audit">Code &amp; architecture audit (from $1k)</option>
+            <option value="mvp">MVP in 4 weeks (from $18k)</option>
+            <option value="widget">Embeddable widget (from $12k)</option>
+            <option value="retainer">Maintenance retainer (from $3k/mo)</option>
+            <option value="custom">Custom scope (one-pager attached)</option>
+            <option value="exploring">Just exploring — say hi</option>
+          </select>
+        </div>
+      </div>
+      <div class="cf-row cf-row--2col">
+        <div class="cf-field">
+          <label class="cf-label" for="cf-budget">Budget range</label>
+          <select class="cf-input cf-select" id="cf-budget" name="budget">
+            <option value="">Pick one…</option>
+            <option value="audit-1k">$1k – $1.5k (audit only)</option>
+            <option value="under-12k">Under $12k (audit-eligible)</option>
+            <option value="12-25k">$12k – $25k</option>
+            <option value="25-60k">$25k – $60k</option>
+            <option value="60-150k">$60k – $150k</option>
+            <option value="150k+">$150k+</option>
+            <option value="retainer">Monthly retainer</option>
+            <option value="unsure">Unsure — need help scoping</option>
+          </select>
+        </div>
+        <div class="cf-field">
+          <label class="cf-label" for="cf-timeline">Timeline</label>
+          <select class="cf-input cf-select" id="cf-timeline" name="timeline">
+            <option value="">Pick one…</option>
+            <option value="urgent">Yesterday (urgent)</option>
+            <option value="4-weeks">Within 4 weeks</option>
+            <option value="1-3-months">1–3 months</option>
+            <option value="3-months+">3+ months out</option>
+            <option value="flexible">Flexible / exploring</option>
+          </select>
+        </div>
+      </div>
+      <div class="cf-row">
+        <label class="cf-label" for="cf-msg">One-line scope + anything else</label>
+        <textarea class="cf-input cf-textarea" id="cf-msg" name="message" placeholder="What are you trying to ship? What's the one thing that has to work by launch?" rows="5" required></textarea>
+      </div>
+      <p class="cf-disclaimer">No spam, ever. Your details only go to my inbox — no CRM, no newsletter, no remarketing pixel.</p>
+      <button type="submit" class="cf-submit">
+        Send project inquiry
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <p class="cf-success" id="cf-success" hidden role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <aside class="guestbook" id="guestbook" aria-label="Visitor guestbook">
+    <header class="guestbook-head">
+      <h3>Sign the <em>guestbook.</em></h3>
+      <span class="guestbook-meta">Stored locally only · no server · just for fun</span>
+    </header>
+    <form class="guestbook-form" id="guestbook-form">
+      <label class="sr-only" for="gb-name">Your name (or pseudonym)</label>
+      <input class="guestbook-input" id="gb-name" name="name" placeholder="Your name (or pseudonym)" maxlength="30" required />
+      <label class="sr-only" for="gb-msg">Your note</label>
+      <input class="guestbook-input guestbook-msg" id="gb-msg" name="msg" placeholder="Say hi. Leave a note. Tell me where you came from." maxlength="140" required />
+      <button class="guestbook-submit" type="submit">Sign →</button>
+    </form>
+    <ul class="guestbook-list" id="guestbook-list">
+      <li class="guestbook-empty" id="guestbook-empty">No notes yet. Be the first to leave one ↑</li>
+    </ul>
+  </aside>
+
+</main>
+
+<section class="colophon" id="colophon" aria-label="About this site">
+  <div class="colophon-grid">
+    <div class="colophon-head">
+      <p class="section-num"><span>12</span> Colophon</p>
+      <h2>About this <em>site.</em></h2>
+      <p>Vanilla HTML, CSS, and JavaScript. No framework. No build step. The whole thing is ~140KB before images — and it ships with a typable terminal, a ⌘K palette, and a music synth.</p>
+      <p class="colophon-meta">View source · Press <kbd class="colophon-kbd">⌘ U</kbd></p>
+      <p class="colophon-prefs">
+        Want a playful cursor? <button type="button" id="cursor-toggle" class="colophon-link-btn" aria-pressed="false">Try the custom cursor</button>
+      </p>
+    </div>
+    <div class="colophon-items">
+      <div class="colophon-item">
+        <span class="lk">Display</span>
+        <span class="lv"><em>Bricolage</em> Grotesque · variable</span>
+      </div>
+      <div class="colophon-item">
+        <span class="lk">Serif</span>
+        <span class="lv">Fraunces · italic only</span>
+      </div>
+      <div class="colophon-item">
+        <span class="lk">Body</span>
+        <span class="lv">Inter — 400 / 500 / 600</span>
+      </div>
+      <div class="colophon-item">
+        <span class="lk">Mono</span>
+        <span class="lv">JetBrains Mono</span>
+      </div>
+      <div class="colophon-item">
+        <span class="lk">Palette</span>
+        <span class="lv">
+          <span class="swatch" style="background:#f3eed9;"></span>cream
+          <span class="swatch" style="background:#65d57a;margin-left:10px;"></span>green
+          <span class="swatch" style="background:#ff6b35;margin-left:10px;"></span>orange
+          <span class="swatch" style="background:#4a7bff;margin-left:10px;"></span>blue
+          <span class="swatch" style="background:#0d0d0d;margin-left:10px;"></span>ink
+        </span>
+      </div>
+      <div class="colophon-item">
+        <span class="lk">Music</span>
+        <span class="lv">Web Audio · Cm9 ambient pad</span>
+      </div>
+      <div class="colophon-item">
+        <span class="lk">Hosting</span>
+        <span class="lv">Cloudflare Pages · cookieless analytics</span>
+      </div>
+      <div class="colophon-item">
+        <span class="lk">Built</span>
+        <span class="lv"><em>By hand</em> · in Dhaka · 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="live-strip">
+    <div class="live-cell">
+      <span class="lk">Local time · Dhaka</span>
+      <span class="lv" id="live-time">--:-- BST</span>
+    </div>
+    <div class="live-cell">
+      <span class="lk">Last commit</span>
+      <span class="lv" id="live-commit"><em>2h ago</em> · enterprisecore</span>
+    </div>
+    <div class="live-cell">
+      <span class="lk">Now playing</span>
+      <span class="lv" id="live-music"><em>Lo-fi</em> · ambient pad</span>
+    </div>
+    <div class="live-cell">
+      <span class="lk">Currently reading</span>
+      <span class="lv"><em>The Soul</em> of a New Machine — Tracy Kidder</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 40px;">
+    <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:16px;gap:20px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--on-dark-muted);">Public activity · last 12 months</span>
+      <span style="font-family:var(--mono);font-size:11px;color:var(--on-dark-dim);">Loading from github.com/abedinm…</span>
+    </div>
+    <div class="heatmap" id="heatmap" aria-hidden="true"><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l4"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l3"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l1"></span><span class="heatmap-cell"></span><span class="heatmap-cell l2"></span><span class="heatmap-cell"></span></div>
+  </div>
+
+  <div class="footer-top">
+    <span class="footer-logo">Abedin&nbsp;M.<span class="dot"></span></span>
+    <span class="footer-tag">One engineer · Shipping with love from Dhaka × NL since 2020 · Type <kbd style="background:var(--ink-soft);padding:2px 6px;border-radius:4px;font-family:var(--mono);font-size:11px;color:var(--on-dark)">⌘ K</kbd> to search</span>
+  </div>
+
+  <nav class="footer-links" aria-label="Footer navigation">
+    <div class="footer-links-col">
+      <span class="footer-links-h">Pages</span>
+      <a href="./#work">Selected work</a>
+      <a href="./#pricing">Pricing</a>
+      <a href="./#faq">FAQ</a>
+      <a href="./#contact">Contact</a>
+    </div>
+    <div class="footer-links-col">
+      <span class="footer-links-h">Deeper</span>
+      <a href="./working-together.html">Working with me</a>
+      <a href="./first-call.html">The first call</a>
+      <a href="./cv.html">CV / résumé</a>
+      <a href="./about-this-site.html">About this site</a>
+    </div>
+    <div class="footer-links-col">
+      <span class="footer-links-h">Documents</span>
+      <a href="./roadmap.html">Public roadmap</a>
+      <a href="./assets/nda-mutual.md" target="_blank" rel="noopener">Mutual NDA template ↗</a>
+      <a href="./feed.xml" target="_blank" rel="noopener">RSS feed ↗</a>
+      <a href="./sitemap.xml" target="_blank" rel="noopener">Sitemap ↗</a>
+      <a href="./arcade.html">Arcade · games 🎮</a>
+    </div>
+    <div class="footer-links-col">
+      <span class="footer-links-h">Elsewhere</span>
+      <a href="https://github.com/abedinm" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <a href="https://linkedin.com/in/abedinm" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      <a href="https://x.com/abedinm_" target="_blank" rel="noopener noreferrer">X ↗</a>
+      <a href="mailto:hello@abedin.dev">hello@abedin.dev</a>
+    </div>
+  </nav>
+
+  <div class="footer-bottom">
+    <span>&copy; <span id="year"></span> Abedin M. All rights reserved.</span>
+    <span>Built solo. Hosted on Cloudflare Pages. Cookieless analytics (Cloudflare Web Analytics) — no first-party cookies, no fingerprinting.</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<div id="cmdk-backdrop"></div>
+<div id="cmdk" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="cmdk-input-row">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><line x1="20" y1="20" x2="16" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <input type="text" id="cmdk-input" class="cmdk-input" placeholder="Jump to a section, case study, or action…" autocomplete="off" spellcheck="false" />
+    <span class="cmdk-hint">esc</span>
+  </div>
+  <div class="cmdk-list" id="cmdk-list" role="listbox" aria-live="polite" aria-label="Search results"></div>
+</div>
+
+<script src="./script.js"></script>
+</body>
+</html>

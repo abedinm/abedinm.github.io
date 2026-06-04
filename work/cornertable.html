@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Corner Table — Case study · Abedin M.</title>
+<meta name="description" content="Mobile-first restaurant SPA. No framework, no build step. Installable PWA." />
+<meta name="theme-color" content="#f3eed9" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14130f" />
+<link rel="canonical" href="https://abedin.dev/work/cornertable.html" />
+<meta property="og:title" content="Corner Table — Case study · Abedin M." />
+<meta property="og:description" content="Mobile-first restaurant SPA. No framework, no build step. Installable PWA." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abedin.dev/work/cornertable.html" />
+<meta property="og:image" content="https://abedin.dev/assets/og.png" />
+<meta property="og:image:alt" content="Abedin M. — Solo builder of offline-first software" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Corner Table — Case study · Abedin M." />
+<meta name="twitter:description" content="Mobile-first restaurant SPA. No framework, no build step. Installable PWA." />
+<meta name="twitter:image" content="https://abedin.dev/assets/og.png" />
+
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="./case-study.css" />
+<script>
+  (function(){try{var t=localStorage.getItem('abedin-theme')||
+    (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+    document.documentElement.dataset.theme=t;}catch(e){}})();
+</script>
+<!-- analytics:cloudflare:start -->
+<!-- Cloudflare Web Analytics — set CF_BEACON_TOKEN in scripts/_inject_analytics.py and re-run to enable. -->
+<!-- analytics:cloudflare:end -->
+</head>
+<body>
+<a href="#cs-content" class="skip-link">Skip to content</a>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<header class="nav cs-nav">
+  <a href="../index.html" class="logo">
+    <span class="logo-mark"></span>
+    <span class="logo-text">Abedin&nbsp;M.</span>
+  </a>
+  <a href="../index.html#work" class="cs-back">← All work</a>
+</header>
+
+<article class="cs" id="cs-content">
+  <header class="cs-hero">
+    <p class="cs-tag"><span class="sticker sticker--orange">Client</span> <span class="sticker sticker--ghost">Public · 2024</span> <span class="cs-kind cs-kind--client" aria-label="Kind: Client work">Client work</span></p>
+    <h1>Corner <em>Table.</em></h1>
+    <p class="cs-deck">A mobile-first restaurant SPA. No framework, no build step, no npm. Installable as a PWA so the staff can pin it to their home screen and stop bookmarking the menu page.</p>
+    <div class="cs-meta">
+      <div><span class="label">Role</span><span class="value">Sole engineer · designer</span></div>
+      <div><span class="label">Stack</span><span class="value">Vanilla JS · PWA · Netlify</span></div>
+      <div><span class="label">Status</span><span class="value">Public · in daily use</span></div>
+      <div><span class="label">Lighthouse</span><span class="value">100 / 100 / 100 / 100</span></div>
+    </div>
+  </header>
+
+  <figure class="cs-cover">
+    <img src="../assets/cornertable.webp" alt="Corner Table mobile site" fetchpriority="high" loading="eager" />
+  </figure>
+
+  <section class="cs-block">
+    <h2>The problem.</h2>
+    <p>Most restaurant sites are Squarespace templates that take 4 seconds to load on 4G and assume every visitor is on a 1440-pixel desktop. The owner just wants three things on a phone: menu, location, hours. So that's what I built — and nothing else.</p>
+  </section>
+
+  <section class="cs-block">
+    <h2>What I built.</h2>
+    <ul class="cs-list">
+      <li><strong>Mobile-first SPA.</strong> Designed for a 375px viewport first. Desktop is the "responsive" version, not the other way around.</li>
+      <li><strong>No build step.</strong> Vanilla JS modules, no bundler, no transpiler. Edit a file, refresh, done.</li>
+      <li><strong>Installable PWA.</strong> Service worker + manifest. Adds to home screen like a native app.</li>
+      <li><strong>Lighthouse 100/100/100/100.</strong> Performance, accessibility, best practices, SEO — all 100.</li>
+      <li><strong>Netlify deploy.</strong> Push to main → live in 30 seconds. No DevOps.</li>
+    </ul>
+  </section>
+
+  <section class="cs-block">
+    <h2>How I shipped it.</h2>
+    <ol class="cs-steps">
+      <li><strong>One file, one job.</strong> Each "screen" is its own JS module. No router, no state library, no virtual DOM.</li>
+      <li><strong>Service worker last.</strong> Got the site working online first, then added offline support and cache-first asset serving.</li>
+      <li><strong>Lighthouse-driven.</strong> Tuned each metric to 100 before shipping. The 4th 100 (SEO) took the longest.</li>
+      <li><strong>Netlify config in repo.</strong> netlify.toml lives with the code so re-deployment is just a git push.</li>
+    </ol>
+  </section>
+
+  <section class="cs-block cs-block--quote">
+    <blockquote>The fastest restaurant site I've ever shipped.</blockquote>
+    <p class="cs-quote-attr">— and one of the smallest, too</p>
+  </section>
+
+    <section class="cs-cta">
+    <h3>Like what you read? I can ship this for <em>you.</em></h3>
+    <p class="cs-cta-sub">Send a one-line scope and I'll quote within 24h. Three engagement shapes — fixed-price MVP, embeddable widget, or maintenance retainer.</p>
+    <div class="cs-cta-actions">
+      <a href="../index.html#pricing" class="cs-cta-primary">See engagements &amp; pricing →</a>
+      <a href="mailto:hello@abedin.dev?subject=Inquiry%20%E2%80%94%20%5Byour%20project%5D&amp;body=Hi%20Abedin%2C%0A%0AScope%3A%20%0ABudget%3A%20%0ATimeline%3A%20%0A%0A" class="cs-cta-secondary">Or email me directly</a>
+    </div>
+  </section>
+
+  <nav class="cs-pager">
+    <a href="./siteforge.html" class="cs-pager-prev">
+      <span class="label">← Previous case study</span>
+      <span class="cs-pager-title">SiteForge Studio</span>
+    </a>
+    <a href="./deltadesh.html" class="cs-pager-next">
+      <span class="label">Next case study →</span>
+      <span class="cs-pager-title">Deltadesh</span>
+    </a>
+  </nav>
+</article>
+
+<footer class="footer cs-footer">
+  <div class="footer-top">
+    <span class="footer-logo">Abedin&nbsp;M.<span class="dot"></span></span>
+    <a href="../index.html" class="footer-tag">← Back to portfolio</a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Abedin M. All rights reserved.</span>
+    <a href="mailto:hello@abedin.dev">hello@abedin.dev</a>
+  </div>
+</footer>
+
+<script>
+  const pb = document.getElementById('scroll-progress');
+  addEventListener('scroll', () => {
+    const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    pb.style.width = `${(scrollY / max) * 100}%`;
+  }, { passive: true });
+</script>
+</body>
+</html>

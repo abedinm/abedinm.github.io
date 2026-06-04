@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>404 — got lost · Abedin M.</title>
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#f3eed9" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14130f" />
+
+<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+<link rel="alternate icon" type="image/png" href="./assets/favicon-32.png" />
+<link rel="stylesheet" href="./assets/fonts/fonts.css" />
+<link rel="stylesheet" href="./style.css" />
+<script>
+  (function(){try{var t=localStorage.getItem('abedin-theme')||
+    (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+    document.documentElement.dataset.theme=t;}catch(e){}})();
+</script>
+<!-- analytics:cloudflare:start -->
+<!-- Cloudflare Web Analytics — set CF_BEACON_TOKEN in scripts/_inject_analytics.py and re-run to enable. -->
+<!-- analytics:cloudflare:end -->
+</head>
+<body>
+
+<a href="#err-content" class="skip-link">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" role="banner">
+  <a href="./" class="logo">
+    <span class="logo-mark"></span>
+    <span class="logo-text">Abedin&nbsp;M.</span>
+  </a>
+  <span class="errpage-kicker">Error · 404</span>
+</header>
+
+<main class="errpage" id="err-content" aria-labelledby="err-title">
+  <span class="errpage-kicker" id="err-kicker">This page got lost.</span>
+  <h1 id="err-title">4<button id="err-zero" type="button" aria-label="Click 10 times for a surprise" title="Try clicking me…">0</button>4</h1>
+  <p id="err-msg">It happens. Pages move, links die, the internet forgets. <em>I haven't.</em></p>
+  <div class="err-suggest" id="err-suggest" hidden>
+    <span class="err-suggest-label">Did you mean:</span>
+    <a class="err-suggest-link" id="err-suggest-link" href="./">—</a>
+  </div>
+  <div class="err-actions">
+    <a href="./" class="err-back">← Back to start</a>
+    <a href="./#work" class="err-back err-back--ghost">See selected work →</a>
+  </div>
+  <p class="errpage-note">
+    If you got here via a link I gave you, that's on me — <a href="mailto:hello@abedin.dev?subject=Broken%20link%20on%20abedin.dev&amp;body=I%20landed%20on%20a%20404%20page%20at%3A%0A%0A">tell me where</a>.
+  </p>
+</main>
+
+<script>
+  // "Did you mean?" — Levenshtein-ish nearest path against the known sitemap.
+  (function() {
+    const known = [
+      { p: '/', t: 'Home' },
+      { p: '/working-together.html', t: 'Working together' },
+      { p: '/first-call.html', t: 'The first call' },
+      { p: '/about-this-site.html', t: 'About this site' },
+      { p: '/cv.html', t: 'CV' },
+      { p: '/#work', t: 'Selected work' },
+      { p: '/#pricing', t: 'Pricing' },
+      { p: '/#faq', t: 'FAQ' },
+      { p: '/#contact', t: 'Contact' },
+      { p: '/work/deltadesh.html', t: 'Deltadesh case study' },
+      { p: '/work/deltadutch.html', t: 'Deltadutch case study' },
+      { p: '/work/cornertable.html', t: 'Corner Table case study' },
+      { p: '/work/enterprisecore.html', t: 'EnterpriseCore case study' },
+      { p: '/work/linguabot.html', t: 'LinguaBot case study' },
+      { p: '/work/holygrail.html', t: 'HolyGrail case study' },
+      { p: '/work/siteforge.html', t: 'SiteForge case study' },
+      { p: '/work/knowledge-hub.html', t: 'Knowledge Hub case study' },
+      { p: '/work/codex-tools.html', t: 'Codex Tools case study' },
+      { p: '/work/claude-skills.html', t: 'claude-skills case study' },
+    ];
+    function lev(a, b) {
+      a = a.toLowerCase(); b = b.toLowerCase();
+      const m = a.length, n = b.length;
+      if (!m) return n; if (!n) return m;
+      const d = Array.from({length: m+1}, () => new Array(n+1).fill(0));
+      for (let i = 0; i <= m; i++) d[i][0] = i;
+      for (let j = 0; j <= n; j++) d[0][j] = j;
+      for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++) {
+        d[i][j] = a[i-1] === b[j-1] ? d[i-1][j-1] : 1 + Math.min(d[i-1][j-1], d[i][j-1], d[i-1][j]);
+      }
+      return d[m][n];
+    }
+    const path = location.pathname.replace(/\/$/, '');
+    if (!path) return;
+    const best = known
+      .map(k => ({ k, score: lev(path, k.p) }))
+      .sort((a, b) => a.score - b.score)[0];
+    if (best.score <= Math.max(6, Math.floor(path.length * 0.6))) {
+      const s = document.getElementById('err-suggest');
+      const l = document.getElementById('err-suggest-link');
+      l.href = best.k.p;
+      l.textContent = best.k.t + ' (' + best.k.p + ')';
+      s.hidden = false;
+    }
+    // Echo the bad URL into the page so the user can see what they typed
+    document.getElementById('err-kicker').textContent =
+      'No page at ' + path + ' — yet.';
+  })();
+
+  // Click-the-spinning-0 game — 10 clicks = secret unlocks
+  (function() {
+    const zero = document.getElementById('err-zero');
+    if (!zero) return;
+    let count = 0;
+    const counter = document.createElement('span');
+    counter.style.cssText = 'display:block;margin-top:8px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-muted);';
+    zero.parentElement.parentElement.insertBefore(counter, zero.parentElement.nextSibling);
+    zero.style.cursor = 'pointer';
+    zero.addEventListener('click', () => {
+      count++;
+      counter.textContent = count + ' / 10 — keep clicking the spinning zero';
+      zero.style.transform = `rotate(${count * 60}deg) scale(${1 + count * 0.05})`;
+      zero.style.transition = 'transform 0.2s ease';
+      if (count >= 10) {
+        counter.innerHTML = '<strong style="color:var(--green-deep)">✓ Unlocked: nothing.</strong> But you tried. Respect. <a href="./" style="color:var(--orange);">Go home.</a>';
+        zero.style.color = '#65d57a';
+        // Confetti via emoji
+        for (let i = 0; i < 30; i++) {
+          const c = document.createElement('span');
+          c.textContent = ['✦', '✧', '★', '•'][i % 4];
+          c.style.cssText = `position:fixed;top:50%;left:50%;font-size:${10 + Math.random() * 14}px;color:${['#65d57a','#ff6b35','#4a7bff'][i % 3]};pointer-events:none;z-index:9999;animation:falldown ${1 + Math.random()}s ease-in forwards`;
+          c.style.setProperty('--x', (Math.random() * 800 - 400) + 'px');
+          document.body.appendChild(c);
+          setTimeout(() => c.remove(), 2200);
+        }
+      }
+    });
+    // Inject the falldown keyframe (one-time)
+    const style = document.createElement('style');
+    style.textContent = '@keyframes falldown { to { transform: translate(var(--x), 400px) rotate(720deg); opacity: 0; } }';
+    document.head.appendChild(style);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>About this site — Abedin M.</title>
+<meta name="description" content="How abedin.dev is built: vanilla HTML/CSS/JS, no framework, cookieless analytics only, no first-party cookies. Stack and ethos behind the portfolio." />
+<meta name="theme-color" content="#f3eed9" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14130f" />
+<link rel="canonical" href="https://abedin.dev/about-this-site.html" />
+
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="./assets/fonts/fonts.css" />
+<link rel="stylesheet" href="./style.css" />
+<link rel="stylesheet" href="./work/case-study.css" />
+<script>(function(){try{var t=localStorage.getItem('abedin-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+<!-- analytics:cloudflare:start -->
+<!-- Cloudflare Web Analytics — set CF_BEACON_TOKEN in scripts/_inject_analytics.py and re-run to enable. -->
+<!-- analytics:cloudflare:end -->
+</head>
+<body>
+<a href="#cs-content" class="skip-link">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<header class="nav cs-nav">
+  <a href="./" class="logo"><span class="logo-mark"></span><span class="logo-text">Abedin&nbsp;M.</span></a>
+  <a href="./" class="cs-back">← Home</a>
+</header>
+
+<article class="cs" id="cs-content">
+  <header class="cs-hero">
+    <p class="cs-tag"><span class="sticker sticker--ghost">Colophon</span></p>
+    <h1>About this <em>site.</em></h1>
+    <p class="cs-deck">Built the way I'd build for you — vanilla, fast, offline-capable, no surveillance. The whole site is ~140KB before images, ships with a typable terminal and a ⌘K command palette, and runs without a build step.</p>
+  </header>
+
+  <section class="cs-block">
+    <h2>Tech.</h2>
+    <ul class="cs-list">
+      <li><strong>HTML + CSS + JavaScript</strong> — no framework, no build step, no bundler.</li>
+      <li><strong>One CSS file, one JS file, one index.html.</strong> Plus a pre-rendered static fallback for crawlers and JS-disabled browsers.</li>
+      <li><strong>Service worker</strong> — works offline, caches everything, version bumped on every deploy.</li>
+      <li><strong>PWA</strong> — installable on iOS / Android / desktop with a real manifest.</li>
+      <li><strong>SVG project tiles</strong> + WebP photos — sub-200KB per page.</li>
+    </ul>
+  </section>
+
+  <section class="cs-block">
+    <h2>What I'm <em>not</em> using.</h2>
+    <ul class="cs-list">
+      <li><strong>Cookieless analytics only.</strong> Cloudflare Web Analytics. No Google Analytics, no Plausible, no Fathom, no Mixpanel. No fingerprinting, no first-party cookies, no cross-site tracking. Just page-view counts for me, so I know what's resonating.</li>
+      <li><strong>No cookies.</strong> Theme preference uses localStorage (your machine only). Nothing leaves your browser.</li>
+      <li><strong>No CRM / no email capture / no remarketing pixel.</strong> Contact form posts to a single inbox (mine); that's it.</li>
+      <li><strong>No third-party scripts.</strong> Even the fonts are self-hosted — zero requests leave this domain on first paint.</li>
+    </ul>
+  </section>
+
+  <section class="cs-block">
+    <h2>Typography.</h2>
+    <ul class="cs-list">
+      <li><strong>Display:</strong> Bricolage Grotesque — variable, set as a single weight axis for crisp clamp() responsive sizing.</li>
+      <li><strong>Serif accents:</strong> Fraunces (italic only) for emphasis inside body copy.</li>
+      <li><strong>Body:</strong> Inter at 400/500/600.</li>
+      <li><strong>Mono:</strong> JetBrains Mono for the terminal and labels.</li>
+    </ul>
+  </section>
+
+  <section class="cs-block">
+    <h2>Palette.</h2>
+    <div class="cs-callout">
+      <div class="cs-callout-box"><div class="n" style="background:#f3eed9;color:#0d0d0d;padding:8px 14px;border-radius:8px;display:inline-block;">cream</div><div class="l">#f3eed9 base.</div></div>
+      <div class="cs-callout-box"><div class="n" style="background:#65d57a;color:#0d0d0d;padding:8px 14px;border-radius:8px;display:inline-block;">green</div><div class="l">#65d57a · accent.</div></div>
+      <div class="cs-callout-box"><div class="n" style="background:#ff6b35;color:#fff;padding:8px 14px;border-radius:8px;display:inline-block;">orange</div><div class="l">#ff6b35 · CTA.</div></div>
+      <div class="cs-callout-box"><div class="n" style="background:#0d0d0d;color:#f3eed9;padding:8px 14px;border-radius:8px;display:inline-block;">ink</div><div class="l">#0d0d0d · text.</div></div>
+    </div>
+  </section>
+
+  <section class="cs-block">
+    <h2>Hosting.</h2>
+    <p>Designed for Cloudflare Pages — static, edge-cached, free tier indefinitely. No build step means no CI / no GitHub Actions / no minute-counting. Push to main, the site is live in under 30 seconds.</p>
+  </section>
+
+  <section class="cs-block">
+    <h2>Source.</h2>
+    <p>The whole site is plaintext. Right-click → View Source on any page. Or press <kbd>⌘&nbsp;U</kbd> / <kbd>Ctrl&nbsp;U</kbd>.</p>
+    <p>Same goes for the data: <a href="./projects.json" target="_blank" rel="noopener" class="proof-link">projects.json</a> drives the work grid, testimonials, FAQ, and pricing. Edit it, refresh, see the change.</p>
+  </section>
+
+  <section class="cs-block">
+    <h2>Performance budget.</h2>
+    <div class="cs-callout">
+      <div class="cs-callout-box"><div class="n">~140kb</div><div class="l">Total page weight before images.</div></div>
+      <div class="cs-callout-box"><div class="n">&lt; 1s</div><div class="l">First contentful paint target.</div></div>
+      <div class="cs-callout-box"><div class="n">100/100</div><div class="l">Lighthouse score target on every metric.</div></div>
+    </div>
+  </section>
+
+  <section class="cs-cta">
+    <h3>Like this <em>aesthetic?</em></h3>
+    <p class="cs-cta-sub">I build for clients with the same care. Same load time. Same surveillance-free defaults. Same hand-readable code.</p>
+    <div class="cs-cta-actions">
+      <a href="./#pricing" class="cs-cta-primary">See engagements &amp; pricing →</a>
+      <a href="./working-together.html" class="cs-cta-secondary">Or read how I work</a>
+    </div>
+  </section>
+</article>
+
+<footer class="footer cs-footer">
+  <div class="footer-top">
+    <span class="footer-logo">Abedin&nbsp;M.<span class="dot"></span></span>
+    <a href="./" class="footer-tag">← Back to portfolio</a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Abedin M. All rights reserved.</span>
+    <a href="mailto:hello@abedin.dev">hello@abedin.dev</a>
+  </div>
+</footer>
+
+<script>
+  const pb = document.getElementById('scroll-progress');
+  addEventListener('scroll', () => { const max = Math.max(1, document.documentElement.scrollHeight - innerHeight); pb.style.width = `${(scrollY / max) * 100}%`; }, { passive: true });
+</script>
+</body>
+</html>

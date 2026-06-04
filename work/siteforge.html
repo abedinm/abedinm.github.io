@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>SiteForge Studio — Case study · Abedin M.</title>
+<meta name="description" content="Browser-only CMS + website builder. localStorage. No server. No login. Free." />
+<meta name="theme-color" content="#f3eed9" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14130f" />
+<link rel="canonical" href="https://abedin.dev/work/siteforge.html" />
+<meta property="og:title" content="SiteForge Studio — Case study · Abedin M." />
+<meta property="og:description" content="Browser-only CMS + website builder. localStorage. No server. No login. Free." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abedin.dev/work/siteforge.html" />
+<meta property="og:image" content="https://abedin.dev/assets/og.png" />
+<meta property="og:image:alt" content="Abedin M. — Solo builder of offline-first software" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SiteForge Studio — Case study · Abedin M." />
+<meta name="twitter:description" content="Browser-only CMS + website builder. localStorage. No server. No login. Free." />
+<meta name="twitter:image" content="https://abedin.dev/assets/og.png" />
+
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="./case-study.css" />
+<script>
+  (function(){try{var t=localStorage.getItem('abedin-theme')||
+    (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+    document.documentElement.dataset.theme=t;}catch(e){}})();
+</script>
+<!-- analytics:cloudflare:start -->
+<!-- Cloudflare Web Analytics — set CF_BEACON_TOKEN in scripts/_inject_analytics.py and re-run to enable. -->
+<!-- analytics:cloudflare:end -->
+</head>
+<body>
+<a href="#cs-content" class="skip-link">Skip to content</a>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<header class="nav cs-nav">
+  <a href="../index.html" class="logo">
+    <span class="logo-mark"></span>
+    <span class="logo-text">Abedin&nbsp;M.</span>
+  </a>
+  <a href="../index.html#work" class="cs-back">← All work</a>
+</header>
+
+<article class="cs" id="cs-content">
+  <header class="cs-hero">
+    <p class="cs-tag"><span class="sticker sticker--green">Tools</span> <span class="sticker sticker--ghost">Public · 2024</span> <span class="cs-kind cs-kind--product" aria-label="Kind: Own product">Own product</span></p>
+    <h1>SiteForge <em>Studio.</em></h1>
+    <p class="cs-deck">I built SiteForge for clients who didn't need a real CMS but kept getting sold one. Browser-only — everything lives in <code>localStorage</code>. No server, no login, no subscription. Open the tab, build, export, deploy.</p>
+    <div class="cs-meta">
+      <div><span class="label">Role</span><span class="value">Sole engineer · designer</span></div>
+      <div><span class="label">Stack</span><span class="value">Vanilla JS · localStorage · Cloudflare Pages</span></div>
+      <div><span class="label">Status</span><span class="value">Public · 100% free</span></div>
+      <div><span class="label">Backend</span><span class="value">None — by design</span></div>
+    </div>
+  </header>
+
+  <figure class="cs-cover">
+    <img src="../assets/siteforge.webp" alt="SiteForge Studio dashboard" fetchpriority="high" loading="eager" />
+  </figure>
+
+  <section class="cs-block">
+    <h2>The problem.</h2>
+    <p>Most CMSes assume a server, a login, a billing wall, and your data on someone else's roadmap. For a one-page brochure site, that's absurd overhead. You want to build, see it, export it, and deploy it somewhere static. That's it.</p>
+  </section>
+
+  <section class="cs-block">
+    <h2>What I built.</h2>
+    <ul class="cs-list">
+      <li><strong>Browser-only.</strong> Pages, services, posts, brand colors — all stored in <code>localStorage</code>. Open a new tab, your work follows you on the same machine.</li>
+      <li><strong>Live preview.</strong> Side-by-side edit + preview. WYSIWYG without the WYSIWYG fragility.</li>
+      <li><strong>Export to static HTML.</strong> One click → a folder of HTML/CSS/JS you can drop on any host.</li>
+      <li><strong>Launch-readiness checklist.</strong> Site won't let you "go live" until you've set brand colors, added at least 3 services, and configured contact details.</li>
+      <li><strong>Zero infrastructure.</strong> The whole product is a static page on Cloudflare. No database, no API, no auth. Forever free.</li>
+    </ul>
+  </section>
+
+  <section class="cs-block">
+    <h2>How I shipped it.</h2>
+    <ol class="cs-steps">
+      <li><strong>localStorage schema first.</strong> Defined the data shape before any UI — pages, services, brand, settings.</li>
+      <li><strong>Editor in vanilla JS.</strong> No framework, no build step. The whole studio is &lt;500KB.</li>
+      <li><strong>Export-to-static last.</strong> Built the editor before the renderer to validate the schema worked.</li>
+      <li><strong>Cloudflare Pages deploy.</strong> Static HTML, global CDN, zero ongoing cost.</li>
+    </ol>
+  </section>
+
+  <section class="cs-block cs-block--quote">
+    <blockquote>The simplest CMS is the one with no server.</blockquote>
+    <p class="cs-quote-attr">— the design constraint</p>
+  </section>
+
+    <section class="cs-cta">
+    <h3>Like what you read? I can ship this for <em>you.</em></h3>
+    <p class="cs-cta-sub">Send a one-line scope and I'll quote within 24h. Three engagement shapes — fixed-price MVP, embeddable widget, or maintenance retainer.</p>
+    <div class="cs-cta-actions">
+      <a href="../index.html#pricing" class="cs-cta-primary">See engagements &amp; pricing →</a>
+      <a href="mailto:hello@abedin.dev?subject=Inquiry%20%E2%80%94%20%5Byour%20project%5D&amp;body=Hi%20Abedin%2C%0A%0AScope%3A%20%0ABudget%3A%20%0ATimeline%3A%20%0A%0A" class="cs-cta-secondary">Or email me directly</a>
+    </div>
+  </section>
+
+  <nav class="cs-pager">
+    <a href="./holygrail.html" class="cs-pager-prev">
+      <span class="label">← Previous case study</span>
+      <span class="cs-pager-title">HolyGrail</span>
+    </a>
+    <a href="./cornertable.html" class="cs-pager-next">
+      <span class="label">Next case study →</span>
+      <span class="cs-pager-title">Corner Table</span>
+    </a>
+  </nav>
+</article>
+
+<footer class="footer cs-footer">
+  <div class="footer-top">
+    <span class="footer-logo">Abedin&nbsp;M.<span class="dot"></span></span>
+    <a href="../index.html" class="footer-tag">← Back to portfolio</a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Abedin M. All rights reserved.</span>
+    <a href="mailto:hello@abedin.dev">hello@abedin.dev</a>
+  </div>
+</footer>
+
+<script>
+  const pb = document.getElementById('scroll-progress');
+  addEventListener('scroll', () => {
+    const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    pb.style.width = `${(scrollY / max) * 100}%`;
+  }, { passive: true });
+</script>
+</body>
+</html>

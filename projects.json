@@ -1,0 +1,356 @@
+{
+  "person": {
+    "name": "Abedin M.",
+    "tagline": "Solo software builder. Dhaka × Netherlands.",
+    "location": "Dhaka, BD",
+    "email": "hello@abedin.dev",
+    "social": {
+      "github": "https://github.com/abedinm",
+      "x": "https://x.com/abedinm_",
+      "linkedin": "https://linkedin.com/in/abedinm"
+    }
+  },
+  "categories": [
+    { "id": "client",  "label": "Client",   "subtitle": "Built for someone else." },
+    { "id": "saas",    "label": "SaaS",     "subtitle": "Things you sign up for." },
+    { "id": "desktop", "label": "Desktop",  "subtitle": "Installable apps." },
+    { "id": "tools",   "label": "Tools",    "subtitle": "Free tools." }
+  ],
+  "projects": [
+    {
+      "slug": "deltadesh",
+      "name": "Deltadesh",
+      "category": "client",
+      "kind": "client",
+      "tagline": "Replaced 9 months of stalled agency work in 3 weeks. Dhaka consultancy site with JSON-driven content + admin panel.",
+      "stack": ["Vanilla JS", "Supabase", "Render"],
+      "status": "Live",
+      "year": "2025",
+      "metric": "9-month rebuild shipped in 3 weeks",
+      "url": "https://deltadesh-website.onrender.com/",
+      "repo": null,
+      "image": "./assets/deltadesh.webp",
+      "case_study": "./work/deltadesh.html",
+      "highlight": true
+    },
+    {
+      "slug": "deltadutch",
+      "name": "Deltadutch",
+      "category": "client",
+      "kind": "client",
+      "tagline": "Dutch engineering consultancy positioning for Bangladesh's fresh produce sector. 6-stage service ladder live in 4 weeks.",
+      "stack": ["Vanilla JS", "Python", "Render"],
+      "status": "Live",
+      "year": "2025",
+      "metric": "Spec → live in 4 weeks",
+      "url": "https://deltadutch-website-ku0k.onrender.com/",
+      "repo": null,
+      "image": "./assets/deltadutch.webp",
+      "case_study": "./work/deltadutch.html",
+      "highlight": true
+    },
+    {
+      "slug": "cornertable",
+      "name": "Corner Table",
+      "category": "client",
+      "kind": "client",
+      "tagline": "Restaurant owners replaced 3 paid tools (menu, ordering, reservations) with one installable PWA. Still on-call 2 years later.",
+      "stack": ["Vanilla JS", "PWA", "Netlify"],
+      "status": "Live",
+      "year": "2024",
+      "metric": "3 tools collapsed into 1",
+      "url": null,
+      "repo": null,
+      "image": "./assets/cornertable.webp",
+      "case_study": "./work/cornertable.html",
+      "highlight": true
+    },
+    {
+      "slug": "enterprisecore",
+      "name": "EnterpriseCore AI Suite",
+      "category": "desktop",
+      "kind": "product",
+      "tagline": "130-module offline business suite + AI coding assistant. One payment, your data stays on your machine.",
+      "stack": ["FastAPI", "React", "Electron", "Anthropic+Ollama"],
+      "status": "Live",
+      "year": "2026",
+      "metric": "130 modules · one binary",
+      "url": null,
+      "repo": null,
+      "image": "./assets/enterprisecore.webp",
+      "case_study": "./work/enterprisecore.html",
+      "highlight": true
+    },
+    {
+      "slug": "linguabot",
+      "name": "LinguaBot",
+      "category": "saas",
+      "kind": "product",
+      "tagline": "Embeddable multilingual chat widget. EN · BN · HI · UR. Drop-in script tag, free tier forever.",
+      "stack": ["FastAPI", "React", "Stripe", "Fly.io"],
+      "status": "Live",
+      "year": "2025",
+      "metric": "4 languages · <12kb",
+      "url": null,
+      "repo": null,
+      "image": "./assets/linguabot.webp",
+      "case_study": "./work/linguabot.html",
+      "highlight": false
+    },
+    {
+      "slug": "knowledge-hub",
+      "name": "AI Knowledge Hub",
+      "category": "desktop",
+      "kind": "product",
+      "tagline": "RAG over local documents, streaming chat, Ollama model manager. Lives inside EnterpriseCore.",
+      "stack": ["FastAPI", "React", "Ollama", "SQLite"],
+      "status": "Live",
+      "year": "2026",
+      "metric": "100% local · 0 cloud",
+      "url": null,
+      "repo": null,
+      "image": "./assets/knowledge-hub.webp",
+      "case_study": "./work/knowledge-hub.html",
+      "highlight": false
+    },
+    {
+      "slug": "siteforge",
+      "name": "SiteForge Studio",
+      "category": "tools",
+      "kind": "product",
+      "tagline": "Browser-only CMS + website builder. localStorage. No server. No login. Free.",
+      "stack": ["Vanilla JS", "localStorage", "Cloudflare"],
+      "status": "Live",
+      "year": "2024",
+      "metric": "0 servers · 100% free",
+      "url": null,
+      "repo": null,
+      "image": "./assets/siteforge.webp",
+      "case_study": "./work/siteforge.html",
+      "highlight": false
+    },
+    {
+      "slug": "holygrail",
+      "name": "HolyGrail",
+      "category": "desktop",
+      "kind": "product",
+      "tagline": "Personal life-OS. 3-mode AI assistant with crisis detection + scheduler. iPhone + desktop.",
+      "stack": ["FastAPI", "Electron", "Expo", "Neon"],
+      "status": "Live",
+      "year": "2025",
+      "metric": "iOS + desktop",
+      "url": null,
+      "repo": null,
+      "image": "./assets/holygrail.webp",
+      "case_study": "./work/holygrail.html",
+      "highlight": false
+    },
+    {
+      "slug": "codex-tools",
+      "name": "Codex Tools",
+      "category": "tools",
+      "kind": "product",
+      "tagline": "11 free tools for university students. CGPA planner, attendance tracker, deadline shield.",
+      "stack": ["Vanilla JS", "PWA", "Cloudflare"],
+      "status": "Live",
+      "year": "2024",
+      "metric": "11 tools · 3 publishers",
+      "url": null,
+      "repo": null,
+      "image": "./assets/codex-tools.webp",
+      "case_study": "./work/codex-tools.html",
+      "highlight": false
+    },
+    {
+      "slug": "claude-skills",
+      "name": "claude-skills",
+      "category": "tools",
+      "kind": "product",
+      "tagline": "98 indexed Claude Code skills, curated kit + tips. For builders who want fewer keystrokes.",
+      "stack": ["Markdown", "JSON", "Bash"],
+      "status": "Live",
+      "year": "2026",
+      "metric": "98 skills · 4 repos",
+      "url": null,
+      "repo": null,
+      "image": "./assets/claude-skills.webp",
+      "case_study": "./work/claude-skills.html",
+      "highlight": false
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Abedin shipped what our last agency had been promising for nine months — in three weeks. Then he stayed to maintain it.",
+      "author": "K. Rahman",
+      "role": "Founder, Deltadesh",
+      "project": "deltadesh",
+      "verify_url": "https://deltadesh-website.onrender.com/",
+      "outcome": "9-month agency stall → 3-week ship (~85% faster). Admin panel removed dev dependency for copy updates."
+    },
+    {
+      "quote": "He writes a one-page spec, you nod, and four weeks later the thing exists. No status calls, no upsells, just commits.",
+      "author": "M. van der Berg",
+      "role": "Ops Lead, Deltadutch",
+      "project": "deltadutch",
+      "verify_url": "https://deltadutch-website-ku0k.onrender.com/",
+      "outcome": "Spec → live in 4 weeks. JSON-driven 6-stage service ladder. Zero status meetings."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What's your minimum engagement?",
+      "a": "$12k for a tightly-scoped widget or static site. $18k for a full MVP. Below that, I'd rather refer you to a freelancer who's a better fit."
+    },
+    {
+      "q": "Do you sign NDAs?",
+      "a": "Yes, always. Send yours or use my mutual NDA template (./assets/nda-mutual.md) — both sides can mark it up. I sign before the first call if your project is sensitive."
+    },
+    {
+      "q": "Who owns the code?",
+      "a": "You do. From day one. Repo transferred to your org on kickoff. No licensing tricks, no \"perpetual usage rights\" — it's yours."
+    },
+    {
+      "q": "What if you can't deliver?",
+      "a": "I haven't yet. If I do: free rebuild of the milestone, or full refund of the unbilled work. In writing, in the contract."
+    },
+    {
+      "q": "Fixed-price or hourly?",
+      "a": "Both. Small/clear scope: fixed. Open-ended/exploratory: hourly. I'll tell you which fits your project after a 30-minute call. No pressure."
+    },
+    {
+      "q": "Do you take equity?",
+      "a": "Sometimes, in addition to a base rate. I want skin in the game when the project is interesting. Pure-equity engagements: no."
+    },
+    {
+      "q": "Do you work with my designer / PM / existing team?",
+      "a": "Yes. I integrate into whatever you've got — Figma handoffs, Linear tickets, Slack, async standups. I'm not precious about process."
+    },
+    {
+      "q": "Industries you've worked in?",
+      "a": "Consultancies, restaurants, fintech, B2B SaaS, education, AI tooling. Not healthcare/medical or anything HIPAA-bound — I don't have the compliance muscle for that yet."
+    },
+    {
+      "q": "Time zone overlap with US / EU?",
+      "a": "I keep 10:00–18:00 BST hours, which overlaps EU mornings and US East Coast late evenings. Weekly sync at a time that works for you."
+    },
+    {
+      "q": "Why offline-first?",
+      "a": "Because servers go down, subscriptions get cancelled, and your data shouldn't live on someone else's roadmap. If it can run on your machine, it should. (Doesn't mean I won't ship cloud — I just default to local-first when it makes sense.)"
+    },
+    {
+      "q": "Why solo?",
+      "a": "No middlemen, no agency overhead, no telephone-game of requirements. You talk to the person writing the code. Faster, cheaper, honest."
+    },
+    {
+      "q": "How long do you maintain things?",
+      "a": "Indefinitely on retainer ($3k/mo+), at-cost on demand otherwise. Most things I built in 2020 are still serving traffic — I haven't ghosted a project yet."
+    },
+    {
+      "q": "What's your typical timeline?",
+      "a": "Static site or widget: 1–2 weeks. SaaS MVP: 4–8 weeks. Desktop suite: 3–6 months. I quote tight and I ship on time."
+    }
+  ],
+  "now": {
+    "month": "May 2026",
+    "items": [
+      "Shipping v6 of EnterpriseCore — absorbing 11 of my older student apps as first-class modules.",
+      "Iterating LinguaBot for first paying tenants.",
+      "Writing a small book on solo-shipping offline-first software.",
+      "Open to one new client engagement starting June."
+    ]
+  },
+  "packages": [
+    {
+      "id": "audit",
+      "name": "Code & architecture audit",
+      "price_from": "$1k",
+      "ideal_for": "Pre-build buyers who want a senior eye on their existing repo, stack choice, or v0.1 before committing to a larger engagement.",
+      "deliverables": [
+        "Written PDF report (8–15 pages): risks, debt, security smells, 3–5 next moves",
+        "1× 60-min walkthrough call (recorded)",
+        "5 business days from kickoff",
+        "Fee credited if you continue with me on retainer or build"
+      ],
+      "not_included": [
+        "Implementing the fixes (separate scope)",
+        "Formal pen-test or compliance review"
+      ],
+      "timeline": "5 business days",
+      "subject": "Code%20%26%20architecture%20audit%20—%20inquiry"
+    },
+    {
+      "id": "mvp",
+      "name": "MVP in 4 weeks",
+      "price_from": "$18k",
+      "ideal_for": "Founders with a one-page spec who need a production-grade v1 fast.",
+      "deliverables": [
+        "Production app on your domain, code in your repo",
+        "2 rounds of revisions before launch",
+        "Month #1 of maintenance included",
+        "README + handover call"
+      ],
+      "not_included": [
+        "Discovery / scope-writing (use the 15-min intro for that)",
+        "Native mobile builds (web/PWA only)",
+        "Multi-tenant billing (separate scope)"
+      ],
+      "timeline": "4 weeks · 1 day kick-off",
+      "subject": "MVP%20in%204%20weeks%20—%20inquiry"
+    },
+    {
+      "id": "widget",
+      "name": "Embeddable widget or tool",
+      "price_from": "$12k",
+      "ideal_for": "B2B SaaS teams who need a drop-in script tag, a Chrome extension, or a small standalone tool.",
+      "deliverables": [
+        "Hosted widget + script tag (or extension package)",
+        "Embed docs + integration examples",
+        "Basic dashboard (if config needed)",
+        "1 round of revisions"
+      ],
+      "not_included": [
+        "Full SaaS dashboards (use MVP package)",
+        "Custom analytics platform"
+      ],
+      "timeline": "2–3 weeks",
+      "subject": "Embeddable%20widget%20—%20inquiry"
+    },
+    {
+      "id": "retainer",
+      "name": "Maintenance retainer",
+      "price_from": "$3k / mo",
+      "ideal_for": "Teams with a shipped product that needs reliable monthly attention — bug fixes, small features, infra.",
+      "deliverables": [
+        "Up to 20 hrs / month engineering time",
+        "24h response on Slack/email",
+        "Monthly Loom + written report",
+        "Pause or scale up any month"
+      ],
+      "not_included": [
+        "On-call / pager duty (separate scope)",
+        "Net-new product builds (use MVP package)"
+      ],
+      "timeline": "Month-to-month",
+      "subject": "Maintenance%20retainer%20—%20inquiry"
+    },
+    {
+      "id": "custom",
+      "name": "Custom build",
+      "price_from": "$60k",
+      "ideal_for": "Multi-month engagements that don't fit MVP / widget. Desktop suites, complex SaaS, AI-integrated tools. Milestone billing.",
+      "deliverables": [
+        "Full scope and architecture written up before code",
+        "Milestone-based billing (typically 4–6 stages)",
+        "Weekly demo + decision log",
+        "Months 1–2 of maintenance included after launch"
+      ],
+      "not_included": [
+        "Replacing your in-house team (I supplement, not substitute)",
+        "HIPAA / SOC 2 audits",
+        "Pure-equity engagements"
+      ],
+      "timeline": "3–6 months · phased delivery",
+      "subject": "Custom%20build%20—%20inquiry"
+    }
+  ]
+}

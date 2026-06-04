@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>LinguaBot — Case study · Abedin M.</title>
+<meta name="description" content="Embeddable multilingual chat widget. EN · BN · HI · UR. Drop-in script tag, free tier forever." />
+<meta name="theme-color" content="#f3eed9" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14130f" />
+<link rel="canonical" href="https://abedin.dev/work/linguabot.html" />
+<meta property="og:title" content="LinguaBot — Case study · Abedin M." />
+<meta property="og:description" content="Embeddable multilingual chat widget. EN · BN · HI · UR. Drop-in script tag, free tier forever." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abedin.dev/work/linguabot.html" />
+<meta property="og:image" content="https://abedin.dev/assets/og.png" />
+<meta property="og:image:alt" content="Abedin M. — Solo builder of offline-first software" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="LinguaBot — Case study · Abedin M." />
+<meta name="twitter:description" content="Embeddable multilingual chat widget. EN · BN · HI · UR. Drop-in script tag, free tier forever." />
+<meta name="twitter:image" content="https://abedin.dev/assets/og.png" />
+
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="./case-study.css" />
+<script>
+  (function(){try{var t=localStorage.getItem('abedin-theme')||
+    (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+    document.documentElement.dataset.theme=t;}catch(e){}})();
+</script>
+<!-- analytics:cloudflare:start -->
+<!-- Cloudflare Web Analytics — set CF_BEACON_TOKEN in scripts/_inject_analytics.py and re-run to enable. -->
+<!-- analytics:cloudflare:end -->
+</head>
+<body>
+<a href="#cs-content" class="skip-link">Skip to content</a>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<header class="nav cs-nav">
+  <a href="../index.html" class="logo">
+    <span class="logo-mark"></span>
+    <span class="logo-text">Abedin&nbsp;M.</span>
+  </a>
+  <a href="../index.html#work" class="cs-back">← All work</a>
+</header>
+
+<article class="cs" id="cs-content">
+  <header class="cs-hero">
+    <p class="cs-tag"><span class="sticker sticker--green">SaaS</span> <span class="sticker sticker--ghost">Live · 2025</span> <span class="cs-kind cs-kind--product" aria-label="Kind: Own product">Own product</span></p>
+    <h1>Lingua<em>Bot.</em></h1>
+    <p class="cs-deck">I built LinguaBot for client sites that needed support in Bangla and Hindi but couldn't afford an enterprise chat platform. Embeddable, auto-detects EN · BN · HI · UR, one <code>&lt;script&gt;</code> tag. Free tier forever.</p>
+    <div class="cs-meta">
+      <div><span class="label">Role</span><span class="value">Sole engineer · founder</span></div>
+      <div><span class="label">Stack</span><span class="value">FastAPI · React · Stripe · Fly.io</span></div>
+      <div><span class="label">Status</span><span class="value">Beta · accepting tenants</span></div>
+      <div><span class="label">Bundle size</span><span class="value">&lt; 12kb gzipped</span></div>
+    </div>
+  </header>
+
+  <figure class="cs-cover">
+    <img src="../assets/linguabot.webp" alt="LinguaBot landing page" fetchpriority="high" loading="eager" />
+  </figure>
+
+  <section class="cs-block">
+    <h2>The problem.</h2>
+    <p>The South Asian small-business web has a multilingual gap. Most chat widgets ship in English only, or require manual language switching. Customers in Dhaka, Karachi, or Mumbai land on an English-only chat and bounce. The off-the-shelf options (Intercom, Drift) are <em>fifty times</em> the price a 3-person consultancy can stomach.</p>
+  </section>
+
+  <section class="cs-block">
+    <h2>What I built.</h2>
+    <ul class="cs-list">
+      <li><strong>Auto language detect.</strong> The widget reads the visitor's first message and switches UI + responses to EN / BN / HI / UR on the fly.</li>
+      <li><strong>One script tag.</strong> Drop in <code>&lt;script src="https://linguabot.app/w/xyz.js"&gt;</code>. No npm, no build step, no React peer dependency.</li>
+      <li><strong>Free tier forever.</strong> Up to 100 conversations / month at zero cost. Paid plan kicks in only when you've already validated the value.</li>
+      <li><strong>Self-hostable.</strong> Open core. You can run the whole stack on your own Fly machine and pay $5/mo instead of $50.</li>
+      <li><strong>FastAPI + React dashboard.</strong> For tenant config, prompt templates, language fallbacks, and analytics.</li>
+    </ul>
+  </section>
+
+  <section class="cs-block">
+    <h2>How I shipped it.</h2>
+    <ol class="cs-steps">
+      <li><strong>Widget first.</strong> Vanilla JS + Shadow DOM, 12kb gzipped. Designed to never break a host site's CSS.</li>
+      <li><strong>Dashboard last.</strong> Tenants got CLI config first — only built the React admin once five paying users asked for it.</li>
+      <li><strong>Multi-tenant from day one.</strong> Per-tenant API keys, prompt overrides, language mix. PostgreSQL row-level security.</li>
+      <li><strong>Stripe + webhook reconciliation.</strong> One job, runs nightly, never gets confused about a plan downgrade mid-month.</li>
+      <li><strong>Fly.io deploy.</strong> $5/mo to start. Scales horizontally without me having to think about Kubernetes.</li>
+    </ol>
+
+    <div class="cs-code">
+      <div class="cs-code-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="ttl">embed.js — drop into any page</span></div>
+      <pre><span class="com">// One script tag. Auto-detects language. Free tier forever.</span>
+&lt;script
+  src=<span class="str">"https://linguabot.app/w/xyz123.js"</span>
+  data-position=<span class="str">"bottom-right"</span>
+  data-lang=<span class="str">"auto"</span>
+&gt;&lt;/script&gt;</pre>
+    </div>
+
+    <div class="cs-code">
+      <div class="cs-code-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="ttl">api/detect.py — language detection</span></div>
+      <pre><span class="kw">async def</span> <span class="fn">detect_lang</span>(text: str) -&gt; Lang:
+    <span class="com"># Bengali script range</span>
+    <span class="kw">if</span> any(<span class="str">'ঀ'</span> &lt;= c &lt;= <span class="str">'৿'</span> <span class="kw">for</span> c <span class="kw">in</span> text): <span class="kw">return</span> Lang.BN
+    <span class="com"># Devanagari (Hindi)</span>
+    <span class="kw">if</span> any(<span class="str">'ऀ'</span> &lt;= c &lt;= <span class="str">'ॿ'</span> <span class="kw">for</span> c <span class="kw">in</span> text): <span class="kw">return</span> Lang.HI
+    <span class="com"># Arabic / Urdu</span>
+    <span class="kw">if</span> any(<span class="str">'؀'</span> &lt;= c &lt;= <span class="str">'ۿ'</span> <span class="kw">for</span> c <span class="kw">in</span> text): <span class="kw">return</span> Lang.UR
+    <span class="kw">return</span> Lang.EN  <span class="com"># default fallback</span></pre>
+    </div>
+
+    <div class="cs-callout">
+      <div class="cs-callout-box">
+        <div class="n">&lt;12kb</div>
+        <div class="l">Gzipped widget — smaller than most company logos.</div>
+      </div>
+      <div class="cs-callout-box">
+        <div class="n">4</div>
+        <div class="l">Languages auto-detected: EN · BN · HI · UR.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-block">
+    <h2>Outcomes.</h2>
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="n">4</div><div class="l">Languages</div></div>
+      <div class="cs-stat"><div class="n">&lt;12<em>kb</em></div><div class="l">Bundle size</div></div>
+      <div class="cs-stat"><div class="n">$0</div><div class="l">Free tier · forever</div></div>
+      <div class="cs-stat"><div class="n">100%</div><div class="l">Self-hostable</div></div>
+    </div>
+  </section>
+
+  <section class="cs-block cs-block--quote">
+    <blockquote>"AI assistant for your website that speaks English, Bangla, Hindi &amp; Urdu."</blockquote>
+    <p class="cs-quote-attr">— the actual landing-page promise</p>
+  </section>
+
+    <section class="cs-cta">
+    <h3>Like what you read? I can ship this for <em>you.</em></h3>
+    <p class="cs-cta-sub">Send a one-line scope and I'll quote within 24h. Three engagement shapes — fixed-price MVP, embeddable widget, or maintenance retainer.</p>
+    <div class="cs-cta-actions">
+      <a href="../index.html#pricing" class="cs-cta-primary">See engagements &amp; pricing →</a>
+      <a href="mailto:hello@abedin.dev?subject=Inquiry%20%E2%80%94%20%5Byour%20project%5D&amp;body=Hi%20Abedin%2C%0A%0AScope%3A%20%0ABudget%3A%20%0ATimeline%3A%20%0A%0A" class="cs-cta-secondary">Or email me directly</a>
+    </div>
+  </section>
+
+  <nav class="cs-pager">
+    <a href="./enterprisecore.html" class="cs-pager-prev">
+      <span class="label">← Previous case study</span>
+      <span class="cs-pager-title">EnterpriseCore AI Suite</span>
+    </a>
+    <a href="./holygrail.html" class="cs-pager-next">
+      <span class="label">Next case study →</span>
+      <span class="cs-pager-title">HolyGrail</span>
+    </a>
+  </nav>
+</article>
+
+<footer class="footer cs-footer">
+  <div class="footer-top">
+    <span class="footer-logo">Abedin&nbsp;M.<span class="dot"></span></span>
+    <a href="../index.html" class="footer-tag">← Back to portfolio</a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Abedin M. All rights reserved.</span>
+    <a href="mailto:hello@abedin.dev">hello@abedin.dev</a>
+  </div>
+</footer>
+
+<script>
+  const pb = document.getElementById('scroll-progress');
+  addEventListener('scroll', () => {
+    const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    pb.style.width = `${(scrollY / max) * 100}%`;
+  }, { passive: true });
+</script>
+</body>
+</html>

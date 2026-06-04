@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>claude-skills — Case study · Abedin M.</title>
+<meta name="description" content="98 indexed Claude Code skills, a curated kit, and a tips-and-tricks repo. For builders who want fewer keystrokes." />
+<meta name="theme-color" content="#f3eed9" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14130f" />
+<link rel="canonical" href="https://abedin.dev/work/claude-skills.html" />
+<meta property="og:title" content="claude-skills — Case study · Abedin M." />
+<meta property="og:description" content="98 indexed Claude Code skills, a curated kit, and a tips-and-tricks repo. For builders who want fewer keystrokes." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abedin.dev/work/claude-skills.html" />
+<meta property="og:image" content="https://abedin.dev/assets/og.png" />
+<meta property="og:image:alt" content="Abedin M. — Solo builder of offline-first software" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="claude-skills — Case study · Abedin M." />
+<meta name="twitter:description" content="98 indexed Claude Code skills, a curated kit, and a tips-and-tricks repo. For builders who want fewer keystrokes." />
+<meta name="twitter:image" content="https://abedin.dev/assets/og.png" />
+
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="./case-study.css" />
+<script>
+  (function(){try{var t=localStorage.getItem('abedin-theme')||
+    (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+    document.documentElement.dataset.theme=t;}catch(e){}})();
+</script>
+<!-- analytics:cloudflare:start -->
+<!-- Cloudflare Web Analytics — set CF_BEACON_TOKEN in scripts/_inject_analytics.py and re-run to enable. -->
+<!-- analytics:cloudflare:end -->
+</head>
+<body>
+<a href="#cs-content" class="skip-link">Skip to content</a>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<header class="nav cs-nav">
+  <a href="../index.html" class="logo">
+    <span class="logo-mark"></span>
+    <span class="logo-text">Abedin&nbsp;M.</span>
+  </a>
+  <a href="../index.html#work" class="cs-back">← All work</a>
+</header>
+
+<article class="cs" id="cs-content">
+  <header class="cs-hero">
+    <p class="cs-tag"><span class="sticker sticker--green">Tools</span> <span class="sticker sticker--ghost">Public · 2026</span> <span class="cs-kind cs-kind--product" aria-label="Kind: Own product">Own product</span></p>
+    <h1>claude-<em>skills.</em></h1>
+    <p class="cs-deck">I built claude-skills after rediscovering the same Claude Code workflow tricks three times. Now it's a three-repo bundle: a stack-indexed library of 98 skills, a curated 49-skill kit, and a tips-and-tricks repo. For builders who want fewer keystrokes.</p>
+    <div class="cs-meta">
+      <div><span class="label">Role</span><span class="value">Sole maintainer · curator</span></div>
+      <div><span class="label">Stack</span><span class="value">Markdown · JSON · Bash</span></div>
+      <div><span class="label">Status</span><span class="value">Public · actively curated</span></div>
+      <div><span class="label">Scale</span><span class="value">98 skills · 4 repos</span></div>
+    </div>
+  </header>
+
+  <figure class="cs-cover">
+    <img src="../assets/claude-skills.webp" alt="claude-skills repository index" fetchpriority="high" loading="eager" />
+  </figure>
+
+  <section class="cs-block">
+    <h2>The problem.</h2>
+    <p>Claude Code skills are scattered across Anthropic docs, community gists, blog posts, and random GitHub repos. Builders re-invent the same 20 skills (commit-crafter, code-reviewer, retro-pattern-analyzer) every week because nobody indexed them. The skills market has no Yellow Pages.</p>
+  </section>
+
+  <section class="cs-block">
+    <h2>What I built.</h2>
+    <ul class="cs-list">
+      <li><strong>claude-skills.</strong> The stack index — 98 skills, JSON-indexed, with a stack annotation per skill so you can grep for "React + TypeScript + Tailwind" and find the right one.</li>
+      <li><strong>claude-skills-kit.</strong> A hand-curated 49-skill pack for solo builders — the ones I actually use, with notes on when each shines.</li>
+      <li><strong>claude-tips-and-tricks.</strong> Configuration recipes, hook patterns, slash-command idioms — the meta-knowledge that doesn't fit inside a single skill.</li>
+      <li><strong>Markdown-first.</strong> Every skill is a single SKILL.md. No build, no DSL, no schema lock-in. Diffable in plain git.</li>
+      <li><strong>One-line install.</strong> Each repo has a Bash installer that drops skills into <code>~/.claude/skills</code> with no path surgery.</li>
+    </ul>
+  </section>
+
+  <section class="cs-block">
+    <h2>How I shipped it.</h2>
+    <ol class="cs-steps">
+      <li><strong>Audit + index first.</strong> Wrote a Python audit that crawls all known skill sources and produces STACK_INDEX.md.</li>
+      <li><strong>Curation second.</strong> The "kit" is opinionated — only skills I'd actually open in a fresh project.</li>
+      <li><strong>Plain Markdown, always.</strong> No YAML schema beyond frontmatter. Skills are readable by humans first, machines second.</li>
+      <li><strong>Three repos, one mental model.</strong> Stack = everything indexed. Kit = curated. Tips = meta. Each pulls its own weight.</li>
+    </ol>
+  </section>
+
+  <section class="cs-block cs-block--quote">
+    <blockquote>Fewer keystrokes per shipped feature.</blockquote>
+    <p class="cs-quote-attr">— the success metric</p>
+  </section>
+
+    <section class="cs-cta">
+    <h3>Like what you read? I can ship this for <em>you.</em></h3>
+    <p class="cs-cta-sub">Send a one-line scope and I'll quote within 24h. Three engagement shapes — fixed-price MVP, embeddable widget, or maintenance retainer.</p>
+    <div class="cs-cta-actions">
+      <a href="../index.html#pricing" class="cs-cta-primary">See engagements &amp; pricing →</a>
+      <a href="mailto:hello@abedin.dev?subject=Inquiry%20%E2%80%94%20%5Byour%20project%5D&amp;body=Hi%20Abedin%2C%0A%0AScope%3A%20%0ABudget%3A%20%0ATimeline%3A%20%0A%0A" class="cs-cta-secondary">Or email me directly</a>
+    </div>
+  </section>
+
+  <nav class="cs-pager">
+    <a href="./codex-tools.html" class="cs-pager-prev">
+      <span class="label">← Previous case study</span>
+      <span class="cs-pager-title">Codex Tools</span>
+    </a>
+    <a href="./enterprisecore.html" class="cs-pager-next">
+      <span class="label">Next case study →</span>
+      <span class="cs-pager-title">EnterpriseCore AI Suite</span>
+    </a>
+  </nav>
+</article>
+
+<footer class="footer cs-footer">
+  <div class="footer-top">
+    <span class="footer-logo">Abedin&nbsp;M.<span class="dot"></span></span>
+    <a href="../index.html" class="footer-tag">← Back to portfolio</a>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Abedin M. All rights reserved.</span>
+    <a href="mailto:hello@abedin.dev">hello@abedin.dev</a>
+  </div>
+</footer>
+
+<script>
+  const pb = document.getElementById('scroll-progress');
+  addEventListener('scroll', () => {
+    const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    pb.style.width = `${(scrollY / max) * 100}%`;
+  }, { passive: true });
+</script>
+</body>
+</html>

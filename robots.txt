@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Internal tooling — not for crawlers
+Disallow: /scripts/
+Disallow: /assets/nda-mutual.md
+
+Sitemap: https://abedin.dev/sitemap.xml

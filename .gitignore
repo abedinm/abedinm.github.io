@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+.claude/
+node_modules/
+.env
+.env.local
+# One-off generator scripts kept locally, not part of the deployed site
+_gen_artifacts.py
+_gen_mocks.py
+_optimize_images.py
