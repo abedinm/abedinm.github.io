@@ -2,6 +2,19 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
+  // MIGRATION (2026-06-07): novelty themes (synthwave/forest/sunset) removed.
+  // They tinted the whole site with a heavy color filter, persisted forever
+  // via localStorage, and a "time-of-day tip" pushed users into them — several
+  // visitors ended up stuck in Sunset without knowing why. Clear the stored
+  // keys and strip the classes so everyone returns to clean cream/dark.
+  try {
+    localStorage.removeItem('abedin-theme-extra');
+    localStorage.removeItem('abedin-secret-theme');
+    const t = localStorage.getItem('abedin-theme');
+    if (t && t !== 'light' && t !== 'dark') localStorage.setItem('abedin-theme', 'dark');
+  } catch {}
+  document.documentElement.classList.remove('theme-synthwave', 'theme-forest', 'theme-sunset');
+
   // Browser scroll-restoration was landing repeat visitors mid-page on first
   // paint (deep in the work section), because heavy JS init meant the page
   // grew taller AFTER the browser tried to restore the previous scroll. Pin
@@ -1538,7 +1551,7 @@
   });
 
   /* =================================================================
-     KONAMI CODE — confetti burst + secret theme
+     KONAMI CODE — confetti burst
      ================================================================= */
   const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
   let kIdx = 0;
@@ -1855,7 +1868,7 @@
       { id: 'expander',   label: 'Expanded a card',             trigger: 'click:.service-card,.faq-item,.process-step' },
       { id: 'cs_visit',   label: 'Read a case study',           trigger: 'click:.project' },
       { id: 'snake',      label: 'Discovered the snake game',   trigger: 'manual' },
-      { id: 'konami',     label: 'Unlocked the secret theme',   trigger: 'manual' },
+      { id: 'konami',     label: 'Found the Konami code',       trigger: 'manual' },
     ];
     function updateXpBar() {
       const total = ACHIEVEMENTS.length;
@@ -2047,24 +2060,14 @@
       });
     }
 
-    /* ----- 5. Synthwave secret theme — unlocked via Konami ----- */
-    const SECRET_THEME_KEY = 'abedin-secret-theme';
-    function applySecretTheme() {
-      document.documentElement.classList.add('theme-synthwave');
-      showAchToast('Secret theme: SYNTHWAVE');
-      window.__unlock?.('konami', 'Unlocked the secret theme');
-      try { localStorage.setItem(SECRET_THEME_KEY, '1'); } catch {}
-    }
-    if (localStorage.getItem(SECRET_THEME_KEY) === '1') {
-      document.documentElement.classList.add('theme-synthwave');
-    }
-    // Hook into existing Konami spawn — the spawnConfetti gets called there.
-    // Wrap spawnConfetti to also activate synthwave.
+    /* ----- 5. Konami secret theme — REMOVED 2026-06-07.
+       Novelty themes are gone (they tinted the whole site and persisted).
+       Konami still fires confetti + the achievement via its own handler. */
     if (typeof spawnConfetti === 'function') {
       const _orig = spawnConfetti;
       window.spawnConfetti = function() {
         _orig();
-        applySecretTheme();
+        window.__unlock?.('konami', 'Found the Konami code');
       };
     }
 
@@ -2257,7 +2260,7 @@
         <div class="completion-modal-card">
           <div class="completion-modal-mark" aria-hidden="true">★</div>
           <h3 id="completion-title">100% explored.</h3>
-          <p>You found everything. Snake. Synthwave. Pricing. The 12 achievements. <em>Most visitors stop scrolling halfway through Work.</em></p>
+          <p>You found everything. Snake. The Konami code. Pricing. The 12 achievements. <em>Most visitors stop scrolling halfway through Work.</em></p>
           <p>If you're considering hiring me — the curiosity that got you here is the same curiosity that gets your project shipped on time.</p>
           <div class="completion-modal-actions">
             <a href="#pricing" class="completion-modal-go">See pricing →</a>
@@ -2369,7 +2372,7 @@
                 <dt><kbd>m</kbd></dt><dd>Toggle music</dd>
                 <dt>Type <kbd>snake</kbd></dt><dd>Play Snake</dd>
                 <dt>Type <kbd>pong</kbd></dt><dd>Play Pong</dd>
-                <dt>Konami</dt><dd>Synthwave</dd>
+                <dt>Konami</dt><dd>Confetti</dd>
               </dl>
             </div>
           </div>
@@ -2624,129 +2627,11 @@
       }, { passive: true });
     })();
 
-    /* ----- 27. Multi-theme picker (5 themes) — mounted as a popover anchored
-       to the existing nav theme button so it never overlaps anything. */
-    (function() {
-      const themes = [
-        { id: 'light',     label: 'Cream',     swatch: '#f3eed9' },
-        { id: 'dark',      label: 'Dark',      swatch: '#14130f' },
-        { id: 'synthwave', label: 'Synthwave', swatch: '#ff6ec7' },
-        { id: 'forest',    label: 'Forest',    swatch: '#1a3a2e' },
-        { id: 'sunset',    label: 'Sunset',    swatch: '#ff6b35' },
-      ];
-      const navThemeBtn = document.querySelector('#nav-theme');
-      if (!navThemeBtn) return;
-      // Wrap nav-theme in a relative container so popover anchors to it
-      const wrap = document.createElement('div');
-      wrap.className = 'theme-picker-wrap';
-      navThemeBtn.parentNode.insertBefore(wrap, navThemeBtn);
-      wrap.appendChild(navThemeBtn);
-      const picker = document.createElement('div');
-      picker.className = 'theme-picker';
-      picker.setAttribute('aria-label', 'Theme picker');
-      picker.hidden = true;
-      picker.innerHTML = themes.map(t =>
-        `<button class="theme-pick" data-theme="${t.id}" title="${t.label} theme" aria-label="Switch to ${t.label} theme"><span class="theme-pick-dot" style="background:${t.swatch}"></span><span class="theme-pick-label">${t.label}</span></button>`
-      ).join('');
-      wrap.appendChild(picker);
-      // Replace nav-theme click: short-click toggles dark/light, long-click (or right-click) opens the picker
-      let pressTimer = null;
-      let openedByLong = false;
-      function openPicker() {
-        picker.hidden = false;
-        navThemeBtn.setAttribute('aria-expanded', 'true');
-        requestAnimationFrame(() => picker.classList.add('open'));
-      }
-      function closePicker() {
-        picker.classList.remove('open');
-        navThemeBtn.setAttribute('aria-expanded', 'false');
-        setTimeout(() => { picker.hidden = true; }, 200);
-      }
-      navThemeBtn.setAttribute('aria-haspopup', 'true');
-      navThemeBtn.setAttribute('aria-expanded', 'false');
-      navThemeBtn.title = 'Click to toggle · long-press / Shift+click / Alt+T for all themes';
-      // Track who opened the picker so we can restore focus there on close
-      let prevFocus = null;
-      const _openPicker = openPicker;
-      openPicker = function() {
-        prevFocus = document.activeElement;
-        _openPicker();
-        // Move focus into the popover for keyboard users
-        const first = picker.querySelector('.theme-pick');
-        setTimeout(() => first?.focus(), 50);
-      };
-      const _closePicker = closePicker;
-      closePicker = function() {
-        _closePicker();
-        // Return focus to the trigger (a11y audit round 4 — finding #33)
-        setTimeout(() => prevFocus?.focus?.(), 50);
-        prevFocus = null;
-      };
-      // Long-press / right-click opens picker (mouse path)
-      navThemeBtn.addEventListener('mousedown', (e) => {
-        if (e.button === 2) return;   // let contextmenu handle
-        openedByLong = false;
-        pressTimer = setTimeout(() => { openedByLong = true; openPicker(); }, 450);
-      });
-      navThemeBtn.addEventListener('mouseup', () => clearTimeout(pressTimer));
-      navThemeBtn.addEventListener('mouseleave', () => clearTimeout(pressTimer));
-      navThemeBtn.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        picker.hidden ? openPicker() : closePicker();
-      });
-      // Keyboard path (a11y audit round 4 — finding #32):
-      //   Shift+click on the toggle → open picker (works for keyboard Enter+Shift too)
-      //   Alt+T anywhere on the page → open picker
-      navThemeBtn.addEventListener('click', (e) => {
-        if (e.shiftKey) { e.preventDefault(); e.stopImmediatePropagation(); openPicker(); return; }
-        if (openedByLong) { e.stopImmediatePropagation(); openedByLong = false; }
-      }, true);
-      document.addEventListener('keydown', (e) => {
-        if (e.altKey && (e.key === 't' || e.key === 'T')) {
-          if (document.activeElement?.matches('input, textarea, [contenteditable]')) return;
-          e.preventDefault();
-          picker.hidden ? openPicker() : closePicker();
-        }
-      });
-      // Close on outside click / Escape
-      document.addEventListener('click', (e) => {
-        if (picker.hidden) return;
-        if (!wrap.contains(e.target)) closePicker();
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !picker.hidden) closePicker();
-      });
-      function applyTheme(id) {
-        // Reset all theme classes
-        document.documentElement.classList.remove('theme-synthwave', 'theme-forest', 'theme-sunset');
-        if (id === 'dark') document.documentElement.dataset.theme = 'dark';
-        else if (id === 'light') document.documentElement.dataset.theme = 'light';
-        else { document.documentElement.dataset.theme = 'dark'; document.documentElement.classList.add('theme-' + id); }
-        try { localStorage.setItem('abedin-theme', id === 'dark' || id === 'light' ? id : 'dark'); } catch {}
-        try { localStorage.setItem('abedin-theme-extra', id); } catch {}
-        announce('Theme: ' + themes.find(t => t.id === id).label);
-        picker.querySelectorAll('.theme-pick').forEach(b => b.classList.toggle('active', b.dataset.theme === id));
-        // Theme sweep
-        const sweep = document.createElement('div');
-        sweep.className = 'theme-sweep';
-        document.body.appendChild(sweep);
-        requestAnimationFrame(() => sweep.classList.add('go'));
-        setTimeout(() => sweep.remove(), 800);
-      }
-      picker.addEventListener('click', (e) => {
-        const b = e.target.closest('.theme-pick'); if (!b) return;
-        applyTheme(b.dataset.theme);
-        fxTick(740, 0.04);
-        closePicker();
-      });
-      // Mark active on load
-      const current = localStorage.getItem('abedin-theme-extra') || document.documentElement.dataset.theme;
-      picker.querySelector(`[data-theme="${current}"]`)?.classList.add('active');
-      // Apply if it's an extra theme (since the HTML head only sets dark/light)
-      if (current && current !== 'light' && current !== 'dark') {
-        document.documentElement.classList.add('theme-' + current);
-      }
-    })();
+    /* ----- 27. Multi-theme picker — REMOVED 2026-06-07.
+       The synthwave/forest/sunset themes tinted the entire site with a heavy
+       color filter and persisted via localStorage; visitors got stuck in them
+       without realizing why ("why does the whole site look orange?"). The
+       nav button's plain light/dark toggle (top of file) is all that remains. */
 
     /* ----- 28. Floating mascot — a lazy cube that drifts toward the cursor ----- */
     (function() {
@@ -3221,47 +3106,9 @@
       render();
     })();
 
-    /* ----- 36. Time-of-day auto-theme suggestion ----- */
-    (function() {
-      // Only suggest once per session and only if user hasn't picked a theme
-      if (localStorage.getItem('abedin-theme-extra')) return;
-      if (sessionStorage.getItem('abedin-tod-suggested')) return;
-      const hr = new Date().getHours();
-      let suggest = null;
-      if (hr >= 5 && hr < 10) suggest = { id: 'sunset', label: 'Sunset' };
-      else if (hr >= 18 && hr < 22) suggest = { id: 'sunset', label: 'Sunset' };
-      else if (hr >= 22 || hr < 5) suggest = { id: 'synthwave', label: 'Synthwave' };
-      if (!suggest) return;
-      // Wait until after welcome tour
-      setTimeout(() => {
-        const tip = document.createElement('div');
-        tip.className = 'tod-tip';
-        // Polite announcement, not a modal — uses status role so SR users hear it.
-        tip.setAttribute('role', 'status');
-        tip.setAttribute('aria-live', 'polite');
-        tip.innerHTML = `
-          <span class="tod-tip-text">It's ${hr >= 22 || hr < 5 ? 'late' : hr >= 18 ? 'evening' : 'early'} where you are. Try the <strong>${suggest.label}</strong> theme?</span>
-          <button class="tod-tip-yes" type="button">Yes →</button>
-          <button class="tod-tip-no" type="button" aria-label="Skip theme suggestion">Skip</button>
-        `;
-        document.body.appendChild(tip);
-        requestAnimationFrame(() => tip.classList.add('show'));
-        sessionStorage.setItem('abedin-tod-suggested', '1');
-        function dismiss() {
-          tip.classList.remove('show');
-          setTimeout(() => tip.remove(), 400);
-          document.removeEventListener('keydown', onEsc);
-        }
-        function onEsc(e) { if (e.key === 'Escape' && document.body.contains(tip)) dismiss(); }
-        tip.querySelector('.tod-tip-yes').addEventListener('click', () => {
-          document.querySelector(`.theme-pick[data-theme="${suggest.id}"]`)?.click();
-          dismiss();
-        });
-        tip.querySelector('.tod-tip-no').addEventListener('click', dismiss);
-        document.addEventListener('keydown', onEsc);
-        setTimeout(() => { if (document.body.contains(tip)) dismiss(); }, 12000);
-      }, 4500);
-    })();
+    /* ----- 36. Time-of-day theme suggestion — REMOVED 2026-06-07.
+       This was the main funnel pushing visitors into the (now removed)
+       Sunset/Synthwave novelty themes. */
 
     /* ----- 37. Whack-a-mole in terminal — type "whack" ----- */
     if (termInput && termBody) {

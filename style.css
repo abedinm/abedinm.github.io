@@ -4092,41 +4092,6 @@ a:focus-visible, button:focus-visible {
   font-family: var(--mono);
 }
 
-/* ---- 5. Synthwave secret theme ------------------------- */
-html.theme-synthwave {
-  /* Contrast-tuned for WCAG AA (a11y audit 2026-05-24). Background darkened
-     slightly + ink lightened. Body text now ~4.7:1 instead of ~3.8:1. */
-  --cream: #0d0420;
-  --cream-warm: #1c0940;
-  --cream-soft: #150630;
-  --ink: #ffaad8;
-  --ink-soft: #ffc4e3;
-  --ink-muted: #d68ec9;
-  --orange: #00f5ff;
-  --orange-deep: #00b3bd;
-  --green: #ff7ade;
-  --green-deep: #d144b3;
-  --cream-line: rgba(255, 170, 216, 0.18);
-  --cream-line-strong: rgba(255, 170, 216, 0.45);
-}
-html.theme-synthwave body {
-  background-image:
-    linear-gradient(0deg, rgba(0,245,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,110,199,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-html.theme-synthwave .hero-cta-primary,
-html.theme-synthwave .package-cta {
-  background: linear-gradient(135deg, #ff6ec7, #00f5ff);
-  color: #1a0a2e;
-  box-shadow: 0 0 20px rgba(0, 245, 255, 0.4), 0 0 40px rgba(255, 110, 199, 0.3);
-}
-html.theme-synthwave .package-card--feature {
-  background: linear-gradient(135deg, #2c1454, #1a0a2e);
-  border: 1px solid #ff6ec7;
-  box-shadow: 0 0 30px rgba(255, 110, 199, 0.25);
-}
-
 /* ---- 6. Floating action button ------------------------- */
 .fab {
   position: fixed;
@@ -4785,106 +4750,6 @@ html[data-theme="dark"] .hero-cta-primary {
 
 /* Theme picker — popover anchored to the nav-theme button. No more
    fixed-position overlap with the cmdk Search trigger. */
-.theme-picker-wrap { position: relative; display: inline-flex; }
-.theme-picker {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  z-index: 9100;
-  display: flex; flex-direction: column;
-  gap: 2px;
-  padding: 6px;
-  background: var(--cream-warm);
-  border: 1px solid var(--cream-line-strong);
-  border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(13, 13, 13, 0.18);
-  min-width: 160px;
-  opacity: 0;
-  transform: translateY(-8px) scale(0.96);
-  transform-origin: top right;
-  transition: opacity 0.15s ease, transform 0.18s cubic-bezier(.34,1.56,.64,1);
-  pointer-events: none;
-}
-.theme-picker.open {
-  opacity: 1; transform: translateY(0) scale(1);
-  pointer-events: auto;
-}
-.theme-pick {
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: border-color 0.15s, background 0.15s;
-  display: flex;
-  align-items: center; gap: 10px;
-  width: 100%;
-  text-align: left;
-  font-family: var(--sans);
-}
-.theme-pick-dot {
-  display: block;
-  width: 18px; height: 18px;
-  border-radius: 50%;
-  border: 1px solid var(--cream-line-strong);
-  flex-shrink: 0;
-}
-.theme-pick-label {
-  font-family: var(--mono); font-size: 11px;
-  text-transform: uppercase; letter-spacing: 0.12em;
-  color: var(--ink);
-  font-weight: 500;
-}
-.theme-pick:hover {
-  background: rgba(255, 107, 53, 0.08);
-  border-color: rgba(255, 107, 53, 0.2);
-}
-.theme-pick.active {
-  border-color: var(--orange);
-  background: rgba(255, 107, 53, 0.12);
-}
-.theme-pick.active::after {
-  content: '✓';
-  margin-left: auto;
-  color: var(--orange);
-  font-weight: 700;
-}
-
-/* Forest theme — adjusted for WCAG AA contrast (a11y audit 2026-05-24) */
-html.theme-forest {
-  --cream: #0f1f17;
-  --cream-warm: #1a3326;
-  --cream-soft: #1a3a2e;
-  --ink: #d9efd4;
-  --ink-soft: #c4dabe;
-  --ink-muted: #a4c2a2;   /* was #8aa888 (~3.9:1); now 4.7:1 on #0f1f17 */
-  --ink-dim: #6a8770;
-  --orange: #ffd166;
-  --orange-deep: #d4a946;
-  --green: #4dffa6;
-  --green-deep: #2faa7a;
-  --cream-line: rgba(217, 239, 212, 0.12);
-  --cream-line-strong: rgba(217, 239, 212, 0.3);
-}
-
-/* Sunset theme — adjusted for WCAG AA contrast (a11y audit 2026-05-24) */
-html.theme-sunset {
-  --cream: #1f0a0a;
-  --cream-warm: #3a1414;
-  --cream-soft: #2a0e0e;
-  --ink: #ffe0c4;
-  --ink-soft: #ffd0a8;
-  --ink-muted: #e3a892;   /* was #d49580 (~4.2:1); now 4.8:1 on #1f0a0a */
-  --ink-dim: #a0685a;
-  --orange: #ff8a55;
-  --orange-deep: #ff6b35;
-  --green: #ffcb6b;
-  --green-deep: #f5a623;
-  --blue: #ff5cc8;
-  --cream-line: rgba(255, 224, 196, 0.1);
-  --cream-line-strong: rgba(255, 224, 196, 0.28);
-}
-
 /* Floating mascot */
 .mascot {
   position: fixed;
@@ -5153,113 +5018,6 @@ html.theme-sunset {
 }
 
 /* Time-of-day theme suggestion tip */
-.tod-tip {
-  position: fixed;
-  top: 80px; left: 50%;
-  transform: translateX(-50%) translateY(-20px);
-  z-index: 9700;
-  background: var(--ink); color: var(--cream);
-  padding: 12px 18px;
-  border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(13, 13, 13, 0.3);
-  display: flex; align-items: center; gap: 12px;
-  font-family: var(--sans); font-size: 13px;
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.4s cubic-bezier(.2,.7,.2,1);
-  max-width: 480px;
-}
-.tod-tip.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-.tod-tip-text { line-height: 1.4; }
-.tod-tip-text strong { color: var(--orange); }
-.tod-tip-yes, .tod-tip-no {
-  border: none; background: transparent;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-family: var(--sans); font-size: 12px; font-weight: 500;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-.tod-tip-yes { background: var(--orange); color: var(--cream); }
-.tod-tip-yes:hover { background: var(--orange-deep); }
-.tod-tip-no { color: var(--on-dark-muted); }
-.tod-tip-no:hover { color: var(--cream); }
-@media (max-width: 640px) {
-  .tod-tip { flex-wrap: wrap; max-width: calc(100vw - 32px); }
-}
-
-/* Doodle mode — draw on the page with cursor */
-.doodle-canvas {
-  position: fixed; inset: 0;
-  z-index: 9050;
-  pointer-events: none;
-}
-html.doodle-on .doodle-canvas {
-  pointer-events: auto;
-  cursor: crosshair;
-}
-html.doodle-on::after {
-  content: 'Doodle mode · D to exit · X to clear';
-  position: fixed; top: 12px; left: 50%;
-  transform: translateX(-50%);
-  z-index: 9051;
-  background: var(--ink); color: var(--cream);
-  padding: 6px 14px;
-  border-radius: 99px;
-  font-family: var(--mono); font-size: 11px;
-  text-transform: uppercase; letter-spacing: 0.14em;
-  box-shadow: 0 4px 12px rgba(13, 13, 13, 0.3);
-  animation: doodle-tag-pulse 2s ease-in-out infinite;
-}
-@keyframes doodle-tag-pulse {
-  0%, 100% { opacity: 0.85; }
-  50% { opacity: 1; box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5); }
-}
-
-/* Cmdk mic for voice search */
-.cmdk-mic {
-  background: transparent;
-  border: 1px solid var(--cream-line-strong);
-  border-radius: 50%;
-  width: 30px; height: 30px;
-  display: grid; place-items: center;
-  cursor: pointer;
-  color: var(--ink-muted);
-  transition: all 0.2s ease;
-  margin-right: 8px;
-}
-.cmdk-mic:hover { color: var(--orange); border-color: var(--orange); }
-.cmdk-mic.listening {
-  background: var(--orange); color: var(--cream); border-color: var(--orange);
-  animation: mic-pulse 1.2s ease-in-out infinite;
-}
-@keyframes mic-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.6); }
-  50% { box-shadow: 0 0 0 8px rgba(255, 107, 53, 0); }
-}
-
-/* Scroll-progress orb — accessible button now (a11y round 3) */
-.scroll-orb {
-  position: fixed;
-  bottom: 92px; right: 24px;
-  z-index: 8900;
-  cursor: pointer;
-  pointer-events: auto;
-  filter: drop-shadow(0 4px 10px rgba(13, 13, 13, 0.15));
-  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1);
-  /* Button reset to keep visual identical to the old div */
-  background: transparent;
-  border: none;
-  padding: 0;
-}
-.scroll-orb:hover { transform: scale(1.1); }
-.scroll-orb:focus-visible {
-  outline: 2px solid var(--orange);
-  outline-offset: 4px;
-  border-radius: 50%;
-}
-.orb-prog { transition: stroke-dashoffset 0.2s linear; }
-@media (max-width: 760px) { .scroll-orb { display: none; } }
-
 /* =========================================================
    ROUND 4 — Sticker collection, audio viz, particle canvas,
    double-click tag, hero letter physics, scroll distortion,
@@ -5491,7 +5249,6 @@ html.doodle-on::after {
   .logo-easter, .sticker-collection, .audio-viz,
   .dbl-tag, .particle-canvas, .live-viewers,
   .mascot, .scroll-orb { display: none !important; }
-  .theme-picker { opacity: 1; }
   .package-card, .package-accent, .package-icon,
   .hero::before, .hero-cta-primary,
   .about-stat .n, .said-card, .said-avatar, .risk-icon,

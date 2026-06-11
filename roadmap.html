@@ -16,11 +16,10 @@
 <link rel="stylesheet" href="./assets/fonts/fonts.css" />
 <link rel="stylesheet" href="./style.css" />
 <script>
-  (function(){try{var t=localStorage.getItem('abedin-theme')||
-    (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+  (function(){try{var t=localStorage.getItem('abedin-theme');
+    if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}
     document.documentElement.dataset.theme=t;
-    var ex=localStorage.getItem('abedin-theme-extra');
-    if(ex && ex!=='light' && ex!=='dark'){document.documentElement.classList.add('theme-'+ex);}
+    localStorage.removeItem('abedin-theme-extra');
   }catch(e){}})();
 </script>
 
@@ -355,9 +354,9 @@
       </article>
 
       <article class="rm-card">
-        <h3 class="rm-card-title">5 themes + auto-suggest</h3>
-        <div class="rm-card-meta"><span class="tag">Cream · Dark · Synth · Forest · Sunset</span></div>
-        <p class="rm-card-note">Persistent. Time-of-day suggests Sunset / Synthwave when relevant.</p>
+        <h3 class="rm-card-title">Light + dark themes</h3>
+        <div class="rm-card-meta"><span class="tag">Cream · Dark</span></div>
+        <p class="rm-card-note">Follows your OS preference, one-click toggle, persistent. (Three novelty themes were cut in the 2026-06 buyer-focus pass.)</p>
       </article>
 
       <article class="rm-card">
@@ -368,7 +367,7 @@
       <article class="rm-card">
         <h3 class="rm-card-title">WCAG 2.1 AA pass</h3>
         <div class="rm-card-meta"><span class="tag tag--small">31 fixes · 3 audits</span></div>
-        <p class="rm-card-note">Skip links, focus traps on every modal, contrast ≥4.5:1 across all 5 themes.</p>
+        <p class="rm-card-note">Skip links, focus traps on every modal, contrast ≥4.5:1 in both themes.</p>
       </article>
 
       <article class="rm-card">
