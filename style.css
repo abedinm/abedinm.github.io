@@ -3359,7 +3359,7 @@ button:focus-visible, a:focus-visible { border-radius: 99px; }
   border-bottom: 1px solid var(--orange);
 }
 
-/* ---- Audit on-ramp (sub-$12k entry, feeds into retainer) ----- */
+/* ---- Audit on-ramp (sub-$1.5k entry, feeds into retainer) ----- */
 .onramp {
   margin-top: clamp(32px, 4vw, 56px);
   padding: clamp(24px, 3vw, 40px);

@@ -3089,23 +3089,34 @@
       const rushVal = est.querySelector('#est-rush-val');
       const priceOut = est.querySelector('#est-price');
       const timeOut = est.querySelector('#est-time');
-      let state = { shape: 'mvp', base: 18000, scope: 1, rush: 1 };
+      let state = { shape: 'mvp', base: 3500, scope: 1, rush: 1 };
+      // Dhaka-based cost basis means prices range from low hundreds (audit)
+      // to mid five-figures (custom build). Format must handle all three bands:
+      //   $300, $1.5k, $18k — not "$0k" or "$1k" for a real $800 number.
       function fmt(n) {
-        if (n >= 1000) return '$' + (n / 1000).toFixed(0) + 'k';
-        return '$' + n;
+        if (n >= 10000) return '$' + Math.round(n / 1000) + 'k';
+        if (n >= 1000)  return '$' + (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+        return '$' + Math.round(n);
+      }
+      // Snap to a sensible round number for each band (no "$2k–$3k" for an
+      // $800 base; no "$3.4k–$4.6k" for a $3500 base).
+      function snap(n) {
+        if (n >= 10000) return Math.round(n / 1000) * 1000;
+        if (n >= 1000)  return Math.round(n / 100) * 100;
+        return Math.round(n / 50) * 50;
       }
       function calc() {
         // Audit is a flat-fee on-ramp — fixed range, ignore scope/rush multipliers.
         if (state.shape === 'audit') {
-          priceOut.textContent = '$1k – $1.5k';
+          priceOut.textContent = '$300 – $500';
           priceOut.classList.add('flash');
           setTimeout(() => priceOut.classList.remove('flash'), 280);
           timeOut.textContent = '5 business days · written report + 1 call';
           return;
         }
         const total = state.base * state.scope * state.rush;
-        const low = Math.round(total * 0.9 / 1000) * 1000;
-        const high = Math.round(total * 1.3 / 1000) * 1000;
+        const low = snap(total * 0.9);
+        const high = snap(total * 1.3);
         const suffix = state.shape === 'retainer' ? ' / mo' : '';
         priceOut.textContent = `${fmt(low)}${suffix} – ${fmt(high)}${suffix}`;
         priceOut.classList.add('flash');

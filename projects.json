@@ -199,7 +199,7 @@
   "faq": [
     {
       "q": "What's your minimum engagement?",
-      "a": "$12k for a tightly-scoped widget or static site. $18k for a full MVP. Below that, I'd rather refer you to a freelancer who's a better fit."
+      "a": "$300 for a code & architecture audit. $1.5k for a tightly-scoped widget or static site. $3.5k for a full MVP. I'm based in Dhaka — that's the honest cost basis behind the numbers."
     },
     {
       "q": "Do you sign NDAs?",
@@ -243,7 +243,7 @@
     },
     {
       "q": "How long do you maintain things?",
-      "a": "Indefinitely on retainer ($3k/mo+), at-cost on demand otherwise. Most things I built in 2020 are still serving traffic — I haven't ghosted a project yet."
+      "a": "Indefinitely on retainer ($800/mo+), at-cost on demand otherwise. Most things I built in 2020 are still serving traffic — I haven't ghosted a project yet."
     },
     {
       "q": "What's your typical timeline?",
@@ -263,7 +263,7 @@
     {
       "id": "audit",
       "name": "Code & architecture audit",
-      "price_from": "$1k",
+      "price_from": "$300",
       "ideal_for": "Pre-build buyers who want a senior eye on their existing repo, stack choice, or v0.1 before committing to a larger engagement.",
       "deliverables": [
         "Written PDF report (8–15 pages): risks, debt, security smells, 3–5 next moves",
@@ -281,7 +281,7 @@
     {
       "id": "mvp",
       "name": "MVP in 4 weeks",
-      "price_from": "$18k",
+      "price_from": "$3.5k",
       "ideal_for": "Founders with a one-page spec who need a production-grade v1 fast.",
       "deliverables": [
         "Production app on your domain, code in your repo",
@@ -300,7 +300,7 @@
     {
       "id": "widget",
       "name": "Embeddable widget or tool",
-      "price_from": "$12k",
+      "price_from": "$1.5k",
       "ideal_for": "B2B SaaS teams who need a drop-in script tag, a Chrome extension, or a small standalone tool.",
       "deliverables": [
         "Hosted widget + script tag (or extension package)",
@@ -318,7 +318,7 @@
     {
       "id": "retainer",
       "name": "Maintenance retainer",
-      "price_from": "$3k / mo",
+      "price_from": "$800 / mo",
       "ideal_for": "Teams with a shipped product that needs reliable monthly attention — bug fixes, small features, infra.",
       "deliverables": [
         "Up to 20 hrs / month engineering time",
@@ -336,7 +336,7 @@
     {
       "id": "custom",
       "name": "Custom build",
-      "price_from": "$60k",
+      "price_from": "$8k",
       "ideal_for": "Multi-month engagements that don't fit MVP / widget. Desktop suites, complex SaaS, AI-integrated tools. Milestone billing.",
       "deliverables": [
         "Full scope and architecture written up before code",
