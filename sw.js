@@ -1,4 +1,4 @@
-const CACHE = 'abedin-v36';
+const CACHE = 'abedin-v37';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -55,6 +55,33 @@ self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
   if (url.origin !== self.location.origin) return;
+
+  const isNavigation = e.request.mode === 'navigate' || e.request.destination === 'document';
+  const isCritical = isNavigation
+    || url.pathname.endsWith('.json')
+    || url.pathname.endsWith('/sw.js')
+    || url.pathname.endsWith('/script.js')
+    || url.pathname.endsWith('/style.css');
+
+  if (isCritical) {
+    // NETWORK-FIRST for pages + core assets: deploys show up on the very next
+    // load instead of two reloads later. Cache is only the offline fallback.
+    e.respondWith(
+      fetch(e.request).then(response => {
+        if (response.ok) {
+          const clone = response.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+        }
+        return response;
+      }).catch(() =>
+        caches.match(e.request).then(cached => cached || offlineFallback(e.request))
+      )
+    );
+    return;
+  }
+
+  // CACHE-FIRST for immutable-ish assets (images, fonts) — fast and cheap,
+  // refreshed in the background.
   e.respondWith(
     caches.match(e.request).then(cached => {
       const network = fetch(e.request).then(response => {
