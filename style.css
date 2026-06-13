@@ -1086,6 +1086,22 @@ html[data-theme="dark"] .process-step:hover { background: rgba(243, 238, 217, 0.
   min-height: 220px;
 }
 .project:hover { border-color: var(--green); transform: translateY(-4px); }
+/* Cursor-following glare for the 3D tilt (JS sets --gx/--gy + opacity). */
+.project-glare {
+  position: absolute; inset: 0;
+  z-index: 3; pointer-events: none;
+  opacity: 0; transition: opacity 0.3s ease;
+  background: radial-gradient(
+    circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.10) 18%,
+    rgba(255, 255, 255, 0) 45%);
+  mix-blend-mode: soft-light;
+  border-radius: inherit;
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-glare { display: none !important; }
+}
 
 .project-visual {
   position: absolute; inset: 0;
@@ -2456,7 +2472,7 @@ pre, code { font-family: var(--mono); }
   position: relative;
   border: 1px solid var(--cream-line);
 }
-.lab-sf-preview h4 {
+.lab-sf-preview .lab-sf-title {
   font-family: var(--display); font-weight: 700;
   font-size: 28px; letter-spacing: -0.02em; line-height: 1.05;
   margin-bottom: 8px;

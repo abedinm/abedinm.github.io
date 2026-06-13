@@ -604,20 +604,10 @@
      TILT-ON-HOVER for project tiles
      ================================================================= */
   function applyTilt() {
-    $$('.project').forEach(card => {
-      if (card.dataset.tilted) return;
-      card.dataset.tilted = '1';
-      card.addEventListener('mousemove', e => {
-        if (STATIC) return;
-        const rect = card.getBoundingClientRect();
-        const px = (e.clientX - rect.left) / rect.width;
-        const py = (e.clientY - rect.top) / rect.height;
-        const rx = (py - 0.5) * -8;
-        const ry = (px - 0.5) * 10;
-        card.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
-      });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-    });
+    // The rich 3D card tilt (depth + glare + shadow) lives in the delight
+    // layer (section 15), the single source of truth. This just marks cards
+    // so nothing double-binds.
+    $$('.project').forEach(card => { card.dataset.tilted = '1'; });
   }
 
   /* =================================================================
@@ -2479,23 +2469,46 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('[data-count]').forEach(el => countUpObs.observe(el));
 
-    /* ----- 15. 3D mouse-tracking on project tiles (replaces simpler tilt) ----- */
+    /* ----- 15. 3D mouse-tracking on project tiles — depth tilt + cursor
+       glare + dynamic shadow. The single source of truth for card 3D
+       (applyTilt above is a no-op). Pointer-only via the delight-layer gate;
+       reduced-motion users never reach this block. ----- */
+    const tiltFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     document.querySelectorAll('.project').forEach(tile => {
       if (tile.dataset.mouseTilt) return;
       tile.dataset.mouseTilt = '1';
+      if (!tiltFine) return;            // touch / no-hover: keep flat cards
       tile.style.transformStyle = 'preserve-3d';
+      let glare = tile.querySelector('.project-glare');
+      if (!glare) {
+        glare = document.createElement('span');
+        glare.className = 'project-glare';
+        glare.setAttribute('aria-hidden', 'true');
+        tile.appendChild(glare);
+      }
+      let raf = 0;
       tile.addEventListener('mousemove', (e) => {
         const r = tile.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width;
         const py = (e.clientY - r.top) / r.height;
         const rx = (py - 0.5) * -10;
         const ry = (px - 0.5) * 14;
-        tile.style.transform = `perspective(1400px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
-        const visual = tile.querySelector('.project-visual');
-        if (visual) visual.style.transform = `translateZ(20px) scale(1.04)`;
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          tile.style.transform = `perspective(1400px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px) scale(1.012)`;
+          tile.style.boxShadow = `${-ry * 1.5}px ${(12 - rx) * 1.5}px 40px rgba(0,0,0,0.45)`;
+          const visual = tile.querySelector('.project-visual');
+          if (visual) visual.style.transform = `translateZ(20px) scale(1.05)`;
+          glare.style.setProperty('--gx', `${px * 100}%`);
+          glare.style.setProperty('--gy', `${py * 100}%`);
+          glare.style.opacity = '1';
+        });
       });
       tile.addEventListener('mouseleave', () => {
+        if (raf) cancelAnimationFrame(raf);
         tile.style.transform = '';
+        tile.style.boxShadow = '';
+        glare.style.opacity = '0';
         const visual = tile.querySelector('.project-visual');
         if (visual) visual.style.transform = '';
       });

@@ -1,4 +1,4 @@
-const CACHE = 'abedin-v40';
+const CACHE = 'abedin-v41';
 const PRECACHE = [
   '/',
   '/index.html',
