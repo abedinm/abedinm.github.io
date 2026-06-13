@@ -1,0 +1,20 @@
+# Keep the build context lean and prevent secrets/junk entering the image.
+.git
+.github
+.claude
+**/__pycache__
+**/*.pyc
+**/.venv
+.venv
+venv
+node_modules
+*.log
+server/.env
+.env
+.env.*
+.DS_Store
+Thumbs.db
+# Local-only generator scripts (not needed at runtime)
+_gen_artifacts.py
+_gen_mocks.py
+_optimize_images.py

@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Abedin M. — Notes</title>
-    <link>https://abedin.dev/</link>
+    <link>https://abedinm.github.io/</link>
     <description>Solo-shipping notes from Abedin M. — software, sites, tools, offline-first systems.</description>
     <language>en</language>
-    <atom:link href="https://abedin.dev/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://abedinm.github.io/feed.xml" rel="self" type="application/rss+xml" />
     <!--
       Feed is live but empty until I publish the first essay.
       Subscribe to be notified when the first piece drops.

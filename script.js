@@ -27,15 +27,21 @@
   }
 
   // ==========================================================================
-  // SITE CONFIG — populate these to wire up real conversion endpoints.
-  // Until you set web3formsAccessKey, the contact form falls back to mailto:.
-  // Until you change calComLink, "Book intro" buttons fall back to mailto:.
+  // SITE CONFIG — endpoints the frontend talks to.
+  // contactEndpoint: the FastAPI backend (server/). Same-origin by default;
+  //   if it 404s (e.g. on GitHub Pages) the form falls back to mailto.
+  // calComLink: change to your Cal.com handle; until then "Book intro"
+  //   buttons keep their mailto fallback.
   // The Cloudflare beacon token lives in index.html <head>.
   // ==========================================================================
   const CONFIG = {
-    // Sign up free at https://web3forms.com, paste the key here. The form will
-    // POST as JSON; you'll get the submission in the email tied to the key.
-    web3formsAccessKey: '',                            // e.g. 'a1b2c3d4-...'
+    // Contact endpoint served by the FastAPI backend (server/). Same-origin by
+    // default, so it "just works" when the site is self-hosted via Docker.
+    // On GitHub Pages (static-only) this 404s and the form falls back to a
+    // pre-filled mailto, so the site degrades gracefully either way.
+    // To point at a backend on a different host, set an absolute URL, e.g.
+    //   contactEndpoint: 'https://api.your-domain.com/api/contact'
+    contactEndpoint:   '/api/contact',
     // Replace with your real Cal.com username/event handle once configured.
     calComLink:        'https://cal.com/abedin/15min',
   };
@@ -1324,12 +1330,11 @@
         }
       },
       cv() {
-        print('→ CV available on request — <a class="ln-link" href="mailto:hello@abedin.dev?subject=CV%20request">email hello@abedin.dev</a>', 'ln-ok');
+        print('→ CV available on request — <a class="ln-link" href="mailto:abedinminhazul12@gmail.com?subject=CV%20request">email abedinminhazul12@gmail.com</a>', 'ln-ok');
       },
       github()   { print('→ opening github.com/abedinm', 'ln-ok'); setTimeout(() => window.open('https://github.com/abedinm', '_blank'), 300); },
       twitter()  { return commands.x(); },
-      x()        { print('→ opening x.com/abedinm_', 'ln-ok'); setTimeout(() => window.open('https://x.com/abedinm_', '_blank'), 300); },
-      linkedin() { print('→ opening linkedin', 'ln-ok'); setTimeout(() => window.open('https://linkedin.com/in/abedinm', '_blank'), 300); },
+      linkedin() { print('→ opening linkedin', 'ln-ok'); setTimeout(() => window.open('https://www.linkedin.com/in/minhazul-abedin-014031371', '_blank'), 300); },
       theme() {
         themeBtn?.click();
         const t = document.documentElement.dataset.theme;
@@ -1354,9 +1359,9 @@
             '<span class="ln-ok">[sudo] password for client:</span>',
             '<span class="ln-out">···········</span>',
             '<span class="ln-h2">✓ access granted.</span>',
-            'Opening hello@abedin.dev …',
+            'Opening abedinminhazul12@gmail.com …',
           ]);
-          setTimeout(() => { window.location.href = 'mailto:hello@abedin.dev?subject=Let%27s%20work%20together'; }, 800);
+          setTimeout(() => { window.location.href = 'mailto:abedinminhazul12@gmail.com?subject=Let%27s%20work%20together'; }, 800);
         } else if (arg.trim().toLowerCase() === 'rm -rf /') {
           printBlock([
             '<span class="ln-err">nope. not on my watch.</span>',
@@ -1458,10 +1463,9 @@
 
       { g: 'Actions', l: 'Toggle dark / light theme', icn: '☼', a: () => themeBtn?.click() },
       { g: 'Actions', l: 'Toggle ambient music', icn: '♪', a: () => musicBtn?.click() },
-      { g: 'Actions', l: 'Copy email — hello@abedin.dev', icn: '@', a: () => navigator.clipboard?.writeText('hello@abedin.dev') },
+      { g: 'Actions', l: 'Copy email — abedinminhazul12@gmail.com', icn: '@', a: () => navigator.clipboard?.writeText('abedinminhazul12@gmail.com') },
       { g: 'External', l: 'GitHub · abedinm', icn: 'GH', a: () => window.open('https://github.com/abedinm', '_blank') },
-      { g: 'External', l: 'X · @abedinm_', icn: 'X', a: () => window.open('https://x.com/abedinm_', '_blank') },
-      { g: 'External', l: 'LinkedIn', icn: 'in', a: () => window.open('https://linkedin.com/in/abedinm', '_blank') },
+      { g: 'External', l: 'LinkedIn', icn: 'in', a: () => window.open('https://www.linkedin.com/in/minhazul-abedin-014031371', '_blank') },
     ];
 
     let activeIdx = 0;
@@ -1715,6 +1719,13 @@
       successEl.innerHTML = html;
       successEl.classList.add('cf-success--error');
     }
+    // Record when the form became interactive — the backend rejects
+    // submissions that arrive implausibly fast (bot behaviour).
+    const formShownAt = Date.now();
+    // Cloudflare Turnstile, if present, drops a token into this hidden input.
+    const turnstileToken = () =>
+      (contactForm.querySelector('[name="cf-turnstile-response"]')?.value || '').trim();
+
     contactForm.addEventListener('submit', async e => {
       e.preventDefault();
       const name = val('#cf-name');
@@ -1724,6 +1735,7 @@
       const budget = labelOf('#cf-budget');
       const timeline = labelOf('#cf-timeline');
       const msg = val('#cf-msg');
+      const honeypot = val('#cf-website');   // hidden honeypot field
       // Inline validation
       let firstBad = null;
       if (!name) { setErr('#cf-name', 'Please add your name.'); firstBad = firstBad || '#cf-name'; }
@@ -1737,7 +1749,7 @@
       }
 
       const subject = `[Inquiry] ${kind || 'Project'} — ${company || name}`;
-      const summaryLines = [
+      const plainBody = [
         `Name: ${name}`,
         `Email: ${email}`,
         company && `Company / project: ${company}`,
@@ -1747,50 +1759,53 @@
         '',
         '— Scope —',
         msg,
-      ].filter(Boolean);
-      const plainBody = summaryLines.join('\n');
+      ].filter(Boolean).join('\n');
 
-      // -- Backend submit when Web3Forms key is configured ---------------
-      if (CONFIG.web3formsAccessKey) {
-        if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = 'Sending…'; }
-        try {
-          const res = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-            body: JSON.stringify({
-              access_key: CONFIG.web3formsAccessKey,
-              from_name:  name,
-              email,
-              subject,
-              name, company, engagement: kind, budget, timeline, message: msg,
-              // Honeypot — bots will fill it, real users won't.
-              botcheck: '',
-            }),
-          });
-          const data = await res.json().catch(() => ({}));
-          if (res.ok && data.success !== false) {
-            setSuccess(`Thanks — your inquiry landed in my inbox. I reply within 24h, often faster. <a href="mailto:hello@abedin.dev">hello@abedin.dev</a> if you'd rather email directly.`);
-            announce('Inquiry sent.');
-            contactForm.reset();
-            fxTick(660, 0.06);
-            return;
-          }
-          throw new Error(data.message || `HTTP ${res.status}`);
-        } catch (err) {
-          // Fall back to mailto on any failure so a lead never dies silently.
-          setError(`Couldn't reach the form backend (${err.message || 'network error'}). Opening your email client as a backup — or write to <a href="mailto:hello@abedin.dev">hello@abedin.dev</a>.`);
-          window.location.href = `mailto:hello@abedin.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(plainBody)}`;
-        } finally {
-          if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = originalBtnHTML; }
+      const mailtoFallback = (note) => {
+        setError(`${note} Opening your email client as a backup — or write to <a href="mailto:abedinminhazul12@gmail.com">abedinminhazul12@gmail.com</a>.`);
+        window.location.href = `mailto:abedinminhazul12@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(plainBody)}`;
+      };
+
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = 'Sending…'; }
+      try {
+        const res = await fetch(CONFIG.contactEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            name, email, message: msg,
+            company, kind, budget, timeline,
+            botcheck: honeypot,                  // honeypot (must be empty)
+            elapsed_ms: Date.now() - formShownAt, // anti-bot timing signal
+            turnstile_token: turnstileToken(),
+          }),
+        });
+        // 405/404 => no backend here (e.g. GitHub Pages). Use mailto.
+        if (res.status === 404 || res.status === 405) {
+          setSuccess(`Opening your mail client with the inquiry pre-filled. If nothing happens, copy this and send to <a href="mailto:abedinminhazul12@gmail.com">abedinminhazul12@gmail.com</a>:<br><br><textarea readonly style="width:100%;min-height:150px;font-family:var(--mono);font-size:12px;padding:10px;border:1px solid var(--cream-line-strong);border-radius:6px;background:var(--cream-soft);">${plainBody.replace(/</g,'&lt;')}</textarea>`);
+          announce('Opening your email client with the inquiry pre-filled.');
+          window.location.href = `mailto:abedinminhazul12@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(plainBody)}`;
+          return;
         }
-        return;
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.ok !== false) {
+          setSuccess(`${escapeHtml(data.message || 'Thanks — your inquiry landed in my inbox. I reply within 24h.')} <a href="mailto:abedinminhazul12@gmail.com">abedinminhazul12@gmail.com</a> if you'd rather email directly.`);
+          announce('Inquiry sent.');
+          contactForm.reset();
+          fxTick(660, 0.06);
+          return;
+        }
+        if (res.status === 429) {
+          setError(escapeHtml(data.message || 'Too many submissions — please try again later, or email abedinminhazul12@gmail.com directly.'));
+          return;
+        }
+        // 4xx/5xx with a message — show it, then offer mailto.
+        mailtoFallback(escapeHtml(data.message || `Couldn't send (HTTP ${res.status}).`));
+      } catch (err) {
+        // Network error / offline — never lose the lead.
+        mailtoFallback(`Couldn't reach the server (${escapeHtml(err.message || 'network error')}).`);
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = originalBtnHTML; }
       }
-
-      // -- Mailto fallback (no backend configured yet) -------------------
-      setSuccess(`Opening your mail client with the inquiry pre-filled. If nothing happens, copy this and send to <a href="mailto:hello@abedin.dev">hello@abedin.dev</a>:<br><br><textarea readonly style="width:100%;min-height:160px;font-family:var(--mono);font-size:12px;padding:10px;border:1px solid var(--cream-line-strong);border-radius:6px;background:var(--cream-soft);">${plainBody.replace(/</g,'&lt;')}</textarea>`);
-      announce('Opening your email client with the inquiry pre-filled.');
-      window.location.href = `mailto:hello@abedin.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(plainBody)}`;
-      fxTick(660, 0.06);
     });
   }
 
@@ -2124,9 +2139,9 @@
       else if (act === 'cmdk') document.querySelector('#cmdk-trigger')?.click();
       else if (act === 'theme') document.querySelector('#nav-theme')?.click();
       else if (act === 'copy') {
-        navigator.clipboard?.writeText('hello@abedin.dev').then(() => {
-          announce('Email copied: hello@abedin.dev');
-          showAchToast('Copied: hello@abedin.dev');
+        navigator.clipboard?.writeText('abedinminhazul12@gmail.com').then(() => {
+          announce('Email copied: abedinminhazul12@gmail.com');
+          showAchToast('Copied: abedinminhazul12@gmail.com');
         });
       }
       fabMain.click();   // collapse
@@ -3448,7 +3463,7 @@
       if (act === 'top') window.scrollTo({ top: 0, behavior: 'smooth' });
       else if (act === 'pricing') smoothNav('#pricing');
       else if (act === 'contact') smoothNav('#contact');
-      else if (act === 'copy') navigator.clipboard?.writeText('hello@abedin.dev').then(() => announce('Email copied'));
+      else if (act === 'copy') navigator.clipboard?.writeText('abedinminhazul12@gmail.com').then(() => announce('Email copied'));
       else if (act === 'cmdk') document.querySelector('#cmdk-trigger')?.click();
       else if (act === 'theme') document.querySelector('#nav-theme')?.click();
     });

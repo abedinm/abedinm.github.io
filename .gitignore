@@ -9,6 +9,10 @@ Thumbs.db
 node_modules/
 .env
 .env.local
+server/.env
+# Python virtualenv (local dev only)
+.venv/
+venv/
 # One-off generator scripts kept locally, not part of the deployed site
 _gen_artifacts.py
 _gen_mocks.py

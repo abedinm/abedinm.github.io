@@ -1,0 +1,45 @@
+# ===========================================================================
+#  One-command deploy with automatic HTTPS.
+#
+#   1. Point your domain's A record at this server's IP.
+#   2. Edit Caddyfile: replace "abedinm.github.io" with your domain + your email.
+#   3. cp server/.env.example server/.env   (fill in EMAIL_PROVIDER etc.)
+#   4. docker compose up -d --build
+#
+#  Caddy fetches + renews Let's Encrypt certs automatically and reverse-proxies
+#  to the app. Ports 80/443 must be open. For a quick run without a domain,
+#  use the "app" service alone (see DEPLOY.md).
+# ===========================================================================
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - server/.env
+    environment:
+      # App sits behind Caddy (1 proxy hop).
+      FORWARDED_ALLOW_HOPS: "1"
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/health').status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

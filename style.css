@@ -3663,6 +3663,15 @@ button:focus-visible, a:focus-visible { border-radius: 99px; }
 .cs-cta-fallback a { color: var(--orange); border-bottom: 1px solid var(--orange); }
 
 /* ---- Contact form expansion ----------------------------- */
+/* Honeypot — visually + assistive-tech hidden, but still in the DOM so bots
+   fill it. Not display:none (some bots skip those); pushed fully off-screen. */
+.cf-hp {
+  position: absolute !important;
+  left: -9999px !important;
+  top: auto;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
 .cf-intro {
   font-size: 15px;
   line-height: 1.6;

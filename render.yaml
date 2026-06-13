@@ -1,0 +1,30 @@
+# Render.com Blueprint — one-click deploy from this repo.
+#   1. Push the repo to GitHub.
+#   2. On Render: New + -> Blueprint -> pick this repo.
+#   3. Set the email env vars in the dashboard (marked sync:false below).
+#   4. Add your custom domain in the Render dashboard; HTTPS is automatic.
+services:
+  - type: web
+    name: abedin-portfolio
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: FORWARDED_ALLOW_HOPS
+        value: "1"
+      - key: ALLOWED_ORIGINS
+        sync: false        # set to your Render URL + custom domain
+      - key: CONTACT_TO
+        sync: false
+      - key: CONTACT_FROM
+        sync: false
+      - key: EMAIL_PROVIDER
+        value: resend       # or smtp / console
+      - key: RESEND_API_KEY
+        sync: false
+      - key: TURNSTILE_SECRET
+        sync: false

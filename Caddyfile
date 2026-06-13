@@ -1,0 +1,24 @@
+# Replace BOTH the domain and the email below, then `docker compose up -d`.
+# Caddy will obtain + auto-renew a Let's Encrypt certificate for the domain.
+#
+# www -> apex redirect included. Remove the www block if you don't use it.
+
+{
+	# Email for Let's Encrypt expiry notices. CHANGE THIS.
+	email you@example.com
+}
+
+abedinm.github.io {
+	encode zstd gzip
+	reverse_proxy app:8000
+
+	# Long-cache fingerprintable assets; the service worker handles HTML freshness.
+	@static {
+		path *.css *.js *.woff2 *.woff *.png *.jpg *.jpeg *.webp *.svg *.ico
+	}
+	header @static Cache-Control "public, max-age=2592000"
+}
+
+www.abedinm.github.io {
+	redir https://abedinm.github.io{uri} permanent
+}
