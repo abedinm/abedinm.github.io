@@ -201,13 +201,6 @@
   // (rate-limit, offline, no internet, etc.) so the widget never breaks.
   const commitEl = $('#live-commit');
   if (commitEl) {
-    const fallback = [
-      ['just now',    'enterprisecore', 'fix knowledge-hub citation jump'],
-      ['1h ago',      'enterprisecore', 'v6: absorb codex-tools tracker'],
-      ['3h ago',      'linguabot',      'BN/HI/UR auto-detect tuning'],
-      ['yesterday',   'portfolio',      'add /working-together + /first-call'],
-      ['2 days ago',  'siteforge',      'export pipeline: cleaner HTML'],
-    ];
     // Mark the live commit feed aria-hidden — it auto-rotates every 5.5s
     // and would spam screen-reader users with rotating content. Decorative.
     commitEl.setAttribute('aria-hidden', 'true');
@@ -221,12 +214,6 @@
       if (d < 86400) return Math.round(d/3600) + 'h ago';
       if (d < 172800) return 'yesterday';
       return Math.round(d/86400) + 'd ago';
-    }
-    let i = 0;
-    function rotateFallback() {
-      const [t, repo, msg] = fallback[i % fallback.length];
-      render(t, repo, msg);
-      i++;
     }
     // Try real GitHub events. Graceful fallback if anything errors.
     fetch('https://api.github.com/users/abedinm/events/public?per_page=15', { cache: 'no-cache' })
@@ -247,10 +234,7 @@
         setInterval(rotateLive, 5500);
       })
       .catch(() => {
-        // API failed (rate limit, no network, user doesn't exist yet) — use
-        // illustrative commits so the widget never shows broken state.
-        rotateFallback();
-        setInterval(rotateFallback, 5500);
+        commitEl.textContent = '—';
       });
   }
 
@@ -673,11 +657,11 @@
       card.className = `project ${span} reveal`;
       card.dataset.category = p.category || '';
       card.dataset.kind = p.kind || (p.category === 'client' ? 'client' : 'product');
-      const href = p.case_study || p.url || p.repo || '#';
-      const isExternal = (href === p.url || href === p.repo);
+      const href = p.case_study || p.url || p.repo || p.image || '#';
+      const isExternal = (href === p.url || href === p.repo || href === p.image);
       card.href = href;
       if (isExternal) { card.target = '_blank'; card.rel = 'noopener'; }
-      const kindLabel = card.dataset.kind === 'client' ? 'Client work' : 'Own product';
+      const kindLabel = { client: 'Client work', concept: 'Concept' }[card.dataset.kind] || 'Own project';
       card.innerHTML = `
         ${visual(p, i)}
         <div class="project-overlay"></div>
@@ -820,7 +804,7 @@
      Guards (`if (el && el.children.length === 0)`) keep this safe either way. */
   const bannerTrack = $('#banner-track');
   if (bannerTrack && bannerTrack.children.length === 0) {
-    const bannerPhrases = ['Perfection over <em>shipping</em>?', 'Ship, then perfect.', '<em>Solo</em> &amp; happy about it', 'Own your tools.', 'Build with love.', 'Code that lands.', 'Made in <em>Dhaka</em> × NL', 'No agencies. No middlemen.'];
+    const bannerPhrases = ['Perfection over <em>shipping</em>?', 'Ship, then perfect.', '<em>Solo</em> &amp; happy about it', 'Own your tools.', 'Build with love.', 'Code that lands.', 'Made in <em>Dhaka</em>', 'No agencies. No middlemen.'];
     const inner = bannerPhrases.map(p => `<span class="banner-tag">${p}</span>`).join('');
     bannerTrack.innerHTML = inner + inner;
   }
@@ -1031,7 +1015,7 @@
   setInterval(updateClocks, 30000);
 
   /* =================================================================
-     LAB DEMOS — LinguaBot · SiteForge · Knowledge Hub
+     LAB DEMOS — LinguaBot · SiteForge
      ================================================================= */
   // --- LinguaBot intent demo (English-only) ---
   const lbReply = $('#lab-lb-reply'), lbDetect = $('#lab-lb-detect'), lbLangs = $('#lab-lb-langs');
@@ -1111,81 +1095,6 @@
     });
   }
 
-  // --- Knowledge Hub streaming demo ---
-  const khQs = $('#lab-kh-qs'), khResp = $('#lab-kh-response'), khStream = $('#lab-kh-stream'), khCites = $('#lab-kh-cites');
-  if (khQs && khResp) {
-    const answers = [
-      {
-        text: 'Two priorities from the 2024 launch retro: mobile-first menu edits (60% of staff actions happen on phone)CITE1, and uptime during dinner-rush (Netlify CDN held, zero incidents)CITE2. Lighthouse 100/100/100/100 was the hard requirementCITE3.',
-        cites: ['cornertable-retro-2024.md · p.3', 'netlify-uptime.csv · row 14', 'cornertable-spec-v1.pdf · p.7']
-      },
-      {
-        text: 'v6 absorbed five older standalone productsCITE1 — LinguaBot, SiteForge, CornerTable, Deltadesh, Deltadutch — plus 11 student appsCITE2 as first-class modules. Test count rose from 289 to 455.',
-        cites: ['enterprisecore-v6-notes.md', 'consolidation-plan.md · §2']
-      },
-      {
-        text: 'Two sites currently run on Cloudflare PagesCITE1: SiteForge Studio and Codex Tools. Deltadesh and Deltadutch both sit on RenderCITE2.',
-        cites: ['hosting-matrix.csv', 'deltadesh-deploy.md · final']
-      }
-    ];
-    function showAnswer(i) {
-      const a = answers[i]; if (!a) return;
-      khQs.querySelectorAll('.lab-kh-chip').forEach(c => c.classList.toggle('active', parseInt(c.dataset.q, 10) === i));
-      khResp.innerHTML = '';
-      khCites.innerHTML = '';
-      khStream.hidden = false;
-      // Stream-render the answer char by char
-      let raw = a.text;
-      // Convert CITEx markers to inline <span class="cite">[x]</span>
-      let displayParts = [];
-      let m;
-      while ((m = /CITE(\d)/.exec(raw)) !== null) {
-        displayParts.push({ type: 'txt', v: raw.slice(0, m.index) });
-        displayParts.push({ type: 'cite', v: '[' + m[1] + ']' });
-        raw = raw.slice(m.index + m[0].length);
-      }
-      if (raw) displayParts.push({ type: 'txt', v: raw });
-
-      let pi = 0, ci = 0;
-      function step() {
-        if (pi >= displayParts.length) {
-          khStream.hidden = true;
-          // Render cite pills
-          khCites.innerHTML = a.cites.map((c, idx) => `<span class="lab-kh-cite-pill">[${idx + 1}] ${escapeHtml(c)}</span>`).join('');
-          return;
-        }
-        const p = displayParts[pi];
-        if (p.type === 'cite') {
-          khResp.insertAdjacentHTML('beforeend', `<span class="cite">${p.v}</span>`);
-          pi++; ci = 0;
-          setTimeout(step, 80);
-        } else {
-          const chunk = p.v.slice(ci, ci + 3);
-          khResp.insertAdjacentText('beforeend', chunk);
-          ci += 3;
-          if (ci >= p.v.length) { pi++; ci = 0; }
-          setTimeout(step, 18);
-        }
-      }
-      step();
-      fxTick(800, 0.04);
-    }
-    khQs.addEventListener('click', e => {
-      const c = e.target.closest('[data-q]'); if (c) showAnswer(parseInt(c.dataset.q, 10));
-    });
-    // Auto-play first answer on first scroll-into-view
-    if (!STATIC) {
-      const ko = new IntersectionObserver((es, obs) => {
-        es.forEach(en => { if (en.isIntersecting) { showAnswer(0); obs.disconnect(); } });
-      }, { rootMargin: '0px' });
-      ko.observe($('.lab-kh-q-row'));
-    } else {
-      // Static fallback — show first answer fully
-      khResp.innerHTML = answers[0].text.replace(/CITE(\d)/g, '<span class="cite">[$1]</span>');
-      khCites.innerHTML = answers[0].cites.map((c, idx) => `<span class="lab-kh-cite-pill">[${idx + 1}] ${escapeHtml(c)}</span>`).join('');
-    }
-  }
-
   /* =================================================================
      HERO TERMINAL — typable, real commands
      ================================================================= */
@@ -1252,8 +1161,8 @@
       explore() {
         printBlock([
           '<span class="ln-h2">Things worth exploring:</span>',
-          '  <span class="ln-hl">ls</span>               — list all 10 projects',
-          '  <span class="ln-hl">cat enterprisecore</span> — inspect the flagship',
+          '  <span class="ln-hl">ls</span>               — list all projects',
+          '  <span class="ln-hl">cat deltadesh</span>    — inspect a project',
           '  <span class="ln-hl">whoami</span>           — who is this',
           '  <span class="ln-hl">stack</span>            — see the tech stack',
           '  <span class="ln-hl">work</span>             — jump to the full grid',
@@ -1262,12 +1171,10 @@
       whoami() {
         printBlock([
           '<span class="ln-h2">Abedin M.</span>',
-          'Solo builder · Dhaka × Netherlands · est. 2020',
-          'I ship offline-first software, embeddable tools,',
-          'and the client sites underneath them.',
+          'Web developer · Dhaka, Bangladesh',
+          'Websites and web apps, built with Claude Code.',
           '',
-          'Currently: <span class="ln-hl">v6 of EnterpriseCore.</span>',
-          'Open for select consulting from June 2026.',
+          'Open for freelance work.',
         ]);
       },
       work()    { smoothNav('#work');    print('→ jumping to /work', 'ln-ok'); },
@@ -1276,16 +1183,17 @@
       now()     { smoothNav('#now');     print('→ jumping to /now', 'ln-ok'); },
       writing() { smoothNav('#writing'); print('→ jumping to /writing', 'ln-ok'); },
       contact() { smoothNav('#contact'); print('→ jumping to /contact', 'ln-ok'); },
-      book()    { smoothNav('#book');    print('→ opening calendar', 'ln-ok'); },
+      book()    { smoothNav('#book');    print('→ jumping to /book', 'ln-ok'); },
       faq()     { smoothNav('#faq');     print('→ jumping to /faq', 'ln-ok'); },
       stack() {
         printBlock([
           '<span class="ln-h2">Stack — what I build with:</span>',
-          '  Languages   <span class="ln-hl">HTML</span> · <span class="ln-hl">CSS</span> · <span class="ln-hl">JavaScript</span> · <span class="ln-hl">TypeScript</span> · <span class="ln-hl">Python</span>',
-          '  Frameworks  <span class="ln-hl">FastAPI</span> · <span class="ln-hl">React</span> · <span class="ln-hl">Electron</span> · <span class="ln-hl">Expo</span>',
-          '  Data        <span class="ln-hl">PostgreSQL</span> · <span class="ln-hl">SQLite</span> · <span class="ln-hl">Supabase</span>',
-          '  Hosting     <span class="ln-hl">Cloudflare</span> · <span class="ln-hl">Netlify</span> · <span class="ln-hl">Render</span> · <span class="ln-hl">Fly.io</span>',
-          '  AI          <span class="ln-hl">Anthropic</span> · <span class="ln-hl">OpenAI</span> · <span class="ln-hl">Ollama</span>',
+          '  Languages   <span class="ln-hl">HTML</span> · <span class="ln-hl">CSS</span> · <span class="ln-hl">JavaScript</span> · <span class="ln-hl">PHP</span> · <span class="ln-hl">Python</span>',
+          '  Data        <span class="ln-hl">MySQL</span> · <span class="ln-hl">SQLite</span>',
+          '  Maps        <span class="ln-hl">Leaflet</span> · <span class="ln-hl">OpenStreetMap</span>',
+          '  Hosting     <span class="ln-hl">GitHub Pages</span> · <span class="ln-hl">Render</span>',
+          '  Tools       <span class="ln-hl">Claude Code</span> · <span class="ln-hl">Git</span>',
+          '  Built with  React · Next.js · FastAPI (on a few projects)',
         ]);
       },
       ls() {
@@ -1421,7 +1329,6 @@
       { g: 'Sections', l: 'Selected work', icn: '02', a: () => smoothNav('#work') },
       { g: 'Sections', l: 'About', icn: '03', a: () => smoothNav('#about') },
       { g: 'Sections', l: 'Where I work from', icn: '·', a: () => smoothNav('#locations') },
-      { g: 'Sections', l: 'Pricing + engagements', icn: '04', a: () => smoothNav('#pricing') },
       { g: 'Sections', l: 'Process', icn: '·', a: () => smoothNav('#process') },
       { g: 'Sections', l: 'Lab — playable demos', icn: '05', a: () => smoothNav('#lab') },
       { g: 'Sections', l: 'What clients said', icn: '06', a: () => smoothNav('#said') },
@@ -1429,25 +1336,19 @@
       { g: 'Sections', l: 'Book a 15-min', icn: '→', a: () => smoothNav('#book') },
       { g: 'Sections', l: 'Contact + project inquiry', icn: '08', a: () => smoothNav('#contact') },
 
-      { g: 'Pages', l: 'Working with me · day-in-the-life', icn: '→', a: () => location.href = './working-together.html' },
-      { g: 'Pages', l: 'The first call · agenda', icn: '→', a: () => location.href = './first-call.html' },
-      { g: 'Pages', l: 'CV / résumé', icn: '→', a: () => location.href = './cv.html' },
       { g: 'Pages', l: 'About this site · colophon', icn: '→', a: () => location.href = './about-this-site.html' },
-      { g: 'Pages', l: 'Public roadmap · what I\'m shipping', icn: '→', a: () => location.href = './roadmap.html' },
       { g: 'Pages', l: 'Mutual NDA template', icn: '↗', a: () => window.open('./assets/nda-mutual.md', '_blank') },
       { g: 'Pages', l: 'Arcade — Snake, Pong, 2048, Reaction', icn: '🎮', a: () => location.href = './arcade.html' },
 
       { g: 'Toys', l: 'Doodle mode (press D anywhere)', icn: '✎', a: () => { const e = new KeyboardEvent('keydown', { key: 'd', bubbles: true }); document.dispatchEvent(e); } },
       { g: 'Toys', l: 'Show keyboard shortcuts (press ?)', icn: '⌨', a: () => { const e = new KeyboardEvent('keydown', { key: '?', bubbles: true }); document.dispatchEvent(e); } },
 
-      { g: 'Case studies', l: 'EnterpriseCore AI Suite', icn: 'EC', a: () => location.href = './work/enterprisecore.html' },
       { g: 'Case studies', l: 'LinguaBot', icn: 'LB', a: () => location.href = './work/linguabot.html' },
       { g: 'Case studies', l: 'HolyGrail', icn: 'HG', a: () => location.href = './work/holygrail.html' },
       { g: 'Case studies', l: 'SiteForge Studio', icn: 'SF', a: () => location.href = './work/siteforge.html' },
       { g: 'Case studies', l: 'Corner Table', icn: 'CT', a: () => location.href = './work/cornertable.html' },
       { g: 'Case studies', l: 'Deltadesh', icn: 'DD', a: () => location.href = './work/deltadesh.html' },
       { g: 'Case studies', l: 'Deltadutch', icn: 'DT', a: () => location.href = './work/deltadutch.html' },
-      { g: 'Case studies', l: 'AI Knowledge Hub', icn: 'KH', a: () => location.href = './work/knowledge-hub.html' },
       { g: 'Case studies', l: 'Codex Tools', icn: 'CX', a: () => location.href = './work/codex-tools.html' },
       { g: 'Case studies', l: 'claude-skills', icn: 'CS', a: () => location.href = './work/claude-skills.html' },
 
@@ -1864,7 +1765,7 @@
     const ACHIEVEMENTS = [
       { id: 'open',       label: 'First visit',                 trigger: 'load' },
       { id: 'work_seen',  label: 'Viewed Selected work',        trigger: 'scroll:#work' },
-      { id: 'price_seen', label: 'Viewed Pricing',              trigger: 'scroll:#pricing' },
+      { id: 'about_seen', label: 'Read About',                  trigger: 'scroll:#about' },
       { id: 'lab_seen',   label: 'Reached the Lab',             trigger: 'scroll:#lab' },
       { id: 'contact_seen', label: 'Reached Contact',           trigger: 'scroll:#contact' },
       { id: 'theme_flip', label: 'Toggled the theme',           trigger: 'click:#nav-theme' },
@@ -2200,7 +2101,7 @@
     });
 
     /* ----- 9. Sound on section enter (very subtle) ----- */
-    const soundSections = ['#work', '#pricing', '#said'];
+    const soundSections = ['#work', '#lab'];
     const soundObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
@@ -2265,10 +2166,10 @@
         <div class="completion-modal-card">
           <div class="completion-modal-mark" aria-hidden="true">★</div>
           <h3 id="completion-title">100% explored.</h3>
-          <p>You found everything. Snake. The Konami code. Pricing. The 12 achievements. <em>Most visitors stop scrolling halfway through Work.</em></p>
+          <p>You found everything. Snake. The Konami code. The 12 achievements. <em>Most visitors stop scrolling halfway through Work.</em></p>
           <p>If you're considering hiring me — the curiosity that got you here is the same curiosity that gets your project shipped on time.</p>
           <div class="completion-modal-actions">
-            <a href="#pricing" class="completion-modal-go">See pricing →</a>
+            <a href="#contact" class="completion-modal-go">Get in touch →</a>
             <button class="completion-modal-close" type="button">Dismiss</button>
           </div>
         </div>
@@ -3443,7 +3344,6 @@
     ctxMenu.setAttribute('role', 'menu');
     ctxMenu.innerHTML = `
       <button data-ctx="top" role="menuitem">Scroll to top</button>
-      <button data-ctx="pricing" role="menuitem">Jump to pricing</button>
       <button data-ctx="contact" role="menuitem">Jump to contact</button>
       <hr/>
       <button data-ctx="copy" role="menuitem">Copy email</button>
@@ -3474,7 +3374,6 @@
       const b = e.target.closest('[data-ctx]'); if (!b) return;
       const act = b.dataset.ctx;
       if (act === 'top') window.scrollTo({ top: 0, behavior: 'smooth' });
-      else if (act === 'pricing') smoothNav('#pricing');
       else if (act === 'contact') smoothNav('#contact');
       else if (act === 'copy') navigator.clipboard?.writeText('abedinminhazul12@gmail.com').then(() => announce('Email copied'));
       else if (act === 'cmdk') document.querySelector('#cmdk-trigger')?.click();

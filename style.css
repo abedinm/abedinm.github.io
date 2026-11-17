@@ -2518,7 +2518,7 @@ pre, code { font-family: var(--mono); }
 .lab-sf-swatch:hover { transform: scale(1.1); }
 .lab-sf-swatch.active { border-color: var(--ink); transform: scale(1.05); }
 
-/* --- Knowledge Hub demo --- */
+/* --- lab demo (unused) --- */
 .lab-kh-q-row { display: flex; flex-direction: column; gap: 8px; }
 .lab-kh-chip {
   padding: 9px 14px;
@@ -3578,6 +3578,7 @@ button:focus-visible, a:focus-visible { border-radius: 99px; }
 }
 .project-kind--client { background: var(--orange); color: var(--cream); }
 .project-kind--product { background: rgba(13, 13, 13, 0.8); }
+.project-kind--concept { background: #2f5bd6; color: #fff; }
 
 /* ---- Process proof link --------------------------------- */
 .proof-link {

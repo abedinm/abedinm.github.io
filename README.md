@@ -14,7 +14,7 @@ F:/portfolio/
 ├── manifest.webmanifest        # PWA manifest
 ├── robots.txt + sitemap.xml
 ├── work/
-│   ├── enterprisecore.html     # case study
+│   ├── linguabot.html          # case study
 │   ├── linguabot.html          # case study
 │   └── case-study.css          # case-study specific styles
 ├── assets/
@@ -76,5 +76,5 @@ Drop the whole `F:/portfolio/` directory on any static host. **Use `index.preren
 - Replace `abedinminhazul12@gmail.com` with your real email (3 places in index.html + projects.json + work/*.html)
 - Replace social handles `github.com/abedinm`, `x.com/abedinm_`, `www.linkedin.com/in/minhazul-abedin-014031371` (in projects.json — propagated everywhere via prerender)
 - Testimonial quotes in `projects.json` are realistic placeholders — swap with real ones
-- Write more case studies (copy `work/enterprisecore.html` and adapt — then set `case_study` field in projects.json for that project)
-- Replace placeholder URLs `enterprisecore.app`, `linguabot.app`, `siteforge.studio` etc. if they're not live yet
+- Write more case studies (copy `work/linguabot.html` and adapt — then set `case_study` field in projects.json for that project)
+- Replace placeholder URLs `linguabot.app`, `siteforge.studio` etc. if they're not live yet

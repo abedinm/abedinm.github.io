@@ -60,15 +60,15 @@ projects = sorted(data["projects"], key=lambda p: (not p.get("highlight", False)
 work_html = []
 for i, p in enumerate(projects):
     span = "span-3" if (p.get("highlight") and i < 2) else "span-2"
-    href = p.get("case_study") or p.get("url") or p.get("repo") or "#"
-    is_external = (href == p.get("url") or href == p.get("repo"))
+    href = p.get("case_study") or p.get("url") or p.get("repo") or p.get("image") or "#"
+    is_external = href in (p.get("url"), p.get("repo"), p.get("image"))
     target = ' target="_blank" rel="noopener"' if is_external else ""
     cat = cats.get(p.get("category", ""), p.get("category", ""))
     stack_html = "".join(f'<span>{esc(s)}</span>' for s in (p.get("stack") or [])[:4])
     year_html = f'<span class="project-year">{esc(p["year"])}</span>' if p.get("year") else ""
     metric_html = f'<p class="project-metric">{esc(p["metric"])}</p>' if p.get("metric") else ""
     kind = p.get("kind") or ("client" if p.get("category") == "client" else "product")
-    kind_label = "Client work" if kind == "client" else "Own product"
+    kind_label = {"client": "Client work", "concept": "Concept"}.get(kind, "Own project")
     work_html.append(f'''<a class="project {span} reveal" data-category="{esc(p.get("category",""))}" data-kind="{kind}" href="{esc(href)}"{target}>
   {visual(p, i)}
   <div class="project-overlay"></div>

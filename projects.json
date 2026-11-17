@@ -1,7 +1,7 @@
 {
   "person": {
     "name": "Abedin M.",
-    "tagline": "Solo software builder. Dhaka × Netherlands.",
+    "tagline": "Web developer. Dhaka, Bangladesh.",
     "location": "Dhaka, BD",
     "email": "abedinminhazul12@gmail.com",
     "social": {
@@ -10,27 +10,88 @@
     }
   },
   "categories": [
-    { "id": "client",  "label": "Client",   "subtitle": "Built for someone else." },
-    { "id": "saas",    "label": "SaaS",     "subtitle": "Things you sign up for." },
-    { "id": "desktop", "label": "Desktop",  "subtitle": "Installable apps." },
-    { "id": "tools",   "label": "Tools",    "subtitle": "Free tools." }
+    {
+      "id": "client",
+      "label": "Client",
+      "subtitle": "Built for a real business."
+    },
+    {
+      "id": "web",
+      "label": "Web apps",
+      "subtitle": "Things you use in a browser."
+    },
+    {
+      "id": "desktop",
+      "label": "Desktop",
+      "subtitle": "Installable apps."
+    },
+    {
+      "id": "tools",
+      "label": "Tools",
+      "subtitle": "Free tools."
+    }
   ],
   "projects": [
     {
-      "slug": "enterprisecore",
-      "name": "EnterpriseCore AI Suite",
-      "category": "desktop",
-      "kind": "product",
-      "tagline": "Offline-first business-management suite with a built-in AI coding assistant. Your data stays on your machine.",
-      "stack": ["FastAPI", "React", "Electron", "Ollama"],
-      "status": "In development",
-      "year": "2026",
-      "metric": "FastAPI + React + Electron",
-      "url": null,
-      "repo": "https://github.com/abedinm/enterprisecore-ai-suite",
-      "image": "./assets/enterprisecore.webp",
-      "case_study": "./work/enterprisecore.html",
+      "slug": "deltadesh",
+      "name": "Deltadesh",
+      "category": "client",
+      "kind": "client",
+      "tagline": "Website for a Dhaka consultancy — JSON-driven content with an admin panel so they update copy without touching code.",
+      "stack": [
+        "Vanilla JS",
+        "Supabase",
+        "Render"
+      ],
+      "status": "Live",
+      "year": "2025",
+      "metric": "Self-serve content admin",
+      "url": "https://deltadesh.com/",
+      "repo": null,
+      "image": "./assets/deltadesh.webp",
+      "case_study": "./work/deltadesh.html",
       "highlight": true
+    },
+    {
+      "slug": "nexus-forge",
+      "name": "Nexus Forge",
+      "category": "web",
+      "kind": "product",
+      "tagline": "3D PC configurator for the Dhaka market. Pick parts, get compatibility warnings, compare indicative prices from four local stores, and see the build rendered in 3D.",
+      "stack": [
+        "Three.js",
+        "JavaScript",
+        "Node"
+      ],
+      "status": "Local build",
+      "year": "2026",
+      "metric": "Three.js · no build step",
+      "url": null,
+      "repo": null,
+      "image": "./assets/nexus-forge.webp",
+      "case_study": null,
+      "highlight": true
+    },
+    {
+      "slug": "night-shift",
+      "name": "Concept sites for Dhaka businesses",
+      "category": "web",
+      "kind": "concept",
+      "tagline": "Mobile-first concept websites for local restaurants, clinics and salons: one HTML template plus one JSON file per business, with WhatsApp ordering and an open-now badge.",
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Python"
+      ],
+      "status": "Live previews",
+      "year": "2026",
+      "metric": "Template + JSON per site",
+      "url": "https://abedinm.github.io/concepts/hanif-biriyani/",
+      "repo": null,
+      "image": "./assets/night-shift.webp",
+      "case_study": null,
+      "highlight": false
     },
     {
       "slug": "dhaka-utilities-map",
@@ -38,62 +99,18 @@
       "category": "tools",
       "kind": "product",
       "tagline": "Interactive city map of Dhaka with 13 color-coded utility layers — hospitals, schools, parks, police, mosques and more.",
-      "stack": ["Leaflet", "OpenStreetMap", "JavaScript"],
+      "stack": [
+        "Leaflet",
+        "OpenStreetMap",
+        "JavaScript"
+      ],
       "status": "Live",
       "year": "2026",
       "metric": "13 live data layers",
       "url": "https://abedinm.github.io/dhaka-utilities-map/",
       "repo": "https://github.com/abedinm/dhaka-utilities-map",
-      "image": null,
+      "image": "./assets/dhaka-map.webp",
       "case_study": null,
-      "highlight": true
-    },
-    {
-      "slug": "docathome",
-      "name": "DocAtHome",
-      "category": "desktop",
-      "kind": "product",
-      "tagline": "Role-based home-healthcare management system. Four user roles, 18 forms, full booking and payment flow.",
-      "stack": ["C#", "WinForms", "SQL Server"],
-      "status": "Shipped",
-      "year": "2026",
-      "metric": "4 roles · 18 forms",
-      "url": null,
-      "repo": "https://github.com/abedinm/DocAtHome",
-      "image": null,
-      "case_study": null,
-      "highlight": true
-    },
-    {
-      "slug": "enterprisecore-foundation",
-      "name": "EnterpriseCore Foundation",
-      "category": "saas",
-      "kind": "product",
-      "tagline": "Full-stack SaaS starter: JWT auth, role-based access (Admin / Manager / Employee / Developer), notifications, audit log.",
-      "stack": ["FastAPI", "React", "Tailwind", "SQLite"],
-      "status": "Shipped",
-      "year": "2026",
-      "metric": "RBAC + audit log",
-      "url": null,
-      "repo": "https://github.com/abedinm/enterprisecore-foundation",
-      "image": null,
-      "case_study": null,
-      "highlight": false
-    },
-    {
-      "slug": "deltadesh",
-      "name": "Deltadesh",
-      "category": "client",
-      "kind": "client",
-      "tagline": "Website for a Dhaka consultancy — JSON-driven content with an admin panel so they update copy without touching code.",
-      "stack": ["Vanilla JS", "Supabase", "Render"],
-      "status": "Live",
-      "year": "2025",
-      "metric": "Self-serve content admin",
-      "url": "https://deltadesh-website.onrender.com/",
-      "repo": null,
-      "image": "./assets/deltadesh.webp",
-      "case_study": "./work/deltadesh.html",
       "highlight": false
     },
     {
@@ -102,7 +119,11 @@
       "category": "client",
       "kind": "client",
       "tagline": "Website for a Dutch engineering consultancy — JSON-driven build with a six-stage service ladder.",
-      "stack": ["JavaScript", "Node", "Render"],
+      "stack": [
+        "JavaScript",
+        "Node",
+        "Render"
+      ],
       "status": "Live",
       "year": "2025",
       "metric": "6-stage service ladder",
@@ -113,12 +134,97 @@
       "highlight": false
     },
     {
+      "slug": "buildstrong",
+      "name": "Build Strong",
+      "category": "client",
+      "kind": "client",
+      "tagline": "Multi-page site for a Bangladesh construction, interiors and waterproofing company: materials catalogue with filters, project pages and a waterproofing cost estimator.",
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "status": "Built · not yet live",
+      "year": "2026",
+      "metric": "9 pages · no framework",
+      "url": null,
+      "repo": null,
+      "image": "./assets/buildstrong.webp",
+      "case_study": null,
+      "highlight": false
+    },
+    {
+      "slug": "stackframe",
+      "name": "Stackframe",
+      "category": "web",
+      "kind": "product",
+      "tagline": "Study site for a university web-technologies exam. HTML, CSS, JS, PHP and MySQL lessons where the code actually runs in the browser.",
+      "stack": [
+        "JavaScript",
+        "PHP",
+        "SQLite",
+        "WebAssembly"
+      ],
+      "status": "Local build",
+      "year": "2026",
+      "metric": "Real PHP 8.2 in the browser",
+      "url": null,
+      "repo": null,
+      "image": "./assets/stackframe.webp",
+      "case_study": null,
+      "highlight": false
+    },
+    {
+      "slug": "skillbank",
+      "name": "SkillBank",
+      "category": "web",
+      "kind": "product",
+      "tagline": "Skill-exchange web app with credits, matches and session booking. PHP MVC, prepared statements, CSRF protection, and a 40-case Selenium test suite.",
+      "stack": [
+        "PHP",
+        "MySQL",
+        "Selenium"
+      ],
+      "status": "University project",
+      "year": "2026",
+      "metric": "40 automated tests",
+      "url": null,
+      "repo": null,
+      "image": "./assets/skillbank.webp",
+      "case_study": null,
+      "highlight": false
+    },
+    {
+      "slug": "gentlebudget",
+      "name": "GentleBudget",
+      "category": "web",
+      "kind": "product",
+      "tagline": "Personal budget app: monthly review of income, expenses and savings, spending by category, and CSV import for expenses.",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "SQLite"
+      ],
+      "status": "Local build",
+      "year": "2026",
+      "metric": "CSV import",
+      "url": null,
+      "repo": null,
+      "image": "./assets/gentlebudget.webp",
+      "case_study": null,
+      "highlight": false
+    },
+    {
       "slug": "cornertable",
       "name": "Corner Table",
       "category": "client",
       "kind": "client",
       "tagline": "Mobile-first restaurant site as an installable PWA — menu, ordering and reservations. Vanilla JS, no build step.",
-      "stack": ["Vanilla JS", "PWA", "Netlify"],
+      "stack": [
+        "Vanilla JS",
+        "PWA",
+        "Netlify"
+      ],
       "status": "Live",
       "year": "2024",
       "metric": "Installable PWA",
@@ -134,7 +240,10 @@
       "category": "tools",
       "kind": "product",
       "tagline": "Eleven free tools for university students — CGPA planner, attendance tracker, deadline shield and more. Installable PWAs.",
-      "stack": ["Vanilla JS", "PWA"],
+      "stack": [
+        "Vanilla JS",
+        "PWA"
+      ],
       "status": "Live",
       "year": "2026",
       "metric": "11 student tools",
@@ -147,10 +256,14 @@
     {
       "slug": "linguabot",
       "name": "LinguaBot",
-      "category": "saas",
+      "category": "web",
       "kind": "product",
       "tagline": "Embeddable multilingual chat widget — English, Bangla, Hindi, Urdu. Drop-in script tag.",
-      "stack": ["Astro", "FastAPI", "JavaScript"],
+      "stack": [
+        "Astro",
+        "FastAPI",
+        "JavaScript"
+      ],
       "status": "In development",
       "year": "2025",
       "metric": "4 languages",
@@ -161,17 +274,21 @@
       "highlight": false
     },
     {
-      "slug": "license-server",
-      "name": "License Server",
-      "category": "tools",
+      "slug": "docathome",
+      "name": "DocAtHome",
+      "category": "desktop",
       "kind": "product",
-      "tagline": "Standalone license issuance, verification and revocation service — the licensing backend behind EnterpriseCore.",
-      "stack": ["FastAPI", "Python", "SQLite"],
+      "tagline": "Role-based home-healthcare management system. Four user roles, 18 forms, full booking and payment flow.",
+      "stack": [
+        "C#",
+        "WinForms",
+        "SQL Server"
+      ],
       "status": "Shipped",
       "year": "2026",
-      "metric": "Issue · verify · revoke",
+      "metric": "4 roles · 18 forms",
       "url": null,
-      "repo": "https://github.com/abedinm/license-server",
+      "repo": "https://github.com/abedinm/DocAtHome",
       "image": null,
       "case_study": null,
       "highlight": false
@@ -180,8 +297,8 @@
   "testimonials": [],
   "faq": [
     {
-      "q": "What's your minimum engagement?",
-      "a": "$300 for a code & architecture audit. $1.5k for a tightly-scoped widget or static site. $3.5k for a full MVP. I'm based in Dhaka — that's the honest cost basis behind the numbers."
+      "q": "What do you build with?",
+      "a": "HTML, CSS and JavaScript; PHP with MySQL; Python; Leaflet for maps. I build with Claude Code: I scope the job, direct and review the code, test it in the browser, and deploy it. A few projects here were built with React, Next.js or FastAPI; I list those as built-with, not as specialties."
     },
     {
       "q": "Do you sign NDAs?",
@@ -192,147 +309,28 @@
       "a": "You do. From day one. Repo transferred to your org on kickoff. No licensing tricks, no \"perpetual usage rights\" — it's yours."
     },
     {
-      "q": "What if you can't deliver?",
-      "a": "I haven't yet. If I do: free rebuild of the milestone, or full refund of the unbilled work. In writing, in the contract."
-    },
-    {
       "q": "Fixed-price or hourly?",
-      "a": "Both. Small/clear scope: fixed. Open-ended/exploratory: hourly. I'll tell you which fits your project after a 30-minute call. No pressure."
-    },
-    {
-      "q": "Do you take equity?",
-      "a": "Sometimes, in addition to a base rate. I want skin in the game when the project is interesting. Pure-equity engagements: no."
+      "a": "Both. Small, clear scope: fixed price. Open-ended work: hourly. I'll tell you which fits after a short call."
     },
     {
       "q": "Do you work with my designer / PM / existing team?",
       "a": "Yes. I integrate into whatever you've got — Figma handoffs, Linear tickets, Slack, async standups. I'm not precious about process."
     },
     {
-      "q": "Industries you've worked in?",
-      "a": "Consultancies, restaurants, fintech, B2B SaaS, education, AI tooling. Not healthcare/medical or anything HIPAA-bound — I don't have the compliance muscle for that yet."
-    },
-    {
       "q": "Time zone overlap with US / EU?",
       "a": "I keep 10:00–18:00 BST hours, which overlaps EU mornings and US East Coast late evenings. Weekly sync at a time that works for you."
     },
     {
-      "q": "Why offline-first?",
-      "a": "Because servers go down, subscriptions get cancelled, and your data shouldn't live on someone else's roadmap. If it can run on your machine, it should. (Doesn't mean I won't ship cloud — I just default to local-first when it makes sense.)"
-    },
-    {
       "q": "Why solo?",
-      "a": "No middlemen, no agency overhead, no telephone-game of requirements. You talk to the person writing the code. Faster, cheaper, honest."
-    },
-    {
-      "q": "How long do you maintain things?",
-      "a": "Indefinitely on retainer ($800/mo+), at-cost on demand otherwise. Most things I built in 2020 are still serving traffic — I haven't ghosted a project yet."
-    },
-    {
-      "q": "What's your typical timeline?",
-      "a": "Static site or widget: 1–2 weeks. SaaS MVP: 4–8 weeks. Desktop suite: 3–6 months. I quote tight and I ship on time."
+      "a": "No middlemen, no agency overhead, no telephone-game of requirements. You talk to the person building it."
     }
   ],
   "now": {
-    "month": "June 2026",
+    "month": "November 2026",
     "items": [
-      "Building EnterpriseCore AI Suite — an offline-first business suite with a built-in AI coding assistant.",
-      "Shipped DocAtHome, a role-based home-healthcare management system in C# / SQL Server.",
-      "Maintaining the Dhaka Utilities Map and the student-tools collection.",
-      "Open to one new client engagement."
+      "Building concept websites for small businesses in Dhaka.",
+      "Maintaining the Dhaka Utilities Map.",
+      "Open to freelance web projects."
     ]
-  },
-  "packages": [
-    {
-      "id": "audit",
-      "name": "Code & architecture audit",
-      "price_from": "$300",
-      "ideal_for": "Pre-build buyers who want a senior eye on their existing repo, stack choice, or v0.1 before committing to a larger engagement.",
-      "deliverables": [
-        "Written PDF report (8–15 pages): risks, debt, security smells, 3–5 next moves",
-        "1× 60-min walkthrough call (recorded)",
-        "5 business days from kickoff",
-        "Fee credited if you continue with me on retainer or build"
-      ],
-      "not_included": [
-        "Implementing the fixes (separate scope)",
-        "Formal pen-test or compliance review"
-      ],
-      "timeline": "5 business days",
-      "subject": "Code%20%26%20architecture%20audit%20—%20inquiry"
-    },
-    {
-      "id": "mvp",
-      "name": "MVP in 4 weeks",
-      "price_from": "$3.5k",
-      "ideal_for": "Founders with a one-page spec who need a production-grade v1 fast.",
-      "deliverables": [
-        "Production app on your domain, code in your repo",
-        "2 rounds of revisions before launch",
-        "Month #1 of maintenance included",
-        "README + handover call"
-      ],
-      "not_included": [
-        "Discovery / scope-writing (use the 15-min intro for that)",
-        "Native mobile builds (web/PWA only)",
-        "Multi-tenant billing (separate scope)"
-      ],
-      "timeline": "4 weeks · 1 day kick-off",
-      "subject": "MVP%20in%204%20weeks%20—%20inquiry"
-    },
-    {
-      "id": "widget",
-      "name": "Embeddable widget or tool",
-      "price_from": "$1.5k",
-      "ideal_for": "B2B SaaS teams who need a drop-in script tag, a Chrome extension, or a small standalone tool.",
-      "deliverables": [
-        "Hosted widget + script tag (or extension package)",
-        "Embed docs + integration examples",
-        "Basic dashboard (if config needed)",
-        "1 round of revisions"
-      ],
-      "not_included": [
-        "Full SaaS dashboards (use MVP package)",
-        "Custom analytics platform"
-      ],
-      "timeline": "2–3 weeks",
-      "subject": "Embeddable%20widget%20—%20inquiry"
-    },
-    {
-      "id": "retainer",
-      "name": "Maintenance retainer",
-      "price_from": "$800 / mo",
-      "ideal_for": "Teams with a shipped product that needs reliable monthly attention — bug fixes, small features, infra.",
-      "deliverables": [
-        "Up to 20 hrs / month engineering time",
-        "24h response on Slack/email",
-        "Monthly Loom + written report",
-        "Pause or scale up any month"
-      ],
-      "not_included": [
-        "On-call / pager duty (separate scope)",
-        "Net-new product builds (use MVP package)"
-      ],
-      "timeline": "Month-to-month",
-      "subject": "Maintenance%20retainer%20—%20inquiry"
-    },
-    {
-      "id": "custom",
-      "name": "Custom build",
-      "price_from": "$8k",
-      "ideal_for": "Multi-month engagements that don't fit MVP / widget. Desktop suites, complex SaaS, AI-integrated tools. Milestone billing.",
-      "deliverables": [
-        "Full scope and architecture written up before code",
-        "Milestone-based billing (typically 4–6 stages)",
-        "Weekly demo + decision log",
-        "Months 1–2 of maintenance included after launch"
-      ],
-      "not_included": [
-        "Replacing your in-house team (I supplement, not substitute)",
-        "HIPAA / SOC 2 audits",
-        "Pure-equity engagements"
-      ],
-      "timeline": "3–6 months · phased delivery",
-      "subject": "Custom%20build%20—%20inquiry"
-    }
-  ]
+  }
 }
